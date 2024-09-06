@@ -1,0 +1,19 @@
+[remap]
+
+importer="oggvorbisstr"
+type="AudioStreamOggVorbis"
+uid="uid://crys1ffgoc2t8"
+path="res://.godot/imported/dieShuffle1.ogg-435477ee41f06e7ae476dd0a2533b423.oggvorbisstr"
+
+[deps]
+
+source_file="res://Textures/kenney boardgames/Bonus/dieShuffle1.ogg"
+dest_files=["res://.godot/imported/dieShuffle1.ogg-435477ee41f06e7ae476dd0a2533b423.oggvorbisstr"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4
