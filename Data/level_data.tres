@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://deg76elgaoig4"]
+
+[ext_resource type="Script" path="res://addons/SimpleSceneManager/Code/level_data.gd" id="1_rbm7j"]
+
+[resource]
+script = ExtResource("1_rbm7j")
+levels = Array[String]([])
+load_first_level_on_boot = false
+use_own_loading_screen = false
+loading_delay = 1.0

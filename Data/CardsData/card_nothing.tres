@@ -1,0 +1,11 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://wcmunj6suvfq"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_w8kif"]
+
+[resource]
+script = ExtResource("1_w8kif")
+id = "nothing"
+title = "Nothing"
+text = "This card is nothing and has no use."
+cost_type = Array[int]([])
+cost_amount = 0

@@ -1,0 +1,41 @@
+[gd_scene load_steps=4 format=3 uid="uid://c28o3sb1vkhl8"]
+
+[ext_resource type="Theme" uid="uid://cpqt1hqsijy37" path="res://addons/PackedUi/default_theme.tres" id="1_6d138"]
+[ext_resource type="Script" path="res://Code/Cards/deck.gd" id="2_fiqjq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_vhsr0"]
+size = Vector2(111, 160)
+
+[node name="Deck" type="PanelContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(110, 160)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1170.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+theme = ExtResource("1_6d138")
+theme_type_variation = &"CardBack"
+script = ExtResource("2_fiqjq")
+
+[node name="deck_btn" type="Button" parent="."]
+unique_name_in_owner = true
+clip_contents = true
+layout_mode = 2
+theme = ExtResource("1_6d138")
+theme_type_variation = &"DeckBtn"
+text = "Click to
+Draw
+-1E"
+clip_text = true
+
+[node name="deck_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="collider" type="CollisionShape2D" parent="deck_area"]
+unique_name_in_owner = true
+position = Vector2(54.5, 80)
+shape = SubResource("RectangleShape2D_vhsr0")

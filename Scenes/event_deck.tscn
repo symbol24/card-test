@@ -1,0 +1,23 @@
+[gd_scene load_steps=2 format=3 uid="uid://clr3am7obsst2"]
+
+[ext_resource type="Script" path="res://Code/event_deck.gd" id="1_dkcki"]
+
+[node name="EventDeck" type="PanelContainer"]
+custom_minimum_size = Vector2(330, 160)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -950.0
+offset_bottom = -560.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SurvivorDeckPanel"
+script = ExtResource("1_dkcki")
+
+[node name="event_deck_btn" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+theme_type_variation = &"DeckBtn"
+text = "EVENT
+DECK"
+clip_text = true

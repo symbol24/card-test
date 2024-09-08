@@ -8,6 +8,7 @@ signal TogglePauseGame(value:bool)
 signal PopupSmall(text:String, icon:Texture2D)
 signal PopupLarge(severity, title:String, text:String, popup_id:String, icon:CompressedTexture2D, timer:float)
 signal PopupResult(id:String, result:bool)
+signal ButtonPressed(id:String, menu:String)
 
 ## Setting your own theme here will make the menu more personalized. Please note that a lot of Type Variations are being used. Have a look at the default_theme.tres in the Packed Ui addon folder. A lot of Style Boxes are used and can be found in the StyleBoxes folder.
 @export var default_theme:Theme
@@ -31,7 +32,8 @@ func _ready() -> void:
 	window_size = _get_window_size(window_size)
 	width = ProjectSettings.get_setting("display/window/size/viewport_width")
 	height = ProjectSettings.get_setting("display/window/size/viewport_height")
-	await get_tree().create_timer(0.5).timeout
+	ButtonPressed.connect(_check_button_pressed)
+	await get_tree().create_timer(0.1).timeout
 	_set_theme_ui(_get_themed_ui(), default_theme)
 
 func _physics_process(delta: float) -> void:
@@ -62,3 +64,14 @@ func _get_all_children(_parent:Node) -> Array:
 		if child.get_children().size() > 0:
 			children.append_array(_get_all_children(child))
 	return children
+
+func _check_button_pressed(_id:String, _from_menu:String) -> void:
+	match _id:
+		"Settings":
+			UI.ToggleUi.emit("settings", true, _from_menu)
+		"Credits":
+			UI.ToggleUi.emit("credits", true, _from_menu)
+		"Play":
+			UI.ToggleUi.emit("player_ui", true, _from_menu)
+		_:
+			pass

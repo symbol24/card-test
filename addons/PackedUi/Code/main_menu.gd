@@ -79,31 +79,5 @@ func _toggle_control(_id:String, _value:bool, _previous:String = "") -> void:
 			set_deferred("visible", not _value)
 
 func button_pressed(_id:String) -> void:
-	var signal_sent:bool = false
-	match _id.to_lower():
-		"play":
-			ButtonPressed.emit(_id.to_lower())
-			signal_sent = true
-		"start":
-			ButtonPressed.emit(_id.to_lower())
-			signal_sent = true
-		"continue":
-			ButtonPressed.emit(_id.to_lower())
-			signal_sent = true
-		"options":
-			UI.ToggleUi.emit(_id.to_lower(), true, id)
-			signal_sent = true
-		"settings":
-			UI.ToggleUi.emit(_id.to_lower(), true, id)
-			signal_sent = true
-		"credits":
-			UI.ToggleUi.emit(_id.to_lower(), true, id)
-			signal_sent = true
-		"quit":
-			ButtonPressed.emit(_id.to_lower())
-			signal_sent = true
-		_:
-			push_warning("Button name unrecognized. Suggest using 'Play', 'Start', 'Continue', 'Options', 'Settings', 'Credits', or 'Quit'")
+	UI.ButtonPressed.emit(_id, id)
 
-	#if signal_sent:
-		#_toggle_control(id, false)

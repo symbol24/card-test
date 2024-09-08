@@ -1,0 +1,37 @@
+[gd_scene load_steps=3 format=3 uid="uid://dgtdmmp326wr1"]
+
+[ext_resource type="Script" path="res://Code/Cards/use_panel.gd" id="1_0qrmc"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_l687n"]
+size = Vector2(200, 200)
+
+[node name="UseArea" type="PanelContainer"]
+custom_minimum_size = Vector2(200, 200)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1080.0
+offset_bottom = -520.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"UsePanel"
+script = ExtResource("1_0qrmc")
+
+[node name="use_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+
+[node name="collider" type="CollisionShape2D" parent="use_area"]
+unique_name_in_owner = true
+position = Vector2(100, 100)
+shape = SubResource("RectangleShape2D_l687n")
+
+[node name="use_text" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"DiscardText"
+bbcode_enabled = true
+text = "[center]Drag cards here to use them
+
+Used cards are moved to the discard
+[/center]"
