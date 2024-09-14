@@ -1,0 +1,15 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=9 format=3 uid="uid://bck7hnm1hltqn"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_gj5ly"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/card_nothing.tres" id="2_a4g5u"]
+[ext_resource type="Script" path="res://Code/Cards/deck_data.gd" id="2_bl4k1"]
+[ext_resource type="Resource" uid="uid://dfuev48aefl1l" path="res://Data/CardsData/makeshift_weapon.tres" id="3_5u2va"]
+[ext_resource type="Resource" uid="uid://byhgf5gokmvki" path="res://Data/CardsData/bottled_water.tres" id="4_3wcpa"]
+[ext_resource type="Resource" uid="uid://da77l3s6tl4p1" path="res://Data/CardsData/energy_drink.tres" id="5_x0bsy"]
+[ext_resource type="Resource" uid="uid://42phi8h56ws8" path="res://Data/CardsData/mre.tres" id="6_sjqxs"]
+[ext_resource type="Resource" uid="uid://567by5qv4p0r" path="res://Data/CardsData/metal_scraps.tres" id="7_sfcrm"]
+
+[resource]
+script = ExtResource("2_bl4k1")
+id = "starter_deck"
+cards = Array[ExtResource("1_gj5ly")]([ExtResource("2_a4g5u"), ExtResource("2_a4g5u"), ExtResource("2_a4g5u"), ExtResource("2_a4g5u"), ExtResource("3_5u2va"), ExtResource("4_3wcpa"), ExtResource("5_x0bsy"), ExtResource("6_sjqxs"), ExtResource("7_sfcrm"), ExtResource("7_sfcrm")])

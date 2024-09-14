@@ -5,7 +5,8 @@
 [resource]
 script = ExtResource("1_w8kif")
 id = "nothing"
-title = "Nothing"
-text = "This card is nothing and has no use."
+title = "nothing_title"
+text = "nothing_text"
 cost_type = Array[int]([])
 cost_amount = 0
+resources = {}

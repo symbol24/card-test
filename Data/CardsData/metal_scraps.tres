@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://567by5qv4p0r"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_6352g"]
+
+[resource]
+script = ExtResource("1_6352g")
+id = "metal_scraps"
+title = "metal_scraps_title"
+text = "metal_scraps_text"
+cost_type = Array[int]([])
+cost_amount = 0
+resources = {
+2: 1
+}

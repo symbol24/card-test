@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://dfuev48aefl1l"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_f47l0"]
+
+[resource]
+script = ExtResource("1_f47l0")
+id = "makeshift_weapon"
+title = "makeshift_weapon_title"
+text = "makeshift_weapon_text"
+cost_type = Array[int]([2])
+cost_amount = 2
+resources = {
+3: 1
+}

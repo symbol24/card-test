@@ -11,15 +11,16 @@ config_version=5
 [application]
 
 config/name="card test"
-run/main_scene="res://Scenes/boot.tscn"
+run/main_scene="res://Scenes/Into/boot.tscn"
 config/features=PackedStringArray("4.3", "Forward Plus")
 config/icon="res://icon.svg"
 
 [autoload]
 
-UI="*res://addons/PackedUi/UI/UI.tscn"
+Signals="*res://Code/Autoloads/signals.gd"
+UI="*res://Scenes/Autoload/UI.tscn"
 Manager="*res://addons/SimpleSceneManager/Scenes/scene_manager.tscn"
-Game="*res://Scenes/game.tscn"
+Game="*res://Scenes/Autoload/game.tscn"
 
 [debug]
 
@@ -33,15 +34,11 @@ window/stretch/mode="canvas_items"
 
 [editor_plugins]
 
-enabled=PackedStringArray("res://addons/PackedUi/plugin.cfg", "res://addons/SimpleSceneManager/plugin.cfg")
+enabled=PackedStringArray("res://addons/SimpleSceneManager/plugin.cfg")
 
 [global_group]
 
 card=""
-
-[gui]
-
-theme/custom="res://addons/PackedUi/default_theme.tres"
 
 [input]
 

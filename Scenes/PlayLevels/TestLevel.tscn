@@ -1,0 +1,25 @@
+[gd_scene load_steps=5 format=3 uid="uid://c1gycvdilodxr"]
+
+[ext_resource type="Script" path="res://Code/UI/test_level.gd" id="1_fsqvu"]
+[ext_resource type="PackedScene" uid="uid://bdyu0cqaucrkd" path="res://Scenes/PlayArea/play_area.tscn" id="2_mea5g"]
+[ext_resource type="PackedScene" uid="uid://b2jlcnly76uid" path="res://Scenes/PlayArea/card_layer.tscn" id="3_rwnj4"]
+[ext_resource type="PackedScene" uid="uid://bx4mxwa6v3dyh" path="res://Scenes/PlayArea/discard_hidden_area.tscn" id="4_ycjol"]
+
+[node name="TestLevel" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_fsqvu")
+id = "test_level"
+
+[node name="play_area" parent="." instance=ExtResource("2_mea5g")]
+layout_mode = 0
+
+[node name="card_layer" parent="." instance=ExtResource("3_rwnj4")]
+
+[node name="DiscardHiddenArea" parent="." instance=ExtResource("4_ycjol")]
+unique_name_in_owner = true
+visible = false

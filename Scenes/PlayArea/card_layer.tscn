@@ -1,0 +1,19 @@
+[gd_scene load_steps=2 format=3 uid="uid://b2jlcnly76uid"]
+
+[ext_resource type="PackedScene" uid="uid://b7vq3l83vu5hj" path="res://Scenes/CardsandDecks/card.tscn" id="1_id018"]
+
+[node name="card_layer" type="Control" groups=["card_layer"]]
+custom_minimum_size = Vector2(1280, 720)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 40.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="card" parent="." instance=ExtResource("1_id018")]
+layout_mode = 0
+offset_left = 268.0
+offset_top = 371.0
+offset_right = 378.0
+offset_bottom = 531.0

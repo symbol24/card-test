@@ -1,12 +1,14 @@
+MainMenuButton
+CanvasLayer
+ColorRect
+Control
 Button
 PanelContainer
 RichTextLabel
 CollisionShape2D
 Area2D
 Label
-Control
 Panel
 Sprite2D
 HBoxContainer
 VBoxContainer
-ColorRect

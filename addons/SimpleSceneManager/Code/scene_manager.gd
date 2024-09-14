@@ -22,10 +22,13 @@ var loading_status := 0.0
 var progress := []
 var extra_loading := false
 var loading_screen:LoadingScreen
+var ui:CanvasLayer
 
 func _ready() -> void:
 	# Process mode is set to "always" through code
 	process_mode = PROCESS_MODE_ALWAYS
+	
+	ui = get_tree().get_first_node_in_group("UI") as CanvasLayer
 	
 	# If use_own_loading_screen is false, load the loading screen and instantiate to be used.
 	if !level_data.use_own_loading_screen:
@@ -59,7 +62,7 @@ func load_scene(_id:int = -1) -> void:
 	# If there is an active level, queue_free it.
 	if active_level != null: 
 		var temp := active_level
-		remove_child.call_deferred(temp)
+		ui.remove_child.call_deferred(temp)
 		temp.queue_free.call_deferred()
 	
 	# Starting the ResourceLoader.
@@ -74,7 +77,7 @@ func _complete_load() -> void:
 	# Get the new level from the ResourceLoader and instantiate it.
 	var new_level := ResourceLoader.load_threaded_get(to_load)
 	active_level = new_level.instantiate()
-	add_child.call_deferred(active_level)
+	ui.add_child.call_deferred(active_level)
 	
 	# Adding load time if set in the level data
 	if level_data.loading_delay > 0.0:

@@ -1,0 +1,134 @@
+[gd_scene load_steps=6 format=3 uid="uid://bdyu0cqaucrkd"]
+
+[ext_resource type="Script" path="res://Code/resource_label.gd" id="2_etu1o"]
+[ext_resource type="PackedScene" uid="uid://c28o3sb1vkhl8" path="res://Scenes/CardsandDecks/deck.tscn" id="3_2dasr"]
+[ext_resource type="PackedScene" uid="uid://cpp0obgdjba83" path="res://Scenes/PlayArea/discard.tscn" id="4_u01th"]
+[ext_resource type="PackedScene" uid="uid://dgtdmmp326wr1" path="res://Scenes/PlayArea/use_area.tscn" id="5_t58nb"]
+[ext_resource type="PackedScene" uid="uid://clr3am7obsst2" path="res://Scenes/CardsandDecks/event_deck.tscn" id="6_e2yfp"]
+
+[node name="play_area" type="Panel"]
+clip_contents = true
+custom_minimum_size = Vector2(1280, 720)
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_type_variation = &"PlayPanel"
+metadata/_edit_lock_ = true
+
+[node name="resources" type="Control" parent="."]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+metadata/_edit_lock_ = true
+
+[node name="water_label" type="Label" parent="resources"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 438.0
+offset_right = 81.0
+offset_bottom = 461.0
+theme_type_variation = &"ResourcesLabel"
+text = "W:1000"
+script = ExtResource("2_etu1o")
+metadata/_edit_lock_ = true
+
+[node name="food_label" type="Label" parent="resources"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 474.0
+offset_right = 74.0
+offset_bottom = 497.0
+theme_type_variation = &"ResourcesLabel"
+text = "F:1000"
+script = ExtResource("2_etu1o")
+resource_type = 1
+metadata/_edit_lock_ = true
+
+[node name="energy_label" type="Label" parent="resources"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 512.0
+offset_right = 74.0
+offset_bottom = 535.0
+theme_type_variation = &"ResourcesLabel"
+text = "E:1000"
+script = ExtResource("2_etu1o")
+resource_type = 4
+metadata/_edit_lock_ = true
+
+[node name="materials_label" type="Label" parent="resources"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 547.0
+offset_right = 80.0
+offset_bottom = 570.0
+theme_type_variation = &"ResourcesLabel"
+text = "M:1000"
+script = ExtResource("2_etu1o")
+resource_type = 2
+metadata/_edit_lock_ = true
+
+[node name="weapons_label" type="Label" parent="resources"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 24.0
+offset_top = 584.0
+offset_right = 81.0
+offset_bottom = 607.0
+theme_type_variation = &"ResourcesLabel"
+text = "W:1000"
+script = ExtResource("2_etu1o")
+resource_type = 3
+metadata/_edit_lock_ = true
+
+[node name="player_play_area" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1080, 340)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 365.0
+offset_right = 1180.0
+offset_bottom = 705.0
+metadata/_edit_lock_ = true
+
+[node name="Deck" parent="player_play_area" instance=ExtResource("3_2dasr")]
+layout_mode = 1
+offset_left = 7.0
+offset_top = 7.0
+offset_right = -963.0
+offset_bottom = -173.0
+
+[node name="Discard" parent="player_play_area" instance=ExtResource("4_u01th")]
+layout_mode = 1
+offset_left = 959.0
+offset_top = 10.0
+offset_right = -11.0
+offset_bottom = -170.0
+
+[node name="other_area" type="Panel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1080, 340)
+layout_mode = 0
+offset_left = 100.0
+offset_top = 10.0
+offset_right = 1180.0
+offset_bottom = 350.0
+metadata/_edit_lock_ = true
+
+[node name="UseArea" parent="other_area" instance=ExtResource("5_t58nb")]
+layout_mode = 1
+offset_left = 20.0
+offset_top = 70.0
+offset_right = -860.0
+offset_bottom = -70.0
+
+[node name="EventDeck" parent="other_area" instance=ExtResource("6_e2yfp")]
+layout_mode = 1
+offset_left = 233.0
+offset_top = 83.0
+offset_right = -517.0
+offset_bottom = -97.0

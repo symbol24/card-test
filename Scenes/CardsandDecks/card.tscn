@@ -1,0 +1,73 @@
+[gd_scene load_steps=3 format=3 uid="uid://b7vq3l83vu5hj"]
+
+[ext_resource type="Script" path="res://Code/Cards/card.gd" id="2_11agr"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jac2q"]
+size = Vector2(110, 160)
+
+[node name="card" type="PanelContainer" groups=["card"]]
+custom_minimum_size = Vector2(110, 160)
+offset_right = 110.0
+offset_bottom = 160.0
+script = ExtResource("2_11agr")
+move_delay = 0.1
+
+[node name="vbx" type="VBoxContainer" parent="."]
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+
+[node name="top" type="HBoxContainer" parent="vbx"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+mouse_filter = 2
+theme_override_constants/separation = 0
+alignment = 2
+
+[node name="spacer" type="Control" parent="vbx/top"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="cost_area" type="Control" parent="vbx/top"]
+unique_name_in_owner = true
+layout_mode = 2
+mouse_filter = 2
+
+[node name="title" type="RichTextLabel" parent="vbx"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_mode = 2
+mouse_filter = 2
+theme_type_variation = &"CardTitle"
+bbcode_enabled = true
+text = "[center]Title goes here[/center]"
+scroll_active = false
+
+[node name="image_area" type="Control" parent="vbx"]
+custom_minimum_size = Vector2(0, 32)
+layout_mode = 2
+mouse_filter = 2
+
+[node name="image" type="Sprite2D" parent="vbx/image_area"]
+unique_name_in_owner = true
+position = Vector2(34, 0)
+centered = false
+
+[node name="text" type="RichTextLabel" parent="vbx"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_vertical = 3
+mouse_filter = 2
+theme_type_variation = &"CardText"
+bbcode_enabled = true
+text = "card text goes here"
+scroll_active = false
+
+[node name="card_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="collider" type="CollisionShape2D" parent="card_area"]
+unique_name_in_owner = true
+position = Vector2(55, 80)
+shape = SubResource("RectangleShape2D_jac2q")

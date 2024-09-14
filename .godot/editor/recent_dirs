@@ -1,8 +1,11 @@
-res://Code
-res://Scenes
+res://Code/UI
+res://Scenes/Autoload
+res://Code/Autoloads
 res://Code/Cards
-res://Data/CardStyles
-res://Data/CardsData
-res://addons/PackedUi
-res://
 res://Data
+res://Scenes
+res://Data/Decks
+res://Data/CardsData
+res://Code
+res://Data/CardStyles
+res://

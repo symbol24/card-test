@@ -1,0 +1,24 @@
+[gd_scene load_steps=3 format=3 uid="uid://pbywo1tmpqjb"]
+
+[ext_resource type="Script" path="res://Code/UI/deck_selector_menu.gd" id="1_gxs81"]
+[ext_resource type="Script" path="res://Code/wrappers/main_menu_button.gd" id="2_5t3u4"]
+
+[node name="DeckSelector" type="Control"]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_gxs81")
+id = "deck_selector"
+
+[node name="MainMenuButton" type="Button" parent="."]
+layout_mode = 0
+offset_left = 531.0
+offset_top = 288.0
+offset_right = 746.0
+offset_bottom = 394.0
+text = "Play With Start Deck"
+script = ExtResource("2_5t3u4")
+id = "play_with_starter_deck"

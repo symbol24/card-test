@@ -1,0 +1,14 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://byhgf5gokmvki"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_gdobp"]
+
+[resource]
+script = ExtResource("1_gdobp")
+id = "bottled_water"
+title = "bottled_water"
+text = "bottled_water_text"
+cost_type = Array[int]([])
+cost_amount = 0
+resources = {
+0: 1
+}
