@@ -1,134 +1,142 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdyu0cqaucrkd"]
+[gd_scene load_steps=5 format=3 uid="uid://bdyu0cqaucrkd"]
 
-[ext_resource type="Script" path="res://Code/resource_label.gd" id="2_etu1o"]
+[ext_resource type="Script" path="res://Code/UI/resource_label.gd" id="2_etu1o"]
 [ext_resource type="PackedScene" uid="uid://c28o3sb1vkhl8" path="res://Scenes/CardsandDecks/deck.tscn" id="3_2dasr"]
 [ext_resource type="PackedScene" uid="uid://cpp0obgdjba83" path="res://Scenes/PlayArea/discard.tscn" id="4_u01th"]
-[ext_resource type="PackedScene" uid="uid://dgtdmmp326wr1" path="res://Scenes/PlayArea/use_area.tscn" id="5_t58nb"]
 [ext_resource type="PackedScene" uid="uid://clr3am7obsst2" path="res://Scenes/CardsandDecks/event_deck.tscn" id="6_e2yfp"]
 
 [node name="play_area" type="Panel"]
 clip_contents = true
-custom_minimum_size = Vector2(1280, 720)
+custom_minimum_size = Vector2(1920, 1080)
 offset_right = 1280.0
 offset_bottom = 720.0
 theme_type_variation = &"PlayPanel"
 metadata/_edit_lock_ = true
 
 [node name="resources" type="Control" parent="."]
+custom_minimum_size = Vector2(150, 300)
+layout_mode = 1
 anchors_preset = 0
-offset_right = 40.0
-offset_bottom = 40.0
+offset_top = 392.0
+offset_right = 150.0
+offset_bottom = 692.0
 mouse_filter = 2
-metadata/_edit_lock_ = true
 
 [node name="water_label" type="Label" parent="resources"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 24.0
-offset_top = 438.0
-offset_right = 81.0
-offset_bottom = 461.0
+layout_mode = 1
+offset_left = 31.0
+offset_top = 31.0
+offset_right = 88.0
+offset_bottom = 54.0
 theme_type_variation = &"ResourcesLabel"
 text = "W:1000"
 script = ExtResource("2_etu1o")
-metadata/_edit_lock_ = true
 
 [node name="food_label" type="Label" parent="resources"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 24.0
-offset_top = 474.0
-offset_right = 74.0
-offset_bottom = 497.0
+layout_mode = 1
+offset_left = 31.0
+offset_top = 67.0
+offset_right = 81.0
+offset_bottom = 90.0
 theme_type_variation = &"ResourcesLabel"
 text = "F:1000"
 script = ExtResource("2_etu1o")
 resource_type = 1
-metadata/_edit_lock_ = true
 
 [node name="energy_label" type="Label" parent="resources"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 24.0
-offset_top = 512.0
-offset_right = 74.0
-offset_bottom = 535.0
+layout_mode = 1
+offset_left = 31.0
+offset_top = 105.0
+offset_right = 81.0
+offset_bottom = 128.0
 theme_type_variation = &"ResourcesLabel"
 text = "E:1000"
 script = ExtResource("2_etu1o")
 resource_type = 4
-metadata/_edit_lock_ = true
 
 [node name="materials_label" type="Label" parent="resources"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 24.0
-offset_top = 547.0
-offset_right = 80.0
-offset_bottom = 570.0
+layout_mode = 1
+offset_left = 31.0
+offset_top = 140.0
+offset_right = 87.0
+offset_bottom = 163.0
 theme_type_variation = &"ResourcesLabel"
 text = "M:1000"
 script = ExtResource("2_etu1o")
 resource_type = 2
-metadata/_edit_lock_ = true
 
 [node name="weapons_label" type="Label" parent="resources"]
 unique_name_in_owner = true
-layout_mode = 0
-offset_left = 24.0
-offset_top = 584.0
-offset_right = 81.0
-offset_bottom = 607.0
+layout_mode = 1
+offset_left = 31.0
+offset_top = 177.0
+offset_right = 88.0
+offset_bottom = 200.0
 theme_type_variation = &"ResourcesLabel"
 text = "W:1000"
 script = ExtResource("2_etu1o")
 resource_type = 3
-metadata/_edit_lock_ = true
 
 [node name="player_play_area" type="Panel" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(1080, 340)
-layout_mode = 0
+custom_minimum_size = Vector2(1720, 400)
+layout_mode = 1
 offset_left = 100.0
-offset_top = 365.0
-offset_right = 1180.0
-offset_bottom = 705.0
+offset_top = 550.0
+offset_right = 1820.0
+offset_bottom = 1050.0
 metadata/_edit_lock_ = true
 
-[node name="Deck" parent="player_play_area" instance=ExtResource("3_2dasr")]
+[node name="Deck" parent="player_play_area" node_paths=PackedStringArray("card_placement_pos") instance=ExtResource("3_2dasr")]
 layout_mode = 1
-offset_left = 7.0
-offset_top = 7.0
-offset_right = -963.0
-offset_bottom = -173.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = -1510.0
+offset_bottom = -190.0
+card_placement_pos = NodePath("../../card_end_point")
+tween_time = 0.3
 
 [node name="Discard" parent="player_play_area" instance=ExtResource("4_u01th")]
 layout_mode = 1
-offset_left = 959.0
-offset_top = 10.0
-offset_right = -11.0
-offset_bottom = -170.0
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+offset_left = -210.0
+offset_top = -490.0
+offset_right = -10.0
+offset_bottom = -190.0
+grow_horizontal = 0
+grow_vertical = 0
 
 [node name="other_area" type="Panel" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(1080, 340)
-layout_mode = 0
+custom_minimum_size = Vector2(1720, 500)
+layout_mode = 1
 offset_left = 100.0
-offset_top = 10.0
-offset_right = 1180.0
-offset_bottom = 350.0
+offset_top = 30.0
+offset_right = 1820.0
+offset_bottom = 530.0
 metadata/_edit_lock_ = true
 
-[node name="UseArea" parent="other_area" instance=ExtResource("5_t58nb")]
+[node name="EventDeck" parent="other_area" node_paths=PackedStringArray("card_placement_pos") instance=ExtResource("6_e2yfp")]
 layout_mode = 1
-offset_left = 20.0
-offset_top = 70.0
-offset_right = -860.0
-offset_bottom = -70.0
+anchors_preset = 0
+anchor_right = 0.0
+anchor_bottom = 0.0
+offset_left = 10.0
+offset_top = 10.0
+offset_right = 510.0
+offset_bottom = 260.0
+grow_horizontal = 1
+grow_vertical = 1
+card_placement_pos = NodePath("../../card_end_point2")
 
-[node name="EventDeck" parent="other_area" instance=ExtResource("6_e2yfp")]
-layout_mode = 1
-offset_left = 233.0
-offset_top = 83.0
-offset_right = -517.0
-offset_bottom = -97.0
+[node name="card_end_point" type="Marker2D" parent="."]
+position = Vector2(700, 560)
+
+[node name="card_end_point2" type="Marker2D" parent="."]
+position = Vector2(700, 40)

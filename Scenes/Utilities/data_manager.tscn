@@ -1,0 +1,23 @@
+[gd_scene load_steps=11 format=3 uid="uid://dovcqdm8wvsk7"]
+
+[ext_resource type="Script" path="res://Code/Utilities/data_manager.gd" id="1_kuk14"]
+[ext_resource type="PackedScene" uid="uid://b7vq3l83vu5hj" path="res://Scenes/CardsandDecks/card.tscn" id="2_mjewf"]
+[ext_resource type="PackedScene" uid="uid://c28o3sb1vkhl8" path="res://Scenes/CardsandDecks/deck.tscn" id="3_0d7w0"]
+[ext_resource type="PackedScene" uid="uid://dk0i4x0oefaxi" path="res://Scenes/CardsandDecks/event_card.tscn" id="3_4dkt1"]
+[ext_resource type="PackedScene" uid="uid://clr3am7obsst2" path="res://Scenes/CardsandDecks/event_deck.tscn" id="5_fhxpk"]
+[ext_resource type="PackedScene" uid="uid://wownlmyl613p" path="res://Scenes/DeckSelector/event_deck_selector_button.tscn" id="6_2hq8b"]
+[ext_resource type="Script" path="res://Code/Decks/deck_data.gd" id="6_avuvk"]
+[ext_resource type="PackedScene" uid="uid://co4ygm0o7hx6e" path="res://Scenes/DeckSelector/deck_selector_button.tscn" id="7_fpnf0"]
+[ext_resource type="Resource" uid="uid://bck7hnm1hltqn" path="res://Data/Decks/starter_deck.tres" id="7_pot31"]
+[ext_resource type="Resource" uid="uid://bvkjkqnhxbphb" path="res://Data/Decks/EventDecks/desert_01.tres" id="8_ojvnn"]
+
+[node name="DataManager" type="Node"]
+script = ExtResource("1_kuk14")
+default_player_card = ExtResource("2_mjewf")
+default_player_deck = ExtResource("3_0d7w0")
+default_event_card = ExtResource("3_4dkt1")
+default_event_deck = ExtResource("5_fhxpk")
+event_deck_selector_button = ExtResource("6_2hq8b")
+player_deck_selector_button = ExtResource("7_fpnf0")
+player_decks = Array[ExtResource("6_avuvk")]([ExtResource("7_pot31")])
+event_decks = Array[ExtResource("6_avuvk")]([ExtResource("8_ojvnn")])

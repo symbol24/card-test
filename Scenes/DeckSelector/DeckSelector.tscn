@@ -1,7 +1,7 @@
 [gd_scene load_steps=3 format=3 uid="uid://pbywo1tmpqjb"]
 
 [ext_resource type="Script" path="res://Code/UI/deck_selector_menu.gd" id="1_gxs81"]
-[ext_resource type="Script" path="res://Code/wrappers/main_menu_button.gd" id="2_5t3u4"]
+[ext_resource type="Script" path="res://Code/DeckSelector/selector_play_button.gd" id="2_iphc0"]
 
 [node name="DeckSelector" type="Control"]
 layout_mode = 3
@@ -13,12 +13,46 @@ grow_vertical = 2
 script = ExtResource("1_gxs81")
 id = "deck_selector"
 
-[node name="MainMenuButton" type="Button" parent="."]
+[node name="play_button" type="Button" parent="."]
+unique_name_in_owner = true
+layout_mode = 1
+offset_left = 1588.0
+offset_top = 488.0
+offset_right = 1803.0
+offset_bottom = 594.0
+text = "Play With Selected decks"
+script = ExtResource("2_iphc0")
+
+[node name="adventure_panel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1000, 410)
 layout_mode = 0
-offset_left = 531.0
-offset_top = 288.0
-offset_right = 746.0
-offset_bottom = 394.0
-text = "Play With Start Deck"
-script = ExtResource("2_5t3u4")
-id = "play_with_starter_deck"
+offset_left = 460.0
+offset_top = 100.0
+offset_right = 1460.0
+offset_bottom = 500.0
+theme_type_variation = &"AdventurePanel"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="adventure_panel"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="event_hbox" type="HBoxContainer" parent="adventure_panel/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="PlayerDeckPanel" type="PanelContainer" parent="."]
+custom_minimum_size = Vector2(1000, 410)
+layout_mode = 0
+offset_left = 460.0
+offset_top = 580.0
+offset_right = 1460.0
+offset_bottom = 988.0
+theme_type_variation = &"PlayerDeckPanel"
+
+[node name="ScrollContainer" type="ScrollContainer" parent="PlayerDeckPanel"]
+layout_mode = 2
+vertical_scroll_mode = 0
+
+[node name="player_hbox" type="HBoxContainer" parent="PlayerDeckPanel/ScrollContainer"]
+unique_name_in_owner = true
+layout_mode = 2

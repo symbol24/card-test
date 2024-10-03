@@ -24,6 +24,7 @@ var extra_loading := false
 var loading_screen:LoadingScreen
 var ui:CanvasLayer
 
+
 func _ready() -> void:
 	# Process mode is set to "always" through code
 	process_mode = PROCESS_MODE_ALWAYS
@@ -39,7 +40,8 @@ func _ready() -> void:
 	if level_data.load_first_level_on_boot:
 		load_scene(0)
 
-func _physics_process(_delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	if is_loading:
 		loading_status = ResourceLoader.load_threaded_get_status(to_load, progress)
 		LoadingPercentUpdated.emit(progress[0])
@@ -49,6 +51,7 @@ func _physics_process(_delta: float) -> void:
 			if !load_complete:
 				load_complete = true
 				_complete_load()
+
 
 func load_scene(_id:int = -1) -> void:
 	# Send loadscreen toggle on
@@ -71,6 +74,7 @@ func load_scene(_id:int = -1) -> void:
 	load_complete = false
 	ResourceLoader.load_threaded_request(to_load)
 
+
 func _complete_load() -> void:
 	is_loading = false
 	
@@ -85,4 +89,4 @@ func _complete_load() -> void:
 		await wait_timer.timeout
 		
 	# Send loadscreen toggle off
-	ToggleLoadingScreen.emit(false)
+	#ToggleLoadingScreen.emit(false)

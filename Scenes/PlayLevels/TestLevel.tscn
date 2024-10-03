@@ -17,6 +17,8 @@ id = "test_level"
 
 [node name="play_area" parent="." instance=ExtResource("2_mea5g")]
 layout_mode = 0
+offset_right = 1920.0
+offset_bottom = 1080.0
 
 [node name="card_layer" parent="." instance=ExtResource("3_rwnj4")]
 

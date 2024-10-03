@@ -1,5 +1,6 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://wcmunj6suvfq"]
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://wcmunj6suvfq"]
 
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_th3ru"]
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_w8kif"]
 
 [resource]
@@ -7,6 +8,6 @@ script = ExtResource("1_w8kif")
 id = "nothing"
 title = "nothing_title"
 text = "nothing_text"
-cost_type = Array[int]([])
-cost_amount = 0
+costs = Array[ExtResource("1_th3ru")]([])
 resources = {}
+is_mandatory = false

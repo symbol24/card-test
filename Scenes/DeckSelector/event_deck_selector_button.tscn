@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://wownlmyl613p"]
+
+[ext_resource type="Script" path="res://Code/DeckSelector/deck_selector_button.gd" id="1_g4enc"]
+
+[node name="EventDeckButton" type="Button"]
+custom_minimum_size = Vector2(250, 380)
+theme_type_variation = &"EventDeckSelectorButton"
+toggle_mode = true
+text = "text here"
+script = ExtResource("1_g4enc")

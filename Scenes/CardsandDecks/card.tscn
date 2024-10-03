@@ -6,11 +6,12 @@
 size = Vector2(110, 160)
 
 [node name="card" type="PanelContainer" groups=["card"]]
-custom_minimum_size = Vector2(110, 160)
-offset_right = 110.0
-offset_bottom = 160.0
+custom_minimum_size = Vector2(200, 300)
+offset_right = 200.0
+offset_bottom = 300.0
+theme_type_variation = &"PlayerCardBack"
 script = ExtResource("2_11agr")
-move_delay = 0.1
+move_delay = 0.0
 
 [node name="vbx" type="VBoxContainer" parent="."]
 layout_mode = 2
@@ -30,12 +31,15 @@ mouse_filter = 2
 
 [node name="cost_area" type="Control" parent="vbx/top"]
 unique_name_in_owner = true
+custom_minimum_size = Vector2(0, 20)
+layout_direction = 3
 layout_mode = 2
+size_flags_horizontal = 3
 mouse_filter = 2
 
 [node name="title" type="RichTextLabel" parent="vbx"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 20)
+custom_minimum_size = Vector2(0, 30)
 layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"CardTitle"
@@ -43,15 +47,10 @@ bbcode_enabled = true
 text = "[center]Title goes here[/center]"
 scroll_active = false
 
-[node name="image_area" type="Control" parent="vbx"]
-custom_minimum_size = Vector2(0, 32)
-layout_mode = 2
-mouse_filter = 2
-
-[node name="image" type="Sprite2D" parent="vbx/image_area"]
+[node name="image" type="TextureRect" parent="vbx"]
 unique_name_in_owner = true
-position = Vector2(34, 0)
-centered = false
+custom_minimum_size = Vector2(50, 50)
+layout_mode = 2
 
 [node name="text" type="RichTextLabel" parent="vbx"]
 unique_name_in_owner = true

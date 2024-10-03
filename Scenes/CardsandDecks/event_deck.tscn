@@ -1,23 +1,36 @@
-[gd_scene load_steps=2 format=3 uid="uid://clr3am7obsst2"]
+[gd_scene load_steps=3 format=3 uid="uid://clr3am7obsst2"]
 
-[ext_resource type="Script" path="res://Code/event_deck.gd" id="1_dkcki"]
+[ext_resource type="Script" path="res://Code/Decks/event_deck.gd" id="1_dkcki"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_0ejy4"]
+size = Vector2(500, 250)
 
 [node name="EventDeck" type="PanelContainer"]
-custom_minimum_size = Vector2(330, 160)
+custom_minimum_size = Vector2(500, 250)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -950.0
-offset_bottom = -560.0
+offset_right = -1420.0
+offset_bottom = -830.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_type_variation = &"SurvivorDeckPanel"
+theme_type_variation = &"EventDeckBack"
 script = ExtResource("1_dkcki")
+tween_time = 0.3
 
 [node name="event_deck_btn" type="Button" parent="."]
 unique_name_in_owner = true
 layout_mode = 2
-theme_type_variation = &"DeckBtn"
+theme_type_variation = &"DeckButton"
 text = "EVENT
 DECK"
 clip_text = true
+
+[node name="deck_area" type="Area2D" parent="."]
+unique_name_in_owner = true
+visible = false
+
+[node name="collider" type="CollisionShape2D" parent="deck_area"]
+unique_name_in_owner = true
+position = Vector2(250, 125)
+shape = SubResource("RectangleShape2D_0ejy4")

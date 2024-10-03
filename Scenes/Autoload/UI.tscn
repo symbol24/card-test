@@ -1,6 +1,125 @@
-[gd_scene load_steps=2 format=3 uid="uid://p4c6pubf17rl"]
+[gd_scene load_steps=6 format=3 uid="uid://p4c6pubf17rl"]
 
 [ext_resource type="Script" path="res://Code/Autoloads/ui.gd" id="1_htsia"]
+[ext_resource type="Script" path="res://addons/richtext2/text_effects/anims/rte_back.gd" id="2_5runj"]
+[ext_resource type="Script" path="res://Code/UI/loading_screen.gd" id="2_uo2nw"]
+[ext_resource type="Script" path="res://addons/richtext2/rich_text_animation.gd" id="3_xow8m"]
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_im34e"]
+resource_name = "back"
+script = ExtResource("2_5runj")
+metadata/rt = 1842859800438
 
 [node name="Ui" type="CanvasLayer" groups=["UI"]]
 script = ExtResource("1_htsia")
+
+[node name="LoadingScreen" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+visible = false
+top_level = true
+z_index = 4096
+clip_contents = true
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_force_pass_scroll_events = false
+theme_type_variation = &"LoadingScreen"
+script = ExtResource("2_uo2nw")
+
+[node name="animation_layer" type="Control" parent="LoadingScreen"]
+unique_name_in_owner = true
+layout_mode = 2
+
+[node name="text_layer" type="Control" parent="LoadingScreen"]
+layout_mode = 2
+
+[node name="loading_label" type="RichTextLabel" parent="LoadingScreen/text_layer"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(500, 143)
+layout_mode = 0
+offset_left = 1171.0
+offset_top = 768.0
+offset_right = 1671.0
+offset_bottom = 911.0
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/bold_italics_font_size = 104
+theme_override_font_sizes/italics_font_size = 104
+theme_override_font_sizes/mono_font_size = 104
+theme_override_font_sizes/normal_font_size = 104
+theme_override_font_sizes/bold_font_size = 104
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_im34e")]
+script = ExtResource("3_xow8m")
+animation = "back"
+progress = 1.0
+visible_character = 7
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 56, 112), Transform2D(1, 0, 0, 1, 120, 112), Transform2D(1, 0, 0, 1, 180, 112), Transform2D(1, 0, 0, 1, 245, 112), Transform2D(1, 0, 0, 1, 274, 112), Transform2D(1, 0, 0, 1, 340, 112)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(56, 81), Vector2(51, 81), Vector2(54, 81), Vector2(17, 81), Vector2(52, 81), Vector2(57, 81)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0365728
+animation = "back"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 3.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "Loading"
+effects = 2
+alignment = 0
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 104
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("../..")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
+metadata/rand = Array[int]([1259352484, 2670840870, 2422956008, 2962835364, 684071512, 3866440128, 128646533])

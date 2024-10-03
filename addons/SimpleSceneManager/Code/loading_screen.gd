@@ -13,14 +13,17 @@ var size_check_delay:float = 0.5
 @onready var loading: RichTextLabel = %loading
 @onready var percent: RichTextLabel = %percent
 
+
 func _ready() -> void:
 	last_size = _size_check(last_size)
 	Manager.ToggleLoadingScreen.connect(_toggle_loading_screen)
 	Manager.LoadingPercentUpdated.connect(_update_percent)
 
+
 func _physics_process(delta: float) -> void:
 	if visible:
 		size_timer += delta
+
 
 func _toggle_loading_screen(_value:bool) -> void:
 	set_deferred("visible", _value)
@@ -28,8 +31,10 @@ func _toggle_loading_screen(_value:bool) -> void:
 		_size_check(last_size)
 		_update_percent(0.0)
 
+
 func _update_percent(_value:float) -> void:
 	percent.text = "[center]" + str(roundf(_value*100)) + "%[/center]"
+
 
 func _size_check(_last_size:Vector2i) -> Vector2i:
 	if _last_size != DisplayServer.window_get_size():
@@ -37,6 +42,7 @@ func _size_check(_last_size:Vector2i) -> Vector2i:
 		background.size = _last_size
 		_set_label_positions(_last_size, loading, percent)
 	return _last_size
+
 
 func _set_label_positions(_size:Vector2i, _loading:RichTextLabel, _percent:RichTextLabel) -> void:
 	_loading.position = Vector2((_size.x/2)-_loading.size.x/2, (_size.y/2)-_loading.size.y)

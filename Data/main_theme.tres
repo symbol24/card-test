@@ -1,0 +1,87 @@
+[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bd5vyy8rmqk2s"]
+
+[ext_resource type="StyleBox" uid="uid://6gb78gemoaqb" path="res://Data/CardStyles/card_normal.tres" id="1_wbksu"]
+[ext_resource type="StyleBox" uid="uid://b13c8bv4qxkhu" path="res://Data/CardStyles/Deck_btn_hover.tres" id="2_i1mck"]
+[ext_resource type="StyleBox" uid="uid://b0o5l08o3hx6d" path="res://Data/CardStyles/Deck_btn_normal.tres" id="3_fgri2"]
+[ext_resource type="StyleBox" uid="uid://5ct4pwyhlxu6" path="res://Data/CardStyles/Deck_btn_pressed.tres" id="4_gp0ss"]
+[ext_resource type="StyleBox" uid="uid://w0ors0hqnnff" path="res://Data/CardStyles/card_disabled.tres" id="5_chxru"]
+[ext_resource type="StyleBox" uid="uid://g7hxnarc0dfl" path="res://Data/CardStyles/event_card_normal.tres" id="5_nk815"]
+[ext_resource type="StyleBox" uid="uid://dx8esjmx0do3c" path="res://Data/CardStyles/event_card_disabled.tres" id="6_1wr5a"]
+[ext_resource type="StyleBox" uid="uid://bewoaq0qfv6q4" path="res://Data/CardStyles/card_hover.tres" id="6_bl5dx"]
+[ext_resource type="StyleBox" uid="uid://c17dc056xny3x" path="res://Data/CardStyles/event_card_hover.tres" id="7_a0c77"]
+[ext_resource type="StyleBox" uid="uid://bodky5vfcbcsi" path="res://Data/CardStyles/card_selected.tres" id="7_utxpa"]
+[ext_resource type="StyleBox" uid="uid://bhd78jr5c81q3" path="res://Data/CardStyles/event_card_selected.tres" id="8_sayux"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_4xr60"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.180005, 0.180005, 0.180005, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qo1f8"]
+bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxsuu"]
+content_margin_left = 10.0
+content_margin_top = 10.0
+content_margin_right = 10.0
+content_margin_bottom = 10.0
+bg_color = Color(0.132686, 0.353678, 0.278813, 1)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+corner_radius_top_left = 6
+corner_radius_top_right = 6
+corner_radius_bottom_right = 6
+corner_radius_bottom_left = 6
+
+[resource]
+AdventurePanel/base_type = &"PanelContainer"
+AdventurePanel/styles/panel = SubResource("StyleBoxFlat_4xr60")
+DeckBack/base_type = &"PanelContainer"
+DeckBack/styles/panel = ExtResource("1_wbksu")
+DeckButton/base_type = &"Button"
+DeckButton/colors/font_hover_color = Color(0.194349, 0.194349, 0.194349, 1)
+DeckButton/colors/font_pressed_color = Color(0.450648, 0.450648, 0.450648, 1)
+DeckButton/styles/disabled = ExtResource("3_fgri2")
+DeckButton/styles/focus = ExtResource("2_i1mck")
+DeckButton/styles/hover = ExtResource("2_i1mck")
+DeckButton/styles/normal = ExtResource("3_fgri2")
+DeckButton/styles/pressed = ExtResource("4_gp0ss")
+DeckSelectorButton/base_type = &"Button"
+DeckSelectorButton/font_sizes/font_size = 20
+DeckSelectorButton/styles/disabled = ExtResource("5_chxru")
+DeckSelectorButton/styles/hover = ExtResource("6_bl5dx")
+DeckSelectorButton/styles/normal = ExtResource("1_wbksu")
+DeckSelectorButton/styles/pressed = ExtResource("7_utxpa")
+EventDeckBack/base_type = &"PanelContainer"
+EventDeckBack/styles/panel = ExtResource("5_nk815")
+EventDeckButton/base_type = &"Button"
+EventDeckButton/colors/font_color = Color(1, 1, 1, 1)
+EventDeckButton/colors/font_disabled_color = Color(0, 0, 0, 1)
+EventDeckSelectorButton/base_type = &"Button"
+EventDeckSelectorButton/font_sizes/font_size = 20
+EventDeckSelectorButton/styles/disabled = ExtResource("6_1wr5a")
+EventDeckSelectorButton/styles/hover = ExtResource("7_a0c77")
+EventDeckSelectorButton/styles/normal = ExtResource("5_nk815")
+EventDeckSelectorButton/styles/pressed = ExtResource("8_sayux")
+LoadingScreen/base_type = &"PanelContainer"
+LoadingScreen/styles/panel = SubResource("StyleBoxFlat_qo1f8")
+LoadingText/base_type = &"RichTextLabel"
+LoadingText/font_sizes/normal_font_size = 72
+PlayerCardBack/base_type = &"PanelContainer"
+PlayerCardBack/styles/panel = ExtResource("1_wbksu")
+PlayerCardHover/base_type = &"PanelContainer"
+PlayerCardHover/styles/panel = ExtResource("6_bl5dx")
+PlayerDeckPanel/base_type = &"PanelContainer"
+PlayerDeckPanel/styles/panel = SubResource("StyleBoxFlat_rxsuu")

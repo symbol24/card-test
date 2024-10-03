@@ -1,5 +1,6 @@
 class_name PlayerData extends Resource
 
+
 var food:int = 0:
 	set(_value):
 		food = _value
@@ -22,6 +23,8 @@ var energy:int = 5:
 		Signals.ResourceUpdated.emit(CardData.Resource_Type.ENERGY, energy)
 
 var current_deck:DeckData
+var current_hp:int = 1
+var holding_card:bool = false
 
 func update_all_resources() -> void:
 	Signals.ResourceUpdated.emit(CardData.Resource_Type.FOOD, food)
@@ -29,6 +32,7 @@ func update_all_resources() -> void:
 	Signals.ResourceUpdated.emit(CardData.Resource_Type.MATERIAL, material)
 	Signals.ResourceUpdated.emit(CardData.Resource_Type.WEAPON, weapons)
 	Signals.ResourceUpdated.emit(CardData.Resource_Type.ENERGY, energy)
+
 
 func add_resource(_type:CardData.Resource_Type, _amount:int) -> void:
 	match _type:
@@ -45,6 +49,7 @@ func add_resource(_type:CardData.Resource_Type, _amount:int) -> void:
 		_:
 			pass
 
+
 func use_resource(_type:CardData.Resource_Type, _amount:int) -> void:
 	match _type:
 		CardData.Resource_Type.WATER:
@@ -59,6 +64,7 @@ func use_resource(_type:CardData.Resource_Type, _amount:int) -> void:
 			weapons -= _amount
 		_:
 			pass
+
 
 func check_available_resource(_type:CardData.Resource_Type, _amount:int) -> bool:
 	var result:bool = false

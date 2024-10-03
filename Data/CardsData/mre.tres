@@ -1,15 +1,27 @@
-[gd_resource type="Resource" script_class="CardData" load_steps=2 format=3 uid="uid://42phi8h56ws8"]
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://42phi8h56ws8"]
 
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_m3rgb"]
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_ux8ji"]
+[ext_resource type="Texture2D" uid="uid://dsio4e72mlpy8" path="res://Textures/CostIcons/cost_icons_food.png" id="2_7b3q8"]
+[ext_resource type="Texture2D" uid="uid://dj0f0jejy88uf" path="res://Textures/CostIcons/cost_icons_energy.png" id="3_j1ai6"]
+
+[sub_resource type="Resource" id="Resource_ovgl0"]
+script = ExtResource("1_m3rgb")
+cost_type = 1
+cost_amount = 2
+cost_texture = ExtResource("2_7b3q8")
+
+[sub_resource type="Resource" id="Resource_1qquc"]
+script = ExtResource("1_m3rgb")
+cost_type = 4
+cost_amount = 2
+cost_texture = ExtResource("3_j1ai6")
 
 [resource]
 script = ExtResource("1_ux8ji")
 id = "mre"
 title = "mre_title"
 text = "mre_text"
-cost_type = Array[int]([])
-cost_amount = 0
-resources = {
-1: 2,
-4: 2
-}
+costs = Array[ExtResource("1_m3rgb")]([])
+resources = Array[ExtResource("1_m3rgb")]([SubResource("Resource_ovgl0"), SubResource("Resource_1qquc")])
+is_mandatory = false

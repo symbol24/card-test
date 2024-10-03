@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="Cost" load_steps=3 format=3 uid="uid://cbplhiu43lt75"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_6asdl"]
+[ext_resource type="Texture2D" uid="uid://dj0f0jejy88uf" path="res://Textures/CostIcons/cost_icons_energy.png" id="1_s8466"]
+
+[resource]
+script = ExtResource("1_6asdl")
+cost_type = 4
+cost_amount = 0
+cost_texture = ExtResource("1_s8466")

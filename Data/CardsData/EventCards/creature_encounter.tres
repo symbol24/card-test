@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=8 format=3 uid="uid://ceq8ljqfxsrcp"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_kwteg"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_jo3hm"]
+[ext_resource type="Texture2D" uid="uid://rk7ssm70f27f" path="res://Textures/CostIcons/cost_icons_weapon.png" id="2_wga46"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_k8158"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/card_nothing.tres" id="4_o3g5s"]
+[ext_resource type="Resource" uid="uid://ce6aarhim64eh" path="res://Data/CardsData/desert_grub.tres" id="5_rqw4s"]
+
+[sub_resource type="Resource" id="Resource_ypkqx"]
+script = ExtResource("1_kwteg")
+cost_type = 3
+cost_amount = 1
+cost_texture = ExtResource("2_wga46")
+
+[resource]
+script = ExtResource("3_k8158")
+rewards = Array[ExtResource("2_jo3hm")]([ExtResource("4_o3g5s"), ExtResource("5_rqw4s")])
+reward_amount = 1
+id = "desert_creature_encounter"
+title = "desert_creature_encounter"
+text = "desert_creature_encounter_text"
+costs = Array[ExtResource("1_kwteg")]([SubResource("Resource_ypkqx")])
+resources = Array[ExtResource("1_kwteg")]([])
+is_mandatory = true

@@ -6,6 +6,7 @@ enum Resource_Type {
 				MATERIAL = 2,
 				WEAPON = 3,
 				ENERGY = 4,
+				DAMAGE = 5,
 				}
 
 enum Card_Type {
@@ -21,7 +22,10 @@ enum Card_Type {
 @export var id:String
 @export var title:String
 @export var text:String
-@export var cost_type:Array[Resource_Type]
-@export var cost_amount:int
-@export var resources:Dictionary = {}
-@export var image:Resource
+@export var costs:Array[Cost]
+@export var resources:Array[Cost]
+@export var image:CompressedTexture2D
+@export var is_mandatory:bool = false
+
+var cost_payed:bool = false
+var payment:Array[Cost]

@@ -6,12 +6,12 @@
 size = Vector2(110, 160)
 
 [node name="Discard" type="PanelContainer"]
-custom_minimum_size = Vector2(110, 160)
+custom_minimum_size = Vector2(200, 300)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1170.0
-offset_bottom = -560.0
+offset_right = -1720.0
+offset_bottom = -780.0
 grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"DiscardPanel"

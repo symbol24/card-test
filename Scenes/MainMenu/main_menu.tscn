@@ -14,11 +14,11 @@ script = ExtResource("1_53pf0")
 id = "main_menu"
 
 [node name="MainMenuButton" type="Button" parent="."]
-layout_mode = 0
-offset_left = 487.0
-offset_top = 281.0
-offset_right = 711.0
-offset_bottom = 371.0
+layout_mode = 1
+offset_left = 875.0
+offset_top = 483.0
+offset_right = 1099.0
+offset_bottom = 573.0
 text = "Play"
 script = ExtResource("2_oq65e")
-id = "play"
+id = "deck_selector"

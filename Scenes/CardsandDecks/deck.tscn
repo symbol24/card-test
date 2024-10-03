@@ -1,28 +1,28 @@
 [gd_scene load_steps=3 format=3 uid="uid://c28o3sb1vkhl8"]
 
-[ext_resource type="Script" path="res://Code/Cards/deck.gd" id="2_fiqjq"]
+[ext_resource type="Script" path="res://Code/Decks/deck.gd" id="2_fiqjq"]
 
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vhsr0"]
 size = Vector2(111, 160)
 
 [node name="Deck" type="PanelContainer"]
 clip_contents = true
-custom_minimum_size = Vector2(110, 160)
+custom_minimum_size = Vector2(200, 300)
 anchors_preset = 15
 anchor_right = 1.0
 anchor_bottom = 1.0
-offset_right = -1170.0
-offset_bottom = -560.0
+offset_right = -1720.0
+offset_bottom = -780.0
 grow_horizontal = 2
 grow_vertical = 2
-theme_type_variation = &"CardBack"
+theme_type_variation = &"DeckBack"
 script = ExtResource("2_fiqjq")
 
 [node name="deck_btn" type="Button" parent="."]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
-theme_type_variation = &"DeckBtn"
+theme_type_variation = &"DeckButton"
 text = "Click to
 Draw
 -1E"

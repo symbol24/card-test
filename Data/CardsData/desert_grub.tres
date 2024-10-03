@@ -1,0 +1,20 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://ce6aarhim64eh"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_84iu5"]
+[ext_resource type="Texture2D" uid="uid://dsio4e72mlpy8" path="res://Textures/CostIcons/cost_icons_food.png" id="2_4i15l"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_atnyk"]
+
+[sub_resource type="Resource" id="Resource_qhupb"]
+script = ExtResource("1_84iu5")
+cost_type = 1
+cost_amount = 1
+cost_texture = ExtResource("2_4i15l")
+
+[resource]
+script = ExtResource("2_atnyk")
+id = "desert_grub"
+title = "desert_grub"
+text = "desert_grub_text"
+costs = Array[ExtResource("1_84iu5")]([])
+resources = Array[ExtResource("1_84iu5")]([SubResource("Resource_qhupb")])
+is_mandatory = false

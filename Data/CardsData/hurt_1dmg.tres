@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=7 format=3 uid="uid://0yxhnkmh8x2k"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_luqye"]
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_ptjt1"]
+[ext_resource type="Texture2D" uid="uid://dj0f0jejy88uf" path="res://Textures/CostIcons/cost_icons_energy.png" id="2_smucp"]
+[ext_resource type="Texture2D" uid="uid://do5rr2bum1b8l" path="res://Textures/CostIcons/cost_icons_damage.png" id="3_2moyu"]
+
+[sub_resource type="Resource" id="Resource_ayr0h"]
+script = ExtResource("1_ptjt1")
+cost_type = 4
+cost_amount = 1
+cost_texture = ExtResource("2_smucp")
+
+[sub_resource type="Resource" id="Resource_70o1s"]
+script = ExtResource("1_ptjt1")
+cost_type = 5
+cost_amount = 1
+cost_texture = ExtResource("3_2moyu")
+
+[resource]
+script = ExtResource("1_luqye")
+id = "hurt_1dmg"
+title = "hurt_1dmg"
+text = "hurt_1dmg_text"
+costs = Array[ExtResource("1_ptjt1")]([SubResource("Resource_ayr0h")])
+resources = Array[ExtResource("1_ptjt1")]([SubResource("Resource_70o1s")])
+is_mandatory = true

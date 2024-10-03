@@ -1,7 +1,10 @@
 extends Node
 
-const SEED_OPTIONS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@#$%^&*?"
+
+const SEED_OPTIONS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@$%^&*?"
 const STARTER_DECK = preload("res://Data/Decks/starter_deck.tres")
+const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
+
 
 @export var seed_length:int = 10
 @export var force_debug_seed:bool = false
@@ -12,13 +15,33 @@ var run_seed_hash:int
 var seeded_rng:SyRandomNumberGenerator
 
 var player_data:PlayerData
+var current_event_deck:DeckData
+var data_manager:DataManager
+var is_loading := false
+var to_load := ""
+var load_complete := false
+var loading_status := 0.0
+var progress := []
 
 
 func _ready() -> void:
+	process_mode = PROCESS_MODE_ALWAYS
 	Signals.AddResource.connect(_add_resource)
 	Signals.UseResource.connect(_use_resource)
+	Signals.LoadDataManager.connect(_setup_data_manager)
 	#UI.ButtonPressed.connect(_check_ui_btn)
 	seeded_rng = SyRandomNumberGenerator.new()
+
+
+func _process(_delta: float) -> void:
+	if is_loading:
+		loading_status = ResourceLoader.load_threaded_get_status(to_load, progress)
+		
+		# When loading is complete in ResourceLoader, launch the _complete_load function.
+		if loading_status == ResourceLoader.THREAD_LOAD_LOADED:
+			if !load_complete:
+				load_complete = true
+				_complete_load()
 
 
 func setup_rng() -> String:
@@ -38,8 +61,43 @@ func setup_player() -> void:
 		var temp = player_data
 		temp.queue_free.call_deferred()
 	player_data = PlayerData.new()
-	player_data.current_deck = STARTER_DECK
-	player_data.current_deck.shuffle_deck()
+
+
+func get_highest_card_z_index() -> int:
+	var all:Array[Card] = _get_all_cards()
+	if all.is_empty(): return 0
+	var z:int = 0
+	for card in all:
+		if card.z_index > z:
+			z = card.z_index
+	if z >= 4096:
+		_reset_card_z_indexes()
+		z = get_highest_card_z_index()
+	return z
+
+
+func _setup_data_manager() -> void:
+	to_load = DATAMANAGER
+	ResourceLoader.load_threaded_request(to_load)
+	is_loading = true
+	load_complete = false
+	progress.clear()
+	loading_status = 0.0
+
+
+func _complete_load() -> void:
+	is_loading = false
+	
+	# Get the new level from the ResourceLoader and instantiate it.
+	var new := ResourceLoader.load_threaded_get(to_load)
+	var instantiated = new.instantiate()
+	add_child.call_deferred(instantiated)
+
+	match to_load:
+		DATAMANAGER:
+			data_manager = instantiated
+		_:
+			pass
 
 
 func _get_seed(_length:int) -> String:
@@ -74,22 +132,18 @@ func _get_all_cards() -> Array[Card]:
 	return cards
 
 
-func get_highest_card_z_index() -> int:
-	var all:Array[Card] = _get_all_cards()
-	if all.is_empty(): return 0
-	var z:int = 0
-	for card in all:
-		if card.z_index > z:
-			z = card.z_index
-	if z >= 4096:
-		_reset_card_z_indexes()
-		z = get_highest_card_z_index()
-	return z
-
-
 func _reset_card_z_indexes() -> void:
 	var all:Array[Card] = _get_all_cards()
 	var z:int = 1
 	for card in all:
 		card.z_index = z
 		z += 1
+
+
+func load_deck(_id:String, _type:DeckData.Type) -> void:
+	if _type == DeckData.Type.EVENT:
+		current_event_deck = data_manager.get_deck(_id, _type)
+		current_event_deck.setup_deck()
+	else:
+		player_data.current_deck = data_manager.get_deck(_id, _type)
+		player_data.current_deck.setup_deck()
