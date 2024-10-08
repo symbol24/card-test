@@ -7,9 +7,11 @@ signal NotifyPlayerDeckEmpty()
 signal NotifyEventDeckEmpty()
 signal NotifyActiveEventCard(card:EventCard)
 
+
 # Deck Selection
 signal SelectDeck(id:String, type:DeckData.Type)
 signal PlayWith(event_deck_id:String, player_deck_id:String)
+
 
 # GAME
 signal LoadDataManager()
@@ -27,3 +29,8 @@ signal MouseEnterCard(card:Card)
 signal MouseExitCard(card:Card)
 signal NullActiveCard()
 signal ToggleCollider(is_on:bool)
+
+
+# Grabber
+signal SelectCard(card:Card)
+signal UnselectCard(card:Card)

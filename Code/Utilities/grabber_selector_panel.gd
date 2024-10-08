@@ -1,8 +1,8 @@
 class_name GrabberSelectorPanel extends Panel
 
 
+@onready var area:Area2D = %area
 @onready var collider:CollisionShape2D = %collider
-
 
 
 func set_panel_size(_mouse_pos:Vector2) -> void:
@@ -20,9 +20,6 @@ func set_panel_size(_mouse_pos:Vector2) -> void:
 	else:
 		new_size = _mouse_pos - global_position
 		new_scale = Vector2(1,1)
-
-
-	print("Size: ", new_size, " and scale: ", scale)
 
 	set_deferred("size", new_size)
 	set_deferred("scale", new_scale)

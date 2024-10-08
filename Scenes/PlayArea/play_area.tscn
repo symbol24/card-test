@@ -143,3 +143,5 @@ position = Vector2(700, 560)
 position = Vector2(700, 40)
 
 [node name="Grabber" parent="." instance=ExtResource("5_7nojo")]
+move_delay = 0.1
+move_offset = Vector2(50, 0)
