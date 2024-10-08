@@ -2,10 +2,10 @@
 
 [ext_resource type="Script" path="res://Code/Cards/card.gd" id="2_11agr"]
 
-[sub_resource type="RectangleShape2D" id="RectangleShape2D_jac2q"]
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_s6wvj"]
 size = Vector2(110, 160)
 
-[node name="card" type="PanelContainer" groups=["card"]]
+[node name="card" type="PanelContainer" groups=["card", "player_card"]]
 custom_minimum_size = Vector2(200, 300)
 offset_right = 200.0
 offset_bottom = 300.0
@@ -69,4 +69,4 @@ visible = false
 [node name="collider" type="CollisionShape2D" parent="card_area"]
 unique_name_in_owner = true
 position = Vector2(55, 80)
-shape = SubResource("RectangleShape2D_jac2q")
+shape = SubResource("RectangleShape2D_s6wvj")

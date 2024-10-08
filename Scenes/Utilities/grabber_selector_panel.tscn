@@ -1,0 +1,22 @@
+[gd_scene load_steps=3 format=3 uid="uid://4vatt2lm5le5"]
+
+[ext_resource type="Script" path="res://Code/Utilities/grabber_selector_panel.gd" id="1_x0whq"]
+
+[sub_resource type="RectangleShape2D" id="RectangleShape2D_jpdcg"]
+size = Vector2(232, 146)
+
+[node name="selector_panel" type="Panel"]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_type_variation = &"SelectorPanel"
+script = ExtResource("1_x0whq")
+
+[node name="Area2D" type="Area2D" parent="."]
+
+[node name="collider" type="CollisionShape2D" parent="Area2D"]
+unique_name_in_owner = true
+position = Vector2(116, 73)
+shape = SubResource("RectangleShape2D_jpdcg")

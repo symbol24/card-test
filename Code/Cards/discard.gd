@@ -23,7 +23,6 @@ func _input(_event: InputEvent) -> void:
 
 func _ready() -> void:
 	super()
-	Signals.DiscardCard.connect(_discard_card)
 	discard_area.area_entered.connect(_area_entered)
 	discard_area.area_exited.connect(_area_exited)
 	mouse_entered.connect(_mouse_entered)
@@ -33,19 +32,15 @@ func _ready() -> void:
 	discard_hidden_panel.mouse_exited.connect(_discard_hidden_panel_mouse_exited)
 
 
-func _discard_card(_card:Card) -> void:
-	card = _card
-	_card_released()
-
-
 func _card_released() -> void:
-	if card != null:
+	if card != null and not card is EventCard:
 		var temp:Card = card
 		#print(card.get_parent())
 		card.get_parent().remove_child(card)
 		discard_hidden_panel.add_child.call_deferred(temp)
 		temp.set_deferred("position", Vector2(randf_range(210,970), randf_range(110,450)))
 		discarded.append(temp)
+		temp.discard()
 
 
 func _toggle_hidden_panel() -> void:

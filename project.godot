@@ -48,6 +48,11 @@ folder_colors={
 [global_group]
 
 card=""
+player_deck=""
+discard=""
+player_card=""
+event_deck=""
+event_card=""
 
 [gui]
 

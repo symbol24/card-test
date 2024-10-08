@@ -1,8 +1,9 @@
-[gd_scene load_steps=5 format=3 uid="uid://bdyu0cqaucrkd"]
+[gd_scene load_steps=6 format=3 uid="uid://bdyu0cqaucrkd"]
 
 [ext_resource type="Script" path="res://Code/UI/resource_label.gd" id="2_etu1o"]
 [ext_resource type="PackedScene" uid="uid://c28o3sb1vkhl8" path="res://Scenes/CardsandDecks/deck.tscn" id="3_2dasr"]
 [ext_resource type="PackedScene" uid="uid://cpp0obgdjba83" path="res://Scenes/PlayArea/discard.tscn" id="4_u01th"]
+[ext_resource type="PackedScene" uid="uid://dxmwqi11tuww7" path="res://Scenes/Utilities/grabber.tscn" id="5_7nojo"]
 [ext_resource type="PackedScene" uid="uid://clr3am7obsst2" path="res://Scenes/CardsandDecks/event_deck.tscn" id="6_e2yfp"]
 
 [node name="play_area" type="Panel"]
@@ -140,3 +141,5 @@ position = Vector2(700, 560)
 
 [node name="card_end_point2" type="Marker2D" parent="."]
 position = Vector2(700, 40)
+
+[node name="Grabber" parent="." instance=ExtResource("5_7nojo")]

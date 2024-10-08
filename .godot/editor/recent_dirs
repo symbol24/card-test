@@ -1,3 +1,5 @@
+res://Code/Utilities
+res://Scenes/Utilities
 res://Code/UI
 res://Code/RTL2
 res://addons
@@ -5,8 +7,6 @@ res://Code/DeckSelector
 res://Scenes/DeckSelector
 res://Data/CardsData/EventCards
 res://Data/CardsData
-res://Scenes/Utilities
-res://Code/Utilities
 res://Data/Decks/EventDecks
 res://Data/Costs
 res://Scenes/CostIcons

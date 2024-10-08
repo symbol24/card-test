@@ -18,8 +18,12 @@ signal UseResource(type:CardData.Resource_Type, amount:int)
 signal ResourceUpdated(type:CardData.Resource_Type, amount:int)
 signal DiscardCard(card:Card)
 signal UseCard(card:Card)
+signal CardDiscarded(card:Card)
 signal ToggleColliders(value:bool)
 
 
 # Event Cards and Deck
+signal MouseEnterCard(card:Card)
+signal MouseExitCard(card:Card)
 signal NullActiveCard()
+signal ToggleCollider(is_on:bool)

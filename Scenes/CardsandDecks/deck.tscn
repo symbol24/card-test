@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_vhsr0"]
 size = Vector2(111, 160)
 
-[node name="Deck" type="PanelContainer"]
+[node name="Deck" type="PanelContainer" groups=["player_deck"]]
 clip_contents = true
 custom_minimum_size = Vector2(200, 300)
 anchors_preset = 15

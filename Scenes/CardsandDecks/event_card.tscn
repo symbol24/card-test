@@ -5,7 +5,7 @@
 [sub_resource type="RectangleShape2D" id="RectangleShape2D_ivhsi"]
 size = Vector2(500, 250)
 
-[node name="EventCard" type="PanelContainer"]
+[node name="EventCard" type="PanelContainer" groups=["card", "event_card"]]
 custom_minimum_size = Vector2(500, 250)
 anchors_preset = 15
 anchor_right = 1.0

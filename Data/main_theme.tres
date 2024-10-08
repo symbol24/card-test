@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=15 format=3 uid="uid://bd5vyy8rmqk2s"]
+[gd_resource type="Theme" load_steps=16 format=3 uid="uid://bd5vyy8rmqk2s"]
 
 [ext_resource type="StyleBox" uid="uid://6gb78gemoaqb" path="res://Data/CardStyles/card_normal.tres" id="1_wbksu"]
 [ext_resource type="StyleBox" uid="uid://b13c8bv4qxkhu" path="res://Data/CardStyles/Deck_btn_hover.tres" id="2_i1mck"]
@@ -45,6 +45,18 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gry4"]
+bg_color = Color(1, 0.32549, 0.4, 0.243137)
+border_width_left = 5
+border_width_top = 5
+border_width_right = 5
+border_width_bottom = 5
+border_color = Color(1, 0.325121, 0.400366, 1)
+corner_radius_top_left = 5
+corner_radius_top_right = 5
+corner_radius_bottom_right = 5
+corner_radius_bottom_left = 5
+
 [resource]
 AdventurePanel/base_type = &"PanelContainer"
 AdventurePanel/styles/panel = SubResource("StyleBoxFlat_4xr60")
@@ -85,3 +97,5 @@ PlayerCardHover/base_type = &"PanelContainer"
 PlayerCardHover/styles/panel = ExtResource("6_bl5dx")
 PlayerDeckPanel/base_type = &"PanelContainer"
 PlayerDeckPanel/styles/panel = SubResource("StyleBoxFlat_rxsuu")
+SelectorPanel/base_type = &"Panel"
+SelectorPanel/styles/panel = SubResource("StyleBoxFlat_8gry4")

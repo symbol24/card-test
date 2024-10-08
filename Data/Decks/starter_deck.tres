@@ -13,3 +13,4 @@
 script = ExtResource("2_bl4k1")
 id = "starter_deck"
 cards = Array[ExtResource("1_gj5ly")]([ExtResource("2_a4g5u"), ExtResource("2_a4g5u"), ExtResource("2_a4g5u"), ExtResource("2_a4g5u"), ExtResource("3_5u2va"), ExtResource("4_3wcpa"), ExtResource("5_x0bsy"), ExtResource("6_sjqxs"), ExtResource("7_sfcrm"), ExtResource("7_sfcrm")])
+type = 0

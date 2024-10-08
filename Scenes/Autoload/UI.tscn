@@ -5,10 +5,10 @@
 [ext_resource type="Script" path="res://Code/UI/loading_screen.gd" id="2_uo2nw"]
 [ext_resource type="Script" path="res://addons/richtext2/rich_text_animation.gd" id="3_xow8m"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_im34e"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_h0fv6"]
 resource_name = "back"
 script = ExtResource("2_5runj")
-metadata/rt = 1842859800438
+metadata/rt = 1834840291154
 
 [node name="Ui" type="CanvasLayer" groups=["UI"]]
 script = ExtResource("1_htsia")
@@ -50,15 +50,13 @@ theme_override_font_sizes/normal_font_size = 104
 theme_override_font_sizes/bold_font_size = 104
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_im34e")]
+custom_effects = [SubResource("RichTextEffect_h0fv6")]
 script = ExtResource("3_xow8m")
 animation = "back"
-progress = 1.0
-visible_character = 7
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 56, 112), Transform2D(1, 0, 0, 1, 120, 112), Transform2D(1, 0, 0, 1, 180, 112), Transform2D(1, 0, 0, 1, 245, 112), Transform2D(1, 0, 0, 1, 274, 112), Transform2D(1, 0, 0, 1, 340, 112)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(56, 81), Vector2(51, 81), Vector2(54, 81), Vector2(17, 81), Vector2(52, 81), Vector2(57, 81)])
-_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
-_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+_alpha = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+_alpha_goal = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 _forced_finish_delay = -0.0365728
 animation = "back"
 default_wait_time = 1.0

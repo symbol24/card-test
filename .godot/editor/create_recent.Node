@@ -1,6 +1,10 @@
+Control
+CollisionShape2D
+Area2D
+Panel
+Node2D
 Node
 RichTextAnimation
-Control
 RichTextLabel
 PanelContainer
 Button
@@ -8,7 +12,3 @@ HBoxContainer
 ScrollContainer
 GridContainer
 TextureRect
-Card
-Marker2D
-MainMenuButton
-CanvasLayer
