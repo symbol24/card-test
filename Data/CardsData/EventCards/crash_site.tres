@@ -16,11 +16,12 @@ cost_texture = ExtResource("3_nopkw")
 
 [resource]
 script = ExtResource("3_56yt3")
-rewards = Array[ExtResource("2_3qqty")]([ExtResource("4_rilxc"), ExtResource("5_duyev"), ExtResource("6_pv0n2")])
-reward_amount = 1
 id = "desert_crash_site"
 title = "desert_crash_site"
 text = "desert_crash_site_text"
+type = 5
 costs = Array[ExtResource("1_2n1ua")]([SubResource("Resource_pobeb")])
 resources = Array[ExtResource("1_2n1ua")]([])
+rewards = Array[ExtResource("2_3qqty")]([ExtResource("4_rilxc"), ExtResource("5_duyev"), ExtResource("6_pv0n2")])
+reward_amount = 1
 is_mandatory = true

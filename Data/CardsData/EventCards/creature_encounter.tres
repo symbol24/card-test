@@ -15,11 +15,12 @@ cost_texture = ExtResource("2_wga46")
 
 [resource]
 script = ExtResource("3_k8158")
-rewards = Array[ExtResource("2_jo3hm")]([ExtResource("4_o3g5s"), ExtResource("5_rqw4s")])
-reward_amount = 1
 id = "desert_creature_encounter"
 title = "desert_creature_encounter"
 text = "desert_creature_encounter_text"
+type = 4
 costs = Array[ExtResource("1_kwteg")]([SubResource("Resource_ypkqx")])
 resources = Array[ExtResource("1_kwteg")]([])
+rewards = Array[ExtResource("2_jo3hm")]([ExtResource("4_o3g5s"), ExtResource("5_rqw4s")])
+reward_amount = 1
 is_mandatory = true

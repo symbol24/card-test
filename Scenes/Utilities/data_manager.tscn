@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://dovcqdm8wvsk7"]
+[gd_scene load_steps=14 format=3 uid="uid://dovcqdm8wvsk7"]
 
 [ext_resource type="Script" path="res://Code/Utilities/data_manager.gd" id="1_kuk14"]
 [ext_resource type="PackedScene" uid="uid://b7vq3l83vu5hj" path="res://Scenes/CardsandDecks/card.tscn" id="2_mjewf"]
@@ -11,6 +11,8 @@
 [ext_resource type="Resource" uid="uid://bck7hnm1hltqn" path="res://Data/Decks/starter_deck.tres" id="7_pot31"]
 [ext_resource type="Resource" uid="uid://bvkjkqnhxbphb" path="res://Data/Decks/EventDecks/desert_01.tres" id="8_ojvnn"]
 [ext_resource type="PackedScene" uid="uid://4vatt2lm5le5" path="res://Scenes/Utilities/grabber_selector_panel.tscn" id="8_tg1n7"]
+[ext_resource type="PackedScene" uid="uid://cqffivol7jg0n" path="res://Scenes/CardsandDecks/complete_btn.tscn" id="9_ahbgf"]
+[ext_resource type="PackedScene" uid="uid://6x4ivvauhxda" path="res://Scenes/CardsandDecks/use_card_btn.tscn" id="10_nmg7c"]
 
 [node name="DataManager" type="Node"]
 process_mode = 3
@@ -22,5 +24,7 @@ default_event_deck = ExtResource("5_fhxpk")
 event_deck_selector_button = ExtResource("6_2hq8b")
 player_deck_selector_button = ExtResource("7_fpnf0")
 grabber_selector_panel = ExtResource("8_tg1n7")
+ui_complete_btn = ExtResource("9_ahbgf")
+ui_use_btn = ExtResource("10_nmg7c")
 player_decks = Array[ExtResource("6_avuvk")]([ExtResource("7_pot31")])
 event_decks = Array[ExtResource("6_avuvk")]([ExtResource("8_ojvnn")])

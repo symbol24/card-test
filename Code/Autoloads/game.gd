@@ -9,6 +9,11 @@ const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
 @export var seed_length:int = 10
 @export var force_debug_seed:bool = false
 @export var debug_seed:String = ""
+@export var use_btn_hide_delay:float = 5
+@export var delay_to_discard:float = 0.2
+
+
+var discard_pile:Discard
 
 var run_seed:String = ""
 var run_seed_hash:int
@@ -26,11 +31,14 @@ var progress := []
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
+	Signals.DiscardReady.connect(_set_discard)
 	Signals.AddResource.connect(_add_resource)
 	Signals.UseResource.connect(_use_resource)
 	Signals.LoadDataManager.connect(_setup_data_manager)
-	#UI.ButtonPressed.connect(_check_ui_btn)
+	Signals.CheckCardsOnCard.connect(_check_card_completion)
 	seeded_rng = SyRandomNumberGenerator.new()
+	Signals.UseCard.connect(_use_card)
+	Signals.CompleteCard.connect(_complete_card)
 
 
 func _process(_delta: float) -> void:
@@ -74,6 +82,15 @@ func get_highest_card_z_index() -> int:
 		_reset_card_z_indexes()
 		z = get_highest_card_z_index()
 	return z
+
+
+func load_deck(_id:String, _type:DeckData.Type) -> void:
+	if _type == DeckData.Type.EVENT:
+		current_event_deck = data_manager.get_deck(_id, _type)
+		current_event_deck.setup_deck()
+	else:
+		player_data.current_deck = data_manager.get_deck(_id, _type)
+		player_data.current_deck.setup_deck()
 
 
 func _setup_data_manager() -> void:
@@ -140,10 +157,85 @@ func _reset_card_z_indexes() -> void:
 		z += 1
 
 
-func load_deck(_id:String, _type:DeckData.Type) -> void:
-	if _type == DeckData.Type.EVENT:
-		current_event_deck = data_manager.get_deck(_id, _type)
-		current_event_deck.setup_deck()
+func _check_card_completion(_receiver:Card, _payers:Array[Card]) -> void:
+	var costs:Array[Dictionary]
+	var payments:Array[Dictionary]
+	for each in _receiver.data.costs:
+		var new_cost:Dictionary = {
+									"type": each.cost_type,
+									"tot_amount":each.cost_amount,
+									"amount_payed":0,
+									"payed":false,
+									}
+		costs.append(new_cost)
+
+	for c in _payers:
+		for each in c.data.resources:
+			var new_res:Dictionary = {
+									"type": each.cost_type,
+									"tot_amount":each.cost_amount,
+									"amount_used":0,
+									"card":c
+									}
+			payments.append(new_res)
+	
+	for c in costs:
+		for p in payments:
+			if not c["payed"] and p["type"] == c["type"] and p["amount_used"] < p["tot_amount"]:
+				var to_pay:int = c["tot_amount"] - c["amount_payed"]
+				var amount_avail:int = p["tot_amount"] - p["amount_used"]
+				if amount_avail > to_pay:
+					amount_avail -= to_pay
+				c["amount_payed"] += amount_avail
+				p["amount_used"] += amount_avail
+
+				if c["amount_payed"] == c["tot_amount"]:
+					c["payed"] = true
+
+	var used_payers:Array[Card] = []
+	for each in payments:
+		if each["amount_used"] > 0:
+			if used_payers.find(each["card"]) == -1:
+				used_payers.append(each["card"])
+	_receiver.used_cards = used_payers
+
+	var payed:int = 0
+	for c in costs:
+		if c["payed"]:
+			payed += 1
+
+	if not costs.is_empty() and payed == costs.size():
+		Signals.ToggleCardForButton.emit(data_manager.ui_complete_btn, _receiver, true)
 	else:
-		player_data.current_deck = data_manager.get_deck(_id, _type)
-		player_data.current_deck.setup_deck()
+		Signals.ToggleCardForButton.emit(null, _receiver, false)
+
+
+func _set_discard(_discard:Discard) ->void:
+	discard_pile = _discard
+
+
+func _use_card(_card:Card) -> void:
+	var energy:Cost = _card.data.get_resource(CardData.Resource_Type.ENERGY)
+	if energy != null:
+		Signals.AddResource.emit(energy.cost_type, energy.cost_amount)
+		var tween:Tween = _card.create_tween()
+		tween.tween_property(_card, "global_position", discard_pile.global_position, delay_to_discard)
+		await tween.finished
+		Signals.DiscardCard.emit(_card)
+	
+
+func _complete_card(_card:Card) -> void:
+	for each in _card.data.resources:
+		Signals.AddResource.emit(each.cost_type, each.cost_amount)
+	
+	var tween:Tween
+	for used in _card.used_cards:
+		tween = used.create_tween()
+		tween.tween_property(used, "global_position", discard_pile.global_position, delay_to_discard)
+		await tween.finished
+		Signals.DiscardCard.emit(used)
+
+	tween = _card.create_tween()
+	tween.tween_property(_card, "global_position", discard_pile.global_position, delay_to_discard)
+	await tween.finished
+	Signals.DiscardCard.emit(_card)

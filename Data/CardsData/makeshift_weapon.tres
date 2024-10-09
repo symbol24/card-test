@@ -13,7 +13,7 @@ cost_texture = ExtResource("2_vsfdv")
 
 [sub_resource type="Resource" id="Resource_eetyx"]
 script = ExtResource("1_x7ly0")
-cost_type = 5
+cost_type = 3
 cost_amount = 1
 cost_texture = ExtResource("3_urk6b")
 
@@ -22,6 +22,9 @@ script = ExtResource("1_f47l0")
 id = "makeshift_weapon"
 title = "makeshift_weapon_title"
 text = "makeshift_weapon_text"
+type = 3
 costs = Array[ExtResource("1_x7ly0")]([SubResource("Resource_gqpwe")])
 resources = Array[ExtResource("1_x7ly0")]([SubResource("Resource_eetyx")])
+rewards = Array[ExtResource("1_f47l0")]([])
+reward_amount = 1
 is_mandatory = false

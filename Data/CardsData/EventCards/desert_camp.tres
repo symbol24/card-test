@@ -20,11 +20,12 @@ cost_texture = ExtResource("3_xfpkd")
 
 [resource]
 script = ExtResource("3_1s611")
-rewards = Array[ExtResource("2_a2kg3")]([])
-reward_amount = 1
 id = "desert_camp"
 title = "desert_camp"
 text = "desert_camp_text"
+type = 5
 costs = Array[ExtResource("1_hhaku")]([SubResource("Resource_r8v0q"), SubResource("Resource_65rj3")])
 resources = Array[ExtResource("1_hhaku")]([])
+rewards = Array[ExtResource("2_a2kg3")]([])
+reward_amount = 1
 is_mandatory = false

@@ -1,0 +1,10 @@
+[gd_scene load_steps=2 format=3 uid="uid://cqffivol7jg0n"]
+
+[ext_resource type="Script" path="res://Code/Cards/complete_btn.gd" id="1_us5wk"]
+
+[node name="complete_btn" type="Button"]
+custom_minimum_size = Vector2(100, 35)
+offset_right = 100.0
+offset_bottom = 35.0
+text = "Complete"
+script = ExtResource("1_us5wk")

@@ -14,11 +14,12 @@ cost_amount = 2
 
 [resource]
 script = ExtResource("1_2thaq")
-rewards = Array[ExtResource("2_q5c61")]([ExtResource("3_x0p61"), ExtResource("4_x5l6t"), ExtResource("5_1p3sd")])
-reward_amount = 1
 id = "desert_exit_crash"
 title = "desert_exit_crash"
 text = "desert_exit_crash_text"
+type = 5
 costs = Array[ExtResource("1_dkby8")]([SubResource("Resource_ft4bo")])
 resources = Array[ExtResource("1_dkby8")]([])
+rewards = Array[ExtResource("2_q5c61")]([ExtResource("3_x0p61"), ExtResource("4_x5l6t"), ExtResource("5_1p3sd")])
+reward_amount = 1
 is_mandatory = true

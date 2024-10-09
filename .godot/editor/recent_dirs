@@ -1,3 +1,5 @@
+res://Code/Cards
+res://Scenes/CardsandDecks
 res://Code/Utilities
 res://Scenes/Utilities
 res://Code/UI
@@ -10,7 +12,6 @@ res://Data/CardsData
 res://Data/Decks/EventDecks
 res://Data/Costs
 res://Scenes/CostIcons
-res://Code/Cards
 res://Data/CardStyles
 res://Data
 res://Scenes/Autoload

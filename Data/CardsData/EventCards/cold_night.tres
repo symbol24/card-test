@@ -13,11 +13,12 @@ cost_amount = 2
 
 [resource]
 script = ExtResource("3_0vvd5")
-rewards = Array[ExtResource("2_x8ukg")]([ExtResource("3_gict3"), ExtResource("3_gict3"), ExtResource("3_gict3"), ExtResource("4_bs4h4")])
-reward_amount = 1
 id = "cold_night"
 title = "cold_night"
 text = "cold_night_text"
+type = 5
 costs = Array[ExtResource("1_o3eob")]([SubResource("Resource_fcbd5")])
 resources = Array[ExtResource("1_o3eob")]([])
+rewards = Array[ExtResource("2_x8ukg")]([ExtResource("3_gict3"), ExtResource("3_gict3"), ExtResource("3_gict3"), ExtResource("4_bs4h4")])
+reward_amount = 1
 is_mandatory = true

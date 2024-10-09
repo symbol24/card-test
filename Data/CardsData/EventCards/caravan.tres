@@ -15,6 +15,7 @@ reward_amount = 1
 id = "desert_caravan"
 title = "desert_caravan"
 text = "desert_caravan_text"
+type = 5
 costs = Array[ExtResource("1_n3wl3")]([])
 resources = Array[ExtResource("1_n3wl3")]([])
 is_mandatory = true

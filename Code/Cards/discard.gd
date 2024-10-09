@@ -30,6 +30,14 @@ func _ready() -> void:
 	discard_hidden_panel = get_tree().get_first_node_in_group("discard_hidden_panel")
 	discard_hidden_panel.mouse_entered.connect(_discard_hidden_panel_mouse_entered)
 	discard_hidden_panel.mouse_exited.connect(_discard_hidden_panel_mouse_exited)
+	Signals.DiscardCard.connect(_receive_discard_card)
+	Signals.DiscardReady.emit(self)
+
+
+func _receive_discard_card(_card:Card) -> void:
+	if _card != null:
+		card = _card
+		_card_released()
 
 
 func _card_released() -> void:

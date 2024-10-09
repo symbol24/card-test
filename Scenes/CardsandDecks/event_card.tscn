@@ -63,6 +63,10 @@ bbcode_enabled = true
 text = "card text goes here"
 scroll_active = false
 
+[node name="btn_control" type="Control" parent="."]
+unique_name_in_owner = true
+layout_mode = 2
+
 [node name="card_area" type="Area2D" parent="."]
 unique_name_in_owner = true
 visible = false

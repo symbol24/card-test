@@ -16,11 +16,12 @@ cost_texture = ExtResource("2_s7vw0")
 
 [resource]
 script = ExtResource("3_cdl28")
-rewards = Array[ExtResource("2_20em8")]([ExtResource("4_h437m"), ExtResource("5_t5cin"), ExtResource("6_ncvq2")])
-reward_amount = 1
 id = "desert_oasis"
 title = "desert_oasis"
 text = "desert_oasis_text"
+type = 5
 costs = Array[ExtResource("1_rlh3w")]([SubResource("Resource_8v312")])
 resources = Array[ExtResource("1_rlh3w")]([])
+rewards = Array[ExtResource("2_20em8")]([ExtResource("4_h437m"), ExtResource("5_t5cin"), ExtResource("6_ncvq2")])
+reward_amount = 1
 is_mandatory = true

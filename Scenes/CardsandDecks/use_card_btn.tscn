@@ -1,0 +1,15 @@
+[gd_scene load_steps=2 format=3 uid="uid://6x4ivvauhxda"]
+
+[ext_resource type="Script" path="res://Code/Cards/use_card_btn.gd" id="1_r0bsk"]
+
+[node name="use_card_btn" type="Button"]
+custom_minimum_size = Vector2(100, 35)
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_right = -1820.0
+offset_bottom = -1045.0
+grow_horizontal = 2
+grow_vertical = 2
+text = "Use"
+script = ExtResource("1_r0bsk")
