@@ -4,8 +4,8 @@ class_name Grabber extends Node2D
 @export var move_delay:float = 0.2
 @export var move_offset:Vector2 = Vector2(10,0)
 
-@onready var player_deck:Deck = get_tree().get_first_node_in_group("player_deck")
-@onready var event_deck:Deck = get_tree().get_first_node_in_group("event_deck")
+@onready var player_deck:DeckButton = get_tree().get_first_node_in_group("player_deck")
+@onready var event_deck:DeckButton = get_tree().get_first_node_in_group("event_deck")
 @onready var discard:Discard = get_tree().get_first_node_in_group("discard")
 
 var grabbed_items:Array = []
@@ -32,7 +32,7 @@ func _process(delta: float) -> void:
 			#tween.parallel()
 			tween.tween_property(each, "global_position", get_global_mouse_position()-connection_point+(move_offset*i), delta+move_delay)
 			i += 1
-	elif not grabbing and selector_panel != null:
+	elif not grabbing and selector_panel != null and not Game.discard_layer.is_visible():
 		var tween:Tween = self.create_tween()
 		tween.tween_method(selector_panel.set_panel_size, selector_panel.size, get_global_mouse_position(), delta)
 
@@ -56,12 +56,13 @@ func _grab() -> void:
 
 func _click_card() -> void:
 	if not grabbing:
-		if discard.discard_hidden_panel.is_visible() and not discard.discarded.is_empty():
-			for each in discard.discarded:
+		if Game.discard_layer.is_visible() and not Game.discarded_player_cards.is_empty():
+			for each in Game.discarded_player_cards:
 				var area:Vector2 = each.global_position + each.size
 				if get_global_mouse_position().x >= each.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= each.global_position.y and get_global_mouse_position().y <= area.y:
 					grabbed_items.append(each)
-		elif not discard.discard_hidden_panel.is_visible():
+		elif not Game.discard_layer.is_visible():
+			#print("active_player_cards: ", Game.active_player_cards)
 			if not Game.active_player_cards.is_empty():
 				for each in Game.active_player_cards:
 					var area:Vector2 = each.global_position + each.size
@@ -105,12 +106,12 @@ func _get_panel_cards(_panel:GrabberSelectorPanel) -> Array[Card]:
 	var cards:Array[Card] = []
 	var panel_start:Vector2 = _panel.global_position
 	var panel_end:Vector2 = _panel.global_position + _panel.size
-	if discard.discard_hidden_panel.is_visible() and not discard.discarded.is_empty():
+	if Game.discard_layer.is_visible() and not Game.discarded_player_cards.is_empty():
 		for card in discard.discarded:
 			var card_end:Vector2 = card.global_position + card.size
 			if (card.global_position.x >= panel_start.x and card_end.x <= panel_end.x) and (card.global_position.y >= panel_start.y and card_end.y <= panel_end.y):
 				cards.append(card)
-	elif not discard.discard_hidden_panel.is_visible() and not Game.active_player_cards.is_empty():
+	elif not Game.discard_layer.is_visible() and not Game.active_player_cards.is_empty():
 		for card in Game.active_player_cards:
 			var card_end:Vector2 = card.global_position + card.size
 			if (card.global_position.x >= panel_start.x and card_end.x <= panel_end.x) and (card.global_position.y >= panel_start.y and card_end.y <= panel_end.y):

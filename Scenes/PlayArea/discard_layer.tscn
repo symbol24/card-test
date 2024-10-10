@@ -1,0 +1,37 @@
+[gd_scene load_steps=2 format=3 uid="uid://bx4mxwa6v3dyh"]
+
+[ext_resource type="Script" path="res://Code/Discard/discard_layer.gd" id="1_tqtvn"]
+
+[node name="DiscardLayer" type="Control" groups=["discard_layer"]]
+clip_contents = true
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1280.0
+offset_bottom = 720.0
+theme_type_variation = &"DiscardPanel"
+script = ExtResource("1_tqtvn")
+metadata/_edit_lock_ = true
+
+[node name="exit_btn" type="Button" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 0
+offset_right = 8.0
+offset_bottom = 8.0
+flat = true
+
+[node name="discard_panel" type="PanelContainer" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(1520, 880)
+layout_mode = 0
+offset_left = 200.0
+offset_top = 100.0
+offset_right = 1080.0
+offset_bottom = 620.0
+mouse_force_pass_scroll_events = false
+theme_type_variation = &"DiscardPanel"
+
+[node name="discard_control" type="Control" parent="discard_panel"]
+unique_name_in_owner = true
+layout_mode = 2

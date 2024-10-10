@@ -53,6 +53,9 @@ discard=""
 player_card=""
 event_deck=""
 event_card=""
+discard_hidden_panel=""
+discard_layer=""
+card_layer=""
 
 [gui]
 

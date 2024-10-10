@@ -5,3 +5,4 @@
 [node name="Game" type="Node2D"]
 script = ExtResource("1_5dcvw")
 debug_seed = "Symbol24"
+use_btn_hide_delay = 2.5

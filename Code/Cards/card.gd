@@ -44,18 +44,38 @@ func discard() -> void:
 	if data.is_mandatory:
 		for each in data.resources:
 			Signals.AddResource.emit(each.cost_type, each.cost_amount)
-	Signals.CardDiscarded.emit(self)
 
 
 func setup_card(_card_data:CardData) -> void:
 	if _card_data != null:
 		data = _card_data
-		if cost_grid != null: cost_grid.queue_free.call_deferred()
-		cost_area.add_child.call_deferred(_set_up_cost(_card_data))
+		cost_grid = _set_up_cost(_card_data)
+		cost_area.add_child.call_deferred(cost_grid)
 		title.text = _card_data.title
 		text.text = _card_data.text
 		if _card_data.image != null and _card_data.image is CompressedTexture2D:
 			image.texture = _card_data.image
+
+
+func clear_data() -> void:
+	if data != null:
+		is_in_discard = false
+		overlapping_cards.clear()
+		used_cards.clear()
+		use_displayed = false
+		use_btn_timer_on = false
+		use_btn_timer = 0.0
+		data = null
+		if cost_grid != null: cost_grid.queue_free.call_deferred()
+		title.text = ""
+		text.text = ""
+
+
+func move_card(from:Vector2, to:Vector2, time:float) -> void:
+	global_position = from
+	var tween:Tween = create_tween()
+	tween.tween_property(self, "global_position", to, time)
+	await tween.finished
 
 
 func _set_up_cost(_card_data:CardData) -> GridContainer:
@@ -93,7 +113,9 @@ func _hide_button() -> void:
 
 func _area_entered(_area) -> void:
 	var _enterer = _area.get_parent()
+	print(data.id, " is considered in discrad? ", is_in_discard)
 	if not is_in_discard and _enterer != null and _enterer is Card:
+		print("Card entered: ", _enterer.data.id)
 		overlapping_cards.append(_enterer)
 		Signals.CheckCardsOnCard.emit(self, overlapping_cards)
 
@@ -107,5 +129,3 @@ func _area_exited(_area) -> void:
 
 func _reshuffle() -> void:
 	is_in_discard = false
-
-

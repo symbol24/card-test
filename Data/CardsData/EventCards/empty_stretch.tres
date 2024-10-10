@@ -4,7 +4,7 @@
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_871n5"]
 [ext_resource type="Texture2D" uid="uid://chl3vuagnejom" path="res://Textures/CostIcons/cost_icons_water.png" id="2_v15mq"]
 [ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_eobyy"]
-[ext_resource type="Texture2D" uid="uid://dj0f0jejy88uf" path="res://Textures/CostIcons/cost_icons_energy.png" id="3_tqsmy"]
+[ext_resource type="Texture2D" uid="uid://dsio4e72mlpy8" path="res://Textures/CostIcons/cost_icons_food.png" id="3_i8ns1"]
 [ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/card_nothing.tres" id="5_bvdj6"]
 [ext_resource type="Resource" uid="uid://ce6aarhim64eh" path="res://Data/CardsData/desert_grub.tres" id="6_3mr0x"]
 
@@ -16,9 +16,9 @@ cost_texture = ExtResource("2_v15mq")
 
 [sub_resource type="Resource" id="Resource_io561"]
 script = ExtResource("1_r5eid")
-cost_type = 4
+cost_type = 1
 cost_amount = 1
-cost_texture = ExtResource("3_tqsmy")
+cost_texture = ExtResource("3_i8ns1")
 
 [resource]
 script = ExtResource("3_eobyy")

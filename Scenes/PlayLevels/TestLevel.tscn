@@ -3,7 +3,7 @@
 [ext_resource type="Script" path="res://Code/Levels/level.gd" id="1_fsqvu"]
 [ext_resource type="PackedScene" uid="uid://bdyu0cqaucrkd" path="res://Scenes/PlayArea/play_area.tscn" id="2_mea5g"]
 [ext_resource type="PackedScene" uid="uid://b2jlcnly76uid" path="res://Scenes/PlayArea/card_layer.tscn" id="3_rwnj4"]
-[ext_resource type="PackedScene" uid="uid://bx4mxwa6v3dyh" path="res://Scenes/PlayArea/discard_hidden_area.tscn" id="4_ycjol"]
+[ext_resource type="PackedScene" uid="uid://bx4mxwa6v3dyh" path="res://Scenes/PlayArea/discard_layer.tscn" id="4_ycjol"]
 
 [node name="TestLevel" type="Control"]
 layout_mode = 3
@@ -20,7 +20,7 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="card_layer" parent="." instance=ExtResource("3_rwnj4")]
+[node name="card_layer" parent="." groups=["disard_layer"] instance=ExtResource("3_rwnj4")]
 
 [node name="DiscardHiddenArea" parent="." instance=ExtResource("4_ycjol")]
 unique_name_in_owner = true

@@ -24,8 +24,6 @@ func _button_dispatcher(_id:String, _from:String) -> void:
 
 
 func _play_with(_event_id:String, _player_id:String) -> void:
-	Game.load_deck(_event_id, DeckData.Type.EVENT)
-	Game.load_deck(_player_id, DeckData.Type.PLAYER)
 	_button_dispatcher("play_with", "deck_selector")
 
 

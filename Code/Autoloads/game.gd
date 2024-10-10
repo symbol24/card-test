@@ -10,10 +10,15 @@ const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
 @export var debug_seed:String = ""
 @export var use_btn_hide_delay:float = 5
 @export var delay_to_discard:float = 0.2
+@export var card_spawn_time:float = 0.3
+@export var new_card_wait:float = 1
 
 # Game Elements
 var discard_pile:Discard
 var card_layer:Control
+var discard_layer:DiscardLayer
+var player_deck_button:DeckButton
+var event_deck_button:DeckButton
 
 var run_seed:String = ""
 var run_seed_hash:int
@@ -33,6 +38,7 @@ var player_card_pool:Array[Card] = []
 var event_card_pool:Array[Card] = []
 var active_event_card:EventCard
 var active_player_cards:Array[Card]
+var discarded_player_cards:Array[Card] = []
 var current_hand_count:int = 0:
 	set(value):
 		current_hand_count = value
@@ -48,15 +54,17 @@ var cards_amount:int = 0
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
+	seeded_rng = SyRandomNumberGenerator.new()
+	Signals.PlayWith.connect(_set_decks)
 	Signals.DiscardReady.connect(_set_discard)
 	Signals.AddResource.connect(_add_resource)
 	Signals.UseResource.connect(_use_resource)
 	Signals.LoadDataManager.connect(_setup_data_manager)
 	Signals.CheckCardsOnCard.connect(_check_card_completion)
-	seeded_rng = SyRandomNumberGenerator.new()
+	Signals.DiscardCard.connect(_discard_player_card)
 	Signals.UseCard.connect(_use_card)
 	Signals.CompleteCard.connect(_complete_card)
-	Signals.DrawCard.connect(_draw_card)
+	Signals.DrawCards.connect(_multiple_draw_card)
 
 
 func _process(_delta: float) -> void:
@@ -109,6 +117,11 @@ func load_deck(_id:String, _type:DeckData.Type) -> void:
 	else:
 		player_data.current_deck = data_manager.get_deck(_id, _type)
 		player_data.current_deck.setup_deck()
+
+
+func _set_decks(_event_id:String,_player_id:String) -> void:
+	load_deck(_event_id, DeckData.Type.EVENT)
+	load_deck(_player_id, DeckData.Type.PLAYER)
 
 
 func _setup_data_manager() -> void:
@@ -228,9 +241,12 @@ func _check_card_completion(_receiver:Card, _payers:Array[Card]) -> void:
 		Signals.ToggleCardForButton.emit(null, _receiver, false)
 
 
-func _set_discard(_discard:Discard) ->void:
-	discard_pile = _discard
+func _set_discard(_disc:Discard) ->void:
+	discard_pile = _disc
 	card_layer = get_tree().get_first_node_in_group("card_layer")
+	discard_layer = get_tree().get_first_node_in_group("discard_layer")
+	player_deck_button = get_tree().get_first_node_in_group("player_deck")
+	event_deck_button = get_tree().get_first_node_in_group("event_deck")
 
 
 func _use_card(_card:Card) -> void:
@@ -240,7 +256,7 @@ func _use_card(_card:Card) -> void:
 		var tween:Tween = _card.create_tween()
 		tween.tween_property(_card, "global_position", discard_pile.global_position, delay_to_discard)
 		await tween.finished
-		Signals.DiscardCard.emit(_card)
+		_discard_player_card(_card)
 	
 
 func _complete_card(_card:Card) -> void:
@@ -248,10 +264,12 @@ func _complete_card(_card:Card) -> void:
 		for each in _card.data.resources:
 			Signals.AddResource.emit(each.cost_type, each.cost_amount)
 	elif _card.is_in_group("event_card"):
-		for reward in _card.data.get_reward():
+		var reward_array:Array[CardData] = _card.data.get_reward()
+		for reward in reward_array:
 			if reward.type != CardData.Card_Type.NOTHING:
-				Signals.AddNewPlayerCard.emit(reward)
+				_add_player_card(reward, Vector2((1920/2)-100, (1080/2)-150))
 			else:
+				print("Reward is NOTHING!")
 				Signals.DisplayNothingReward.emit()
 	
 	var tween:Tween
@@ -259,30 +277,40 @@ func _complete_card(_card:Card) -> void:
 		tween = used.create_tween()
 		tween.tween_property(used, "global_position", discard_pile.global_position, delay_to_discard)
 		await tween.finished
-		Signals.DiscardCard.emit(used)
+		_discard_player_card(used)
 
 	if _card.is_in_group("player_card"):
 		tween = _card.create_tween()
 		tween.tween_property(_card, "global_position", discard_pile.global_position, delay_to_discard)
 		await tween.finished
-		Signals.DiscardCard.emit(_card)
+		_discard_player_card(_card)
 
 	elif _card.is_in_group("event_card"):
 		_card.queue_free.call_deferred()
 
 
-func _add_player_card(_card_data:CardData) -> void:
+func _add_player_card(_card_data:CardData, _spawn_pos:Vector2) -> void:
 	if _card_data != null:
 		var new_card:Card = data_manager.default_player_card.instantiate()
+		card_layer.add_child(new_card)
+		new_card.setup_card(_card_data)
+		new_card.z_index = get_highest_card_z_index() + 1
+		new_card.global_position = _spawn_pos
+		await get_tree().create_timer(new_card_wait).timeout
+		await new_card.move_card(_spawn_pos, discard_pile.global_position, delay_to_discard)
+		_discard_player_card(new_card)
 
 
-func _draw_card(_deck:Deck) -> void:
+
+func _draw_card(_deck:DeckButton, _use_cost:bool = false) -> void:
 	if _deck.deck_type == DeckData.Type.PLAYER:
 		if Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1) and not Game.player_data.current_deck.is_deck_empty:
 			_spawn_next_card(_deck)
-			Game.player_data.use_resource(CardData.Resource_Type.ENERGY, 1)
+			if _use_cost:
+				Game.player_data.use_resource(CardData.Resource_Type.ENERGY, 1)
 		elif not Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1):
-			Signals.NotifyResourceEmpty.emit(CardData.Resource_Type.ENERGY)
+			if _use_cost:
+				Signals.NotifyResourceEmpty.emit(CardData.Resource_Type.ENERGY)
 		elif Game.player_data.current_deck.is_deck_empty:
 			Signals.NotifyDeckEmpty.emit(_deck)
 	else:
@@ -290,12 +318,27 @@ func _draw_card(_deck:Deck) -> void:
 			Signals.NotifyDeckEmpty.emit(_deck)
 		elif active_event_card != null:
 			active_event_card.flash_card(Color.GREEN_YELLOW)
-			#Signals.FlashCard.emit(active_event_card, Color.GREEN_YELLOW)
 		else:
 			_spawn_next_card(_deck)
 
 
-func _spawn_next_card(_deck:Deck) -> void:
+func _multiple_draw_card(_type:DeckData.Type, _amount:int = 1, _use_cost:bool = false, _shuffle_player_cards:bool = false) -> void:
+	if _type == DeckData.Type.PLAYER:
+		for i in _amount:
+			_draw_card(player_deck_button, _use_cost)
+	if _type == DeckData.Type.EVENT:
+		if _shuffle_player_cards:
+			current_hand_count = 0
+			layer = 0
+			await _clear_active_player_cards()
+			_shuffle_discard_into_deck()
+			_multiple_draw_card(DeckData.Type.PLAYER, player_data.current_deck.round_draw_amount)
+
+		for i in _amount:
+			_draw_card(event_deck_button, _use_cost)
+
+
+func _spawn_next_card(_deck:DeckButton) -> void:
 	var data_to_spawn:CardData
 	if _deck.deck_type == DeckData.Type.EVENT:
 		data_to_spawn = current_event_deck.draw_card()
@@ -303,34 +346,72 @@ func _spawn_next_card(_deck:Deck) -> void:
 		data_to_spawn = player_data.current_deck.draw_card()
 
 	var new_card = _get_card_scene(_deck.deck_type)
-	if _deck.deck_type == DeckData.Type.EVENT:
-		active_event_card = new_card
-	else:
-		active_player_cards.append(new_card)
 
 	card_layer.add_child.call_deferred(new_card)
-	await new_card.ready
+	if not new_card.is_node_ready():
+		await new_card.ready
 	new_card.setup_card(data_to_spawn)
 	new_card.global_position = _deck.global_position
 	new_card.z_index = Game.get_highest_card_z_index() + 1
+
 	var final_pos:Vector2
 	if _deck.deck_type == DeckData.Type.EVENT:
-		new_card.name = "event_card"
+		active_event_card = new_card
+		new_card.name = data_to_spawn.id
 		final_pos = _deck.card_placement_pos.global_position
 	else:
-		new_card.name = "card_"+str(cards_amount)
+		active_player_cards.append(new_card)
+		new_card.name = data_to_spawn.id + "_"+str(cards_amount)
+		new_card.is_in_discard = false
 		cards_amount += 1
 		final_pos = Vector2(_deck.card_placement_pos.global_position.x + (50 * current_hand_count), _deck.card_placement_pos.global_position.y + (50 * layer))
 
 	var tween:Tween = new_card.create_tween()
-	tween.tween_property(new_card, "global_position", final_pos, _deck.tween_time)
+	tween.tween_property(new_card, "global_position", final_pos, card_spawn_time)
+
 	current_hand_count += 1
+
+
+func _discard_player_card(_card:Card) -> void:
+	card_layer.remove_child.call_deferred(_card)
+	discard_layer.add_child.call_deferred(_card)
+	_card.set_deferred("global_position", Vector2(randf_range(300,1220), randf_range(200,450)))
+	_card.discard()
+	if discarded_player_cards.find(_card) == -1:
+		discarded_player_cards.append(_card)
+	active_player_cards.erase(_card)
+
+
+func _shuffle_discard_into_deck() -> void:
+	for each in discarded_player_cards:
+		var data_to_add:CardData = each.data.duplicate(true)
+		player_data.current_deck.discard.append(data_to_add)
+		discard_layer.remove_child.call_deferred(each)
+		_return_to_card_pool(each)
+	discarded_player_cards.clear()
+	player_data.current_deck.shuffle_discard_into_deck()
+
+
+func _clear_active_player_cards() -> void:
+	while not active_player_cards.is_empty():
+		var each:Card = active_player_cards.pop_front()
+		await each.move_card(each.global_position, discard_pile.global_position, delay_to_discard/2)
+		_discard_player_card(each)
+
+
+func _return_to_card_pool(_card:Card) -> void:
+	if _card is EventCard:
+		event_card_pool.append(_card)
+	else:
+		player_card_pool.append(_card)
 
 
 func _get_card_scene(_type:DeckData.Type) -> Card:
 	if _type == DeckData.Type.EVENT:
 		if not event_card_pool.is_empty():
-			return event_card_pool.pop_front()
+			var to_return:Card = event_card_pool.pop_front()
+			to_return.clear_data()
+			return to_return
 		return data_manager.default_event_card.instantiate() as EventCard
 	else:
 		if not player_card_pool.is_empty():
@@ -338,20 +419,8 @@ func _get_card_scene(_type:DeckData.Type) -> Card:
 		return data_manager.default_player_card.instantiate() as Card
 
 
-
-#func _draw_card() -> void:
-#	var to_draw:CardData = Game.player_data.current_deck.draw_card()
-#	if deck_type == DeckData.Type.EVENT: to_draw = Game.current_event_deck.draw_card()
-#	var new_card = _get_card_scene()
-#	active_cards.append(new_card)
-#	card_layer.add_child.call_deferred(new_card)
-#	await new_card.ready
-#	new_card.setup_card(to_draw)
-#	new_card.global_position = global_position
-#	new_card.z_index = Game.get_highest_card_z_index() + 1
-#	new_card.name = "card_"+str(cards_amount)
-#	cards_amount += 1
-#	var tween:Tween = new_card.create_tween()
-#	var final_pos:Vector2 = Vector2(card_placement_pos.global_position.x + (50 * current_hand_count), card_placement_pos.global_position.y + (50 * layer))
-#	tween.tween_property(new_card, "global_position", final_pos, tween_time)
-#	current_hand_count += 1
+func _print_cards(_array:Array[Card]) -> void:
+	if not _array.is_empty():
+		for each in _array:
+			print("Card id: ", each)
+	print("Total cards: ", _array.size())

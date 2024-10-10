@@ -1,2 +1,2 @@
-class_name EventDeck extends Deck
+class_name EventDeckButton extends DeckButton
 
