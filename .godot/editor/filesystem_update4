@@ -1,11 +1,8 @@
-res://Code/Cards/card.gd
-res://Code/Cards/complete_btn.gd
-res://Code/Cards/cost.gd
-res://Code/Cards/card_data.gd
-res://Code/Cards/use_card_btn.gd
-res://Code/Cards/event_card.gd
-res://Code/Cards/event_card_data.gd
+res://Code/Levels/level.gd
 res://Code/Autoloads/signals.gd
+res://Code/Decks/deck.gd
+res://Code/Decks/deck_data.gd
 res://Code/Autoloads/game.gd
-res://Code/Cards/discard.gd
-res://Code/wrappers/sy_rng.gd
+res://Code/Cards/event_card.gd
+res://Code/Utilities/grabber.gd
+res://Code/Cards/card.gd

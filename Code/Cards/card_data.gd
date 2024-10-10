@@ -56,6 +56,10 @@ func get_resource(_type:Resource_Type) -> Cost:
 	return null
 
 
-func get_reward(_amount = reward_amount) -> CardData:
-	var choice:int = Game.seeded_rng.randi_range(0, rewards.size()-1)
-	return rewards[choice].duplicate()
+func get_reward(_amount = reward_amount) -> Array[CardData]:
+	var returned: Array[CardData] = []
+	var choice:int
+	for i in _amount:
+		choice = Game.seeded_rng.randi_range(0, rewards.size()-1)
+		returned.append(rewards[choice].duplicate())
+	return returned

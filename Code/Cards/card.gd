@@ -93,7 +93,7 @@ func _hide_button() -> void:
 
 func _area_entered(_area) -> void:
 	var _enterer = _area.get_parent()
-	if _enterer != null and _enterer is Card:
+	if not is_in_discard and _enterer != null and _enterer is Card:
 		overlapping_cards.append(_enterer)
 		Signals.CheckCardsOnCard.emit(self, overlapping_cards)
 

@@ -12,7 +12,6 @@ class_name Deck extends CardPanelContainer
 @onready var deck_btn:Button = %deck_btn
 
 var can_draw:bool = false
-var card_layer:Control
 var card_scene_pool:Array[Card] = []
 var current_hand_count:int = 0:
 	set(value):
@@ -31,53 +30,14 @@ var active_cards:Array[Card] = []
 func _ready() -> void:
 	super()
 	Signals.CardDiscarded.connect(_discard)
-	Signals.PlayerDrawCards.connect(_signal_draw_card)
-	card_layer = get_tree().get_first_node_in_group("card_layer")
+	Signals.DrawCards.connect(_signal_draw_card)
+	Signals.UnlockDeck.connect(_unlock_deck)
 	deck_btn.pressed.connect(_deck_btn_pressed)
 
 
 func _deck_btn_pressed() -> void:
-	if deck_type == DeckData.Type.PLAYER:
-		if Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1) and not Game.player_data.current_deck.is_deck_empty:
-			_draw_card()
-			Game.player_data.use_resource(CardData.Resource_Type.ENERGY, 1)
-		elif not Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1):
-			Signals.NotifyResourceEmpty.emit(CardData.Resource_Type.ENERGY)
-		elif Game.player_data.current_deck.is_deck_empty:
-			_flash_empty()
-	else:
-		if Game.current_event_deck.is_deck_empty:
-			_flash_empty()
-		elif not active_cards.is_empty():
-			active_cards[0].flash_card(Color.GREEN_YELLOW)
-		else:
-			_draw_card()
-
-
-func _get_card_scene() -> Card:
-	if not card_scene_pool.is_empty():
-		return card_scene_pool.pop_front()
-	if deck_type == DeckData.Type.EVENT:
-		return Game.data_manager.default_event_card.instantiate() as EventCard
-	return Game.data_manager.default_player_card.instantiate() as Card
-
-
-func _draw_card() -> void:
-	var to_draw:CardData = Game.player_data.current_deck.draw_card()
-	if deck_type == DeckData.Type.EVENT: to_draw = Game.current_event_deck.draw_card()
-	var new_card = _get_card_scene()
-	active_cards.append(new_card)
-	card_layer.add_child.call_deferred(new_card)
-	await new_card.ready
-	new_card.setup_card(to_draw)
-	new_card.global_position = global_position
-	new_card.z_index = Game.get_highest_card_z_index() + 1
-	new_card.name = "card_"+str(cards_amount)
-	cards_amount += 1
-	var tween:Tween = new_card.create_tween()
-	var final_pos:Vector2 = Vector2(card_placement_pos.global_position.x + (50 * current_hand_count), card_placement_pos.global_position.y + (50 * layer))
-	tween.tween_property(new_card, "global_position", final_pos, tween_time)
-	current_hand_count += 1
+	if can_draw: 
+		Signals.DrawCard.emit(self)
 
 	
 func _flash_empty() -> void:
@@ -91,7 +51,11 @@ func _discard(_card:Card) -> void:
 	active_cards.erase(_card)
 
 
-func _signal_draw_card(_amount:int) -> void:
-	if deck_type == DeckData.Type.PLAYER:
+func _signal_draw_card(_type:DeckData.Type, _amount:int = 1) -> void:
+	if deck_type == _type:
 		for i in _amount:
-			_draw_card()
+			Signals.DrawCard.emit(self)
+
+
+func _unlock_deck() -> void:
+	can_draw = true

@@ -2,7 +2,6 @@ extends Node
 
 
 const SEED_OPTIONS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@$%^&*?"
-const STARTER_DECK = preload("res://Data/Decks/starter_deck.tres")
 const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
 
 
@@ -12,8 +11,9 @@ const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
 @export var use_btn_hide_delay:float = 5
 @export var delay_to_discard:float = 0.2
 
-
+# Game Elements
 var discard_pile:Discard
+var card_layer:Control
 
 var run_seed:String = ""
 var run_seed_hash:int
@@ -28,6 +28,23 @@ var load_complete := false
 var loading_status := 0.0
 var progress := []
 
+# Cards
+var player_card_pool:Array[Card] = []
+var event_card_pool:Array[Card] = []
+var active_event_card:EventCard
+var active_player_cards:Array[Card]
+var current_hand_count:int = 0:
+	set(value):
+		current_hand_count = value
+		if current_hand_count >= 5:
+			layer += 1
+			current_hand_count = 0
+var layer:int = 0:
+	set(value):
+		layer = value
+		if layer > 2: layer = 0
+var cards_amount:int = 0
+
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
@@ -39,6 +56,7 @@ func _ready() -> void:
 	seeded_rng = SyRandomNumberGenerator.new()
 	Signals.UseCard.connect(_use_card)
 	Signals.CompleteCard.connect(_complete_card)
+	Signals.DrawCard.connect(_draw_card)
 
 
 func _process(_delta: float) -> void:
@@ -212,6 +230,7 @@ func _check_card_completion(_receiver:Card, _payers:Array[Card]) -> void:
 
 func _set_discard(_discard:Discard) ->void:
 	discard_pile = _discard
+	card_layer = get_tree().get_first_node_in_group("card_layer")
 
 
 func _use_card(_card:Card) -> void:
@@ -225,8 +244,15 @@ func _use_card(_card:Card) -> void:
 	
 
 func _complete_card(_card:Card) -> void:
-	for each in _card.data.resources:
-		Signals.AddResource.emit(each.cost_type, each.cost_amount)
+	if _card.is_in_group("player_card") and _card.data.type == CardData.Card_Type.RESOURCE:
+		for each in _card.data.resources:
+			Signals.AddResource.emit(each.cost_type, each.cost_amount)
+	elif _card.is_in_group("event_card"):
+		for reward in _card.data.get_reward():
+			if reward.type != CardData.Card_Type.NOTHING:
+				Signals.AddNewPlayerCard.emit(reward)
+			else:
+				Signals.DisplayNothingReward.emit()
 	
 	var tween:Tween
 	for used in _card.used_cards:
@@ -235,7 +261,97 @@ func _complete_card(_card:Card) -> void:
 		await tween.finished
 		Signals.DiscardCard.emit(used)
 
-	tween = _card.create_tween()
-	tween.tween_property(_card, "global_position", discard_pile.global_position, delay_to_discard)
-	await tween.finished
-	Signals.DiscardCard.emit(_card)
+	if _card.is_in_group("player_card"):
+		tween = _card.create_tween()
+		tween.tween_property(_card, "global_position", discard_pile.global_position, delay_to_discard)
+		await tween.finished
+		Signals.DiscardCard.emit(_card)
+
+	elif _card.is_in_group("event_card"):
+		_card.queue_free.call_deferred()
+
+
+func _add_player_card(_card_data:CardData) -> void:
+	if _card_data != null:
+		var new_card:Card = data_manager.default_player_card.instantiate()
+
+
+func _draw_card(_deck:Deck) -> void:
+	if _deck.deck_type == DeckData.Type.PLAYER:
+		if Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1) and not Game.player_data.current_deck.is_deck_empty:
+			_spawn_next_card(_deck)
+			Game.player_data.use_resource(CardData.Resource_Type.ENERGY, 1)
+		elif not Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1):
+			Signals.NotifyResourceEmpty.emit(CardData.Resource_Type.ENERGY)
+		elif Game.player_data.current_deck.is_deck_empty:
+			Signals.NotifyDeckEmpty.emit(_deck)
+	else:
+		if Game.current_event_deck.is_deck_empty:
+			Signals.NotifyDeckEmpty.emit(_deck)
+		elif active_event_card != null:
+			active_event_card.flash_card(Color.GREEN_YELLOW)
+			#Signals.FlashCard.emit(active_event_card, Color.GREEN_YELLOW)
+		else:
+			_spawn_next_card(_deck)
+
+
+func _spawn_next_card(_deck:Deck) -> void:
+	var data_to_spawn:CardData
+	if _deck.deck_type == DeckData.Type.EVENT:
+		data_to_spawn = current_event_deck.draw_card()
+	else:
+		data_to_spawn = player_data.current_deck.draw_card()
+
+	var new_card = _get_card_scene(_deck.deck_type)
+	if _deck.deck_type == DeckData.Type.EVENT:
+		active_event_card = new_card
+	else:
+		active_player_cards.append(new_card)
+
+	card_layer.add_child.call_deferred(new_card)
+	await new_card.ready
+	new_card.setup_card(data_to_spawn)
+	new_card.global_position = _deck.global_position
+	new_card.z_index = Game.get_highest_card_z_index() + 1
+	var final_pos:Vector2
+	if _deck.deck_type == DeckData.Type.EVENT:
+		new_card.name = "event_card"
+		final_pos = _deck.card_placement_pos.global_position
+	else:
+		new_card.name = "card_"+str(cards_amount)
+		cards_amount += 1
+		final_pos = Vector2(_deck.card_placement_pos.global_position.x + (50 * current_hand_count), _deck.card_placement_pos.global_position.y + (50 * layer))
+
+	var tween:Tween = new_card.create_tween()
+	tween.tween_property(new_card, "global_position", final_pos, _deck.tween_time)
+	current_hand_count += 1
+
+
+func _get_card_scene(_type:DeckData.Type) -> Card:
+	if _type == DeckData.Type.EVENT:
+		if not event_card_pool.is_empty():
+			return event_card_pool.pop_front()
+		return data_manager.default_event_card.instantiate() as EventCard
+	else:
+		if not player_card_pool.is_empty():
+			return player_card_pool.pop_front()
+		return data_manager.default_player_card.instantiate() as Card
+
+
+
+#func _draw_card() -> void:
+#	var to_draw:CardData = Game.player_data.current_deck.draw_card()
+#	if deck_type == DeckData.Type.EVENT: to_draw = Game.current_event_deck.draw_card()
+#	var new_card = _get_card_scene()
+#	active_cards.append(new_card)
+#	card_layer.add_child.call_deferred(new_card)
+#	await new_card.ready
+#	new_card.setup_card(to_draw)
+#	new_card.global_position = global_position
+#	new_card.z_index = Game.get_highest_card_z_index() + 1
+#	new_card.name = "card_"+str(cards_amount)
+#	cards_amount += 1
+#	var tween:Tween = new_card.create_tween()
+#	var final_pos:Vector2 = Vector2(card_placement_pos.global_position.x + (50 * current_hand_count), card_placement_pos.global_position.y + (50 * layer))
+#	tween.tween_property(new_card, "global_position", final_pos, tween_time)
+#	current_hand_count += 1

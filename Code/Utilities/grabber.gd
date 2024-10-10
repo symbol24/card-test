@@ -62,16 +62,16 @@ func _click_card() -> void:
 				if get_global_mouse_position().x >= each.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= each.global_position.y and get_global_mouse_position().y <= area.y:
 					grabbed_items.append(each)
 		elif not discard.discard_hidden_panel.is_visible():
-			if not player_deck.active_cards.is_empty():
-				for each in player_deck.active_cards:
+			if not Game.active_player_cards.is_empty():
+				for each in Game.active_player_cards:
 					var area:Vector2 = each.global_position + each.size
 					if get_global_mouse_position().x >= each.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= each.global_position.y and get_global_mouse_position().y <= area.y:
 						grabbed_items.append(each)
-			if not event_deck.active_cards.is_empty():
-				for each in event_deck.active_cards:
-					var area:Vector2 = each.global_position + each.size
-					if get_global_mouse_position().x >= each.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= each.global_position.y and get_global_mouse_position().y <= area.y:
-						grabbed_items.append(each)
+			if Game.active_event_card != null:
+				var area:Vector2 = Game.active_event_card.global_position + Game.active_event_card.size
+				if get_global_mouse_position().x >= Game.active_event_card.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= Game.active_event_card.global_position.y and get_global_mouse_position().y <= area.y:
+					grabbed_items.append(Game.active_event_card)
+
 		if not grabbed_items.is_empty():
 			var highest_z:int = 0
 			for each in grabbed_items:
@@ -110,8 +110,8 @@ func _get_panel_cards(_panel:GrabberSelectorPanel) -> Array[Card]:
 			var card_end:Vector2 = card.global_position + card.size
 			if (card.global_position.x >= panel_start.x and card_end.x <= panel_end.x) and (card.global_position.y >= panel_start.y and card_end.y <= panel_end.y):
 				cards.append(card)
-	elif not discard.discard_hidden_panel.is_visible() and not player_deck.active_cards.is_empty():
-		for card in player_deck.active_cards:
+	elif not discard.discard_hidden_panel.is_visible() and not Game.active_player_cards.is_empty():
+		for card in Game.active_player_cards:
 			var card_end:Vector2 = card.global_position + card.size
 			if (card.global_position.x >= panel_start.x and card_end.x <= panel_end.x) and (card.global_position.y >= panel_start.y and card_end.y <= panel_end.y):
 				cards.append(card)

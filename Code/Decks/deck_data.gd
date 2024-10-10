@@ -8,6 +8,7 @@ enum Type {
 @export var id:String = ""
 @export var cards:Array[CardData] = []
 @export var type:Type
+@export var tween_time:float = 0.3
 
 var play_cards:Array[CardData]
 var is_deck_empty:bool:

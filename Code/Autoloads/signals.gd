@@ -3,7 +3,7 @@ extends Node
 # UI
 signal ButtonPressed(id:String, from:String)
 signal NotifyResourceEmpty(type:CardData.Resource_Type)
-signal NotifyDeckEmpty(type:DeckData.Type)
+signal NotifyDeckEmpty(deck:Deck)
 signal NotifyActiveEventCard(card:EventCard)
 
 
@@ -23,9 +23,9 @@ signal CompleteCard(card:Card)
 signal CardDiscarded(card:Card)
 signal ToggleColliders(value:bool)
 signal DiscardReady(discard:Discard)
-
-
-# Game Logic
+signal AddNewPlayerCard(card_data:CardData)
+signal DisplayNothingReward()
+signal DrawCard(deck:Deck)
 signal CheckCardsOnCard(card:Card, cards:Array[Card])
 
 
@@ -35,7 +35,8 @@ signal MouseExitCard(card:Card)
 signal NullActiveCard()
 signal ToggleCollider(is_on:bool)
 signal ToggleCardForButton(button:PackedScene, card:Card, display:bool)
-signal PlayerDrawCards(amount:int)
+signal DrawCards(deck_type:DeckData.Type, amount:int)
+signal UnlockDeck()
 
 
 # Grabber
