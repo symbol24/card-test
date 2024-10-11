@@ -21,3 +21,4 @@ resources = Array[ExtResource("1_xvs6n")]([SubResource("Resource_aytvh")])
 rewards = Array[ExtResource("1_6352g")]([])
 reward_amount = 0
 is_mandatory = false
+destroy_on_complete = false

@@ -1,4 +1,4 @@
-[gd_resource type="Resource" script_class="EventCardData" load_steps=11 format=3 uid="uid://cf4fnwfvsck"]
+[gd_resource type="Resource" script_class="EventCardData" load_steps=13 format=3 uid="uid://cf4fnwfvsck"]
 
 [ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="1_2thaq"]
 [ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_dkby8"]
@@ -6,6 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://yign2rvuiweo" path="res://Textures/CostIcons/cost_icons_material.png" id="2_tbjja"]
 [ext_resource type="Texture2D" uid="uid://chl3vuagnejom" path="res://Textures/CostIcons/cost_icons_water.png" id="3_bnc4f"]
 [ext_resource type="Resource" uid="uid://0yxhnkmh8x2k" path="res://Data/CardsData/hurt_1dmg.tres" id="3_x0p61"]
+[ext_resource type="Texture2D" uid="uid://do5rr2bum1b8l" path="res://Textures/CostIcons/cost_icons_damage.png" id="4_32blk"]
 [ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/card_nothing.tres" id="4_x5l6t"]
 [ext_resource type="Resource" uid="uid://42phi8h56ws8" path="res://Data/CardsData/mre.tres" id="5_1p3sd"]
 
@@ -21,14 +22,21 @@ cost_type = 0
 cost_amount = 1
 cost_texture = ExtResource("3_bnc4f")
 
+[sub_resource type="Resource" id="Resource_o1ljd"]
+script = ExtResource("1_dkby8")
+cost_type = 5
+cost_amount = -1
+cost_texture = ExtResource("4_32blk")
+
 [resource]
 script = ExtResource("1_2thaq")
 id = "desert_exit_crash"
 title = "desert_exit_crash"
 text = "desert_exit_crash_text"
 type = 5
-costs = Array[ExtResource("1_dkby8")]([SubResource("Resource_ft4bo"), SubResource("Resource_l6cn6")])
+costs = Array[ExtResource("1_dkby8")]([SubResource("Resource_ft4bo"), SubResource("Resource_l6cn6"), SubResource("Resource_o1ljd")])
 resources = Array[ExtResource("1_dkby8")]([])
 rewards = Array[ExtResource("2_q5c61")]([ExtResource("3_x0p61"), ExtResource("4_x5l6t"), ExtResource("5_1p3sd")])
 reward_amount = 1
 is_mandatory = true
+destroy_on_complete = true

@@ -20,10 +20,7 @@ func _ready() -> void:
 
 func _deck_btn_pressed() -> void:
 	if can_draw:
-		var use_cost:bool = true if deck_type == DeckData.Type.PLAYER else false
-		var shuffle:bool  = false if deck_type == DeckData.Type.PLAYER else true
-		var amount:int = 1 if deck_type == DeckData.Type.PLAYER else Game.current_event_deck.round_draw_amount
-		Signals.DrawCards.emit(deck_type, amount, use_cost, shuffle)
+		Signals.DrawCards.emit(deck_type, 1, true)
 
 	
 func _flash_empty() -> void:

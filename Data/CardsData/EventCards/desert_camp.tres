@@ -28,4 +28,5 @@ costs = Array[ExtResource("1_hhaku")]([SubResource("Resource_r8v0q"), SubResourc
 resources = Array[ExtResource("1_hhaku")]([])
 rewards = Array[ExtResource("2_a2kg3")]([])
 reward_amount = 1
-is_mandatory = false
+is_mandatory = true
+destroy_on_complete = true

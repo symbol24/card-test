@@ -24,3 +24,4 @@ resources = Array[ExtResource("1_kwteg")]([])
 rewards = Array[ExtResource("2_jo3hm")]([ExtResource("4_o3g5s"), ExtResource("5_rqw4s")])
 reward_amount = 1
 is_mandatory = true
+destroy_on_complete = true

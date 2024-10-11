@@ -16,3 +16,4 @@ cards = Array[ExtResource("1_gj5ly")]([ExtResource("2_a4g5u"), ExtResource("2_a4
 type = 0
 tween_time = 0.3
 round_draw_amount = 3
+starting_hp = 3

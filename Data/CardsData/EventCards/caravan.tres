@@ -10,12 +10,13 @@
 
 [resource]
 script = ExtResource("3_umkqf")
-rewards = Array[ExtResource("2_srxha")]([ExtResource("3_1ura3"), ExtResource("4_hdc2j"), ExtResource("5_swtwd"), ExtResource("6_dicxu")])
-reward_amount = 1
 id = "desert_caravan"
 title = "desert_caravan"
 text = "desert_caravan_text"
 type = 5
 costs = Array[ExtResource("1_n3wl3")]([])
 resources = Array[ExtResource("1_n3wl3")]([])
+rewards = Array[ExtResource("2_srxha")]([ExtResource("3_1ura3"), ExtResource("4_hdc2j"), ExtResource("5_swtwd"), ExtResource("6_dicxu")])
+reward_amount = 1
 is_mandatory = true
+destroy_on_complete = true

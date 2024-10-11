@@ -9,8 +9,7 @@ class_name DataManager extends Node
 @export var event_deck_selector_button:PackedScene
 @export var player_deck_selector_button:PackedScene
 @export var grabber_selector_panel:PackedScene
-@export var ui_complete_btn:PackedScene
-@export var ui_use_btn:PackedScene
+@export var ui_card_btn:PackedScene
 
 @export_category("Player Decks")
 @export var player_decks:Array[DeckData]
