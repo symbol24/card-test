@@ -21,6 +21,7 @@ func _button_dispatcher(_id:String, _from:String) -> void:
 		"main_menu":
 			pass
 		"deck_selector":
+			Signals.Save.emit()
 			Manager.load_scene(2)
 		"play_with":
 			Manager.load_scene(3)

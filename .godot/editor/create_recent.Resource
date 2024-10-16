@@ -1,4 +1,4 @@
-CardIconData
-EventCardData
-DeckData
 CardData
+DeckData
+EventCardData
+CardIconData

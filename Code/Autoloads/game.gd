@@ -138,6 +138,32 @@ func reset_decks() -> void:
 	player_data.current_deck.setup_deck()
 
 
+func remove_card_from_lists(_card:Card) -> bool:
+	var complete:bool = false
+	var found:bool = false
+	for each in active_player_cards:
+		if each == _card:
+			found = true
+			break
+	
+	if found:
+		active_player_cards.erase(_card)
+		complete = true
+		found = false
+	
+	for each in discarded_player_cards:
+		if each == _card:
+			found = true
+			break
+	
+	if found:
+		active_player_cards.erase(_card)
+		complete = true
+		found = false
+
+	return complete
+
+
 func _set_play_variables(_disc:Discard) ->void:
 	discard_pile = _disc
 	card_layer = get_tree().get_first_node_in_group("card_layer")
@@ -453,8 +479,9 @@ func _shuffle_discard_under_deck() -> void:
 func _clear_active_player_cards() -> void:
 	while not active_player_cards.is_empty():
 		var each:Card = active_player_cards.pop_front()
-		await each.move_card(each.global_position, discard_pile.global_position, delay_to_discard/2)
-		_discard_player_card(each)
+		if each != null:
+			await each.move_card(each.global_position, discard_pile.global_position, delay_to_discard/2)
+			_discard_player_card(each)
 
 
 func _return_to_card_pool(_card:Card) -> void:

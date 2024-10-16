@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=9 format=3 uid="uid://duh513akjqkcy"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_tf8si"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_at3kb"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_c5uty"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="3_imt27"]
+[ext_resource type="Resource" uid="uid://om5u86jg53vy" path="res://Data/CardsData/Player_Cards/Forest_Cards/foraged_material.tres" id="4_7lekx"]
+[ext_resource type="Resource" uid="uid://0yxhnkmh8x2k" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/hurt_1dmg.tres" id="5_e5xut"]
+
+[sub_resource type="Resource" id="Resource_4l36q"]
+script = ExtResource("1_tf8si")
+cost_type = 4
+cost_amount = 1
+
+[sub_resource type="Resource" id="Resource_g3m01"]
+script = ExtResource("1_tf8si")
+cost_type = 2
+cost_amount = 1
+
+[resource]
+script = ExtResource("3_c5uty")
+id = "02_forest_cliff_face"
+title = "02_forest_cliff_face"
+text = "02_forest_cliff_face_text"
+type = 5
+costs = Array[ExtResource("1_tf8si")]([SubResource("Resource_4l36q"), SubResource("Resource_g3m01")])
+resources = Array[ExtResource("1_tf8si")]([])
+rewards = Array[ExtResource("2_at3kb")]([ExtResource("3_imt27"), ExtResource("3_imt27"), ExtResource("4_7lekx"), ExtResource("5_e5xut")])
+reward_amount = 1
+is_mandatory = true
+destroy_on_complete = true

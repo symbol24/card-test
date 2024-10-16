@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://om5u86jg53vy"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_fhq65"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_aic8s"]
+
+[sub_resource type="Resource" id="Resource_qyen0"]
+script = ExtResource("1_fhq65")
+cost_type = 2
+cost_amount = 2
+
+[resource]
+script = ExtResource("2_aic8s")
+id = "foraged_material"
+title = "foraged_material"
+text = "foraged_material_text"
+type = 3
+costs = Array[ExtResource("1_fhq65")]([])
+resources = Array[ExtResource("1_fhq65")]([SubResource("Resource_qyen0")])
+rewards = Array[ExtResource("2_aic8s")]([])
+reward_amount = 0
+is_mandatory = false
+destroy_on_complete = false

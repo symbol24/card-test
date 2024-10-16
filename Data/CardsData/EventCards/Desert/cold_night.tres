@@ -4,9 +4,9 @@
 [ext_resource type="Texture2D" uid="uid://dsio4e72mlpy8" path="res://Textures/CostIcons/cost_icons_food.png" id="2_3aa2o"]
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_x8ukg"]
 [ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_0vvd5"]
-[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/card_nothing.tres" id="3_gict3"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="3_gict3"]
 [ext_resource type="Texture2D" uid="uid://yign2rvuiweo" path="res://Textures/CostIcons/cost_icons_material.png" id="3_kpgaj"]
-[ext_resource type="Resource" uid="uid://ce6aarhim64eh" path="res://Data/CardsData/desert_grub.tres" id="4_bs4h4"]
+[ext_resource type="Resource" uid="uid://ce6aarhim64eh" path="res://Data/CardsData/Player_Cards/Desert_Cards/desert_grub.tres" id="4_bs4h4"]
 
 [sub_resource type="Resource" id="Resource_fcbd5"]
 script = ExtResource("1_o3eob")

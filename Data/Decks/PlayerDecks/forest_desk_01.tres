@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=10 format=3 uid="uid://upgdp36acajd"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_bh02g"]
+[ext_resource type="Resource" uid="uid://f8y4l88d6ijc" path="res://Data/CardsData/Player_Cards/Forest_Cards/first_aid_kit.tres" id="2_3llbk"]
+[ext_resource type="Script" path="res://Code/Decks/deck_data.gd" id="2_5tpus"]
+[ext_resource type="Resource" uid="uid://nh1tx2jwkhna" path="res://Data/CardsData/Player_Cards/Forest_Cards/hatchet.tres" id="3_10n7h"]
+[ext_resource type="Resource" uid="uid://qnoni2gp7ya5" path="res://Data/CardsData/Player_Cards/Forest_Cards/hiking_gear.tres" id="4_pkki2"]
+[ext_resource type="Resource" uid="uid://cja47hfant2y1" path="res://Data/CardsData/Player_Cards/Forest_Cards/forest_bottled_water.tres" id="5_yvtbg"]
+[ext_resource type="Resource" uid="uid://42phi8h56ws8" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/mre.tres" id="6_tyqph"]
+[ext_resource type="Resource" uid="uid://cp5umtquhwge6" path="res://Data/CardsData/Player_Cards/Forest_Cards/trail_mix.tres" id="7_1cedt"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="7_dwmtn"]
+
+[resource]
+script = ExtResource("2_5tpus")
+id = "forest_desk_01"
+cards = Array[ExtResource("1_bh02g")]([ExtResource("2_3llbk"), ExtResource("3_10n7h"), ExtResource("4_pkki2"), ExtResource("5_yvtbg"), ExtResource("6_tyqph"), ExtResource("7_1cedt"), ExtResource("7_dwmtn"), ExtResource("7_dwmtn")])
+fail_id = "forest_desk_01_fail"
+type = 0
+tween_time = 0.3
+round_draw_amount = 3
+starting_hp = 5
+starting_energy = 4
+starting_weapons = 0

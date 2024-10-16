@@ -1,10 +1,10 @@
 [gd_resource type="Resource" script_class="DeckData" load_steps=6 format=3 uid="uid://cloywso4bt2oc"]
 
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_pihgu"]
-[ext_resource type="Resource" uid="uid://0jymrmjwfpmc" path="res://Data/CardsData/EventCards/pay_energy.tres" id="2_hcegr"]
+[ext_resource type="Resource" uid="uid://0jymrmjwfpmc" path="res://Data/CardsData/EventCards/TestCards/pay_energy.tres" id="2_hcegr"]
 [ext_resource type="Script" path="res://Code/Decks/deck_data.gd" id="2_rpkrg"]
-[ext_resource type="Resource" uid="uid://b5ncidkwqt8rd" path="res://Data/CardsData/EventCards/pay_hp.tres" id="3_ht8e7"]
-[ext_resource type="Resource" uid="uid://ds14aq40igmv5" path="res://Data/CardsData/EventCards/pay_weapon.tres" id="4_sda63"]
+[ext_resource type="Resource" uid="uid://b5ncidkwqt8rd" path="res://Data/CardsData/EventCards/TestCards/pay_hp.tres" id="3_ht8e7"]
+[ext_resource type="Resource" uid="uid://ds14aq40igmv5" path="res://Data/CardsData/EventCards/TestCards/pay_weapon.tres" id="4_sda63"]
 
 [resource]
 script = ExtResource("2_rpkrg")

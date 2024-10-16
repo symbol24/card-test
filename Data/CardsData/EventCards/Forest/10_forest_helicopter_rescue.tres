@@ -1,0 +1,39 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=9 format=3 uid="uid://cvldkrdntml4k"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_g5xp4"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_xom2u"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_sl5lk"]
+[ext_resource type="Resource" uid="uid://do2thj0dmm125" path="res://Data/CardsData/Player_Cards/Forest_Cards/forest_success.tres" id="3_wak7k"]
+
+[sub_resource type="Resource" id="Resource_gmaed"]
+script = ExtResource("1_g5xp4")
+cost_type = 4
+cost_amount = 1
+
+[sub_resource type="Resource" id="Resource_wqmkv"]
+script = ExtResource("1_g5xp4")
+cost_type = 2
+cost_amount = 1
+
+[sub_resource type="Resource" id="Resource_r8ijv"]
+script = ExtResource("1_g5xp4")
+cost_type = 0
+cost_amount = 1
+
+[sub_resource type="Resource" id="Resource_kpcic"]
+script = ExtResource("1_g5xp4")
+cost_type = 1
+cost_amount = 1
+
+[resource]
+script = ExtResource("3_sl5lk")
+id = "10_forest_helicopter_rescue"
+title = "10_forest_helicopter_rescue"
+text = "10_forest_helicopter_rescue_text"
+type = 5
+costs = Array[ExtResource("1_g5xp4")]([SubResource("Resource_gmaed"), SubResource("Resource_wqmkv"), SubResource("Resource_r8ijv"), SubResource("Resource_kpcic")])
+resources = Array[ExtResource("1_g5xp4")]([])
+rewards = Array[ExtResource("2_xom2u")]([ExtResource("3_wak7k")])
+reward_amount = 1
+is_mandatory = true
+destroy_on_complete = true

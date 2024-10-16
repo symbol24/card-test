@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=13 format=3 uid="uid://bf5kmq1umoi6o"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_cwxc5"]
+[ext_resource type="Script" path="res://Code/Decks/deck_data.gd" id="2_duqbt"]
+[ext_resource type="Resource" uid="uid://7vioca5vp7ry" path="res://Data/CardsData/EventCards/Forest/01_forest_camp_attack.tres" id="2_yk378"]
+[ext_resource type="Resource" uid="uid://duh513akjqkcy" path="res://Data/CardsData/EventCards/Forest/02_forest_cliff_face.tres" id="3_5u6ku"]
+[ext_resource type="Resource" uid="uid://clhlvity5lw5r" path="res://Data/CardsData/EventCards/Forest/03_forest_camp_setup.tres" id="4_to8ne"]
+[ext_resource type="Resource" uid="uid://1g3wnbdv7vxd" path="res://Data/CardsData/EventCards/Forest/04_forest_forage_food.tres" id="5_4psla"]
+[ext_resource type="Resource" uid="uid://bqfx1rraiugua" path="res://Data/CardsData/EventCards/Forest/05_forest_find_water.tres" id="6_24joj"]
+[ext_resource type="Resource" uid="uid://c0et6qcwnarv5" path="res://Data/CardsData/EventCards/Forest/06_forest_bear_attack.tres" id="7_glnn5"]
+[ext_resource type="Resource" uid="uid://ceutwbdnrpqtf" path="res://Data/CardsData/EventCards/Forest/07_forest_make_first_aid.tres" id="8_cvl4l"]
+[ext_resource type="Resource" uid="uid://f8wrfrrmdh2q" path="res://Data/CardsData/EventCards/Forest/08_forest_camp_attack.tres" id="9_577uv"]
+[ext_resource type="Resource" uid="uid://14ccqw0drcms" path="res://Data/CardsData/EventCards/Forest/09_forest_fire_signal.tres" id="10_8o6l1"]
+[ext_resource type="Resource" uid="uid://cvldkrdntml4k" path="res://Data/CardsData/EventCards/Forest/10_forest_helicopter_rescue.tres" id="11_7yqf1"]
+
+[resource]
+script = ExtResource("2_duqbt")
+id = "forest_01_event_deck"
+cards = Array[ExtResource("1_cwxc5")]([ExtResource("2_yk378"), ExtResource("3_5u6ku"), ExtResource("4_to8ne"), ExtResource("5_4psla"), ExtResource("6_24joj"), ExtResource("7_glnn5"), ExtResource("8_cvl4l"), ExtResource("9_577uv"), ExtResource("10_8o6l1"), ExtResource("11_7yqf1")])
+fail_id = "forest_01_event_deck_fail"
+type = 1
+tween_time = 0.3
+round_draw_amount = 1
+starting_hp = 3
+starting_energy = 5
+starting_weapons = 0

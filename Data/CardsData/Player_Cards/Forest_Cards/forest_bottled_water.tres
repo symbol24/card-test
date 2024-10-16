@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://cja47hfant2y1"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_c8th1"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_ca8ue"]
+
+[sub_resource type="Resource" id="Resource_6tjt0"]
+script = ExtResource("1_c8th1")
+cost_type = 0
+cost_amount = 2
+
+[resource]
+script = ExtResource("2_ca8ue")
+id = "forest_bottled_water"
+title = "forest_bottled_water"
+text = "forest_bottled_water_text"
+type = 3
+costs = Array[ExtResource("1_c8th1")]([])
+resources = Array[ExtResource("1_c8th1")]([SubResource("Resource_6tjt0")])
+rewards = Array[ExtResource("2_ca8ue")]([])
+reward_amount = 0
+is_mandatory = false
+destroy_on_complete = true

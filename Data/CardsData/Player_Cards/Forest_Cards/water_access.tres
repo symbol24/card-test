@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://dr1q0n37rwnv3"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_4k0f3"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_u1w0x"]
+
+[sub_resource type="Resource" id="Resource_7i4t6"]
+script = ExtResource("1_4k0f3")
+cost_type = 0
+cost_amount = 3
+
+[resource]
+script = ExtResource("2_u1w0x")
+id = "water_access"
+title = "water_access"
+text = "water_access_text"
+type = 3
+costs = Array[ExtResource("1_4k0f3")]([])
+resources = Array[ExtResource("1_4k0f3")]([SubResource("Resource_7i4t6")])
+rewards = Array[ExtResource("2_u1w0x")]([])
+reward_amount = 0
+is_mandatory = false
+destroy_on_complete = false

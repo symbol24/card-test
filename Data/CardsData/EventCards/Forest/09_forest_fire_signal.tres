@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=6 format=3 uid="uid://14ccqw0drcms"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_fj4uo"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_7p5vu"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="3_ibal4"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_uvdxj"]
+
+[sub_resource type="Resource" id="Resource_8p0ir"]
+script = ExtResource("1_fj4uo")
+cost_type = 2
+cost_amount = 3
+
+[resource]
+script = ExtResource("3_uvdxj")
+id = "09_forest_fire_signal"
+title = "09_forest_fire_signal"
+text = "09_forest_fire_signal_text"
+type = 5
+costs = Array[ExtResource("1_fj4uo")]([SubResource("Resource_8p0ir")])
+resources = Array[ExtResource("1_fj4uo")]([])
+rewards = Array[ExtResource("2_7p5vu")]([ExtResource("3_ibal4")])
+reward_amount = 1
+is_mandatory = true
+destroy_on_complete = true

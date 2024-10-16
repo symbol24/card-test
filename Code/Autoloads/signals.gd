@@ -1,5 +1,10 @@
 extends Node
 
+# Save / Load
+signal Save()
+signal Load()
+signal DeleteSave()
+
 # UI
 signal ToggleUiMenu(id:String, display:bool)
 signal ButtonPressed(id:String, from:String)

@@ -1,0 +1,31 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=9 format=3 uid="uid://bqfx1rraiugua"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_fsedu"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_560pk"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_gnxdj"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="3_wm5nk"]
+[ext_resource type="Resource" uid="uid://0yxhnkmh8x2k" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/hurt_1dmg.tres" id="4_s01nf"]
+[ext_resource type="Resource" uid="uid://dr1q0n37rwnv3" path="res://Data/CardsData/Player_Cards/Forest_Cards/water_access.tres" id="5_inmen"]
+
+[sub_resource type="Resource" id="Resource_tr5do"]
+script = ExtResource("1_fsedu")
+cost_type = 3
+cost_amount = 1
+
+[sub_resource type="Resource" id="Resource_ykhvd"]
+script = ExtResource("1_fsedu")
+cost_type = 1
+cost_amount = 1
+
+[resource]
+script = ExtResource("3_gnxdj")
+id = "05_forest_find_water"
+title = "05_forest_find_water"
+text = "05_forest_find_water_text"
+type = 5
+costs = Array[ExtResource("1_fsedu")]([SubResource("Resource_tr5do"), SubResource("Resource_ykhvd")])
+resources = Array[ExtResource("1_fsedu")]([])
+rewards = Array[ExtResource("2_560pk")]([ExtResource("3_wm5nk"), ExtResource("4_s01nf"), ExtResource("5_inmen"), ExtResource("5_inmen")])
+reward_amount = 1
+is_mandatory = true
+destroy_on_complete = true

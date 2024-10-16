@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=10 format=3 uid="uid://1g3wnbdv7vxd"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_68upi"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_dwrrs"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_rr2f5"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="3_td08i"]
+[ext_resource type="Resource" uid="uid://dfuev48aefl1l" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/makeshift_weapon.tres" id="4_6mbhg"]
+[ext_resource type="Resource" uid="uid://ejw2m4nfvy1x" path="res://Data/CardsData/Player_Cards/Forest_Cards/foraged_food.tres" id="5_igkyl"]
+[ext_resource type="Resource" uid="uid://om5u86jg53vy" path="res://Data/CardsData/Player_Cards/Forest_Cards/foraged_material.tres" id="6_1tmlr"]
+
+[sub_resource type="Resource" id="Resource_oin18"]
+script = ExtResource("1_68upi")
+cost_type = 3
+cost_amount = 1
+
+[sub_resource type="Resource" id="Resource_a0188"]
+script = ExtResource("1_68upi")
+cost_type = 4
+cost_amount = 1
+
+[resource]
+script = ExtResource("3_rr2f5")
+id = "04_forest_forage_food"
+title = "04_forest_forage_food"
+text = "04_forest_forage_food_text"
+type = 5
+costs = Array[ExtResource("1_68upi")]([SubResource("Resource_oin18"), SubResource("Resource_a0188")])
+resources = Array[ExtResource("1_68upi")]([])
+rewards = Array[ExtResource("2_dwrrs")]([ExtResource("3_td08i"), ExtResource("4_6mbhg"), ExtResource("5_igkyl"), ExtResource("5_igkyl"), ExtResource("6_1tmlr")])
+reward_amount = 1
+is_mandatory = true
+destroy_on_complete = true

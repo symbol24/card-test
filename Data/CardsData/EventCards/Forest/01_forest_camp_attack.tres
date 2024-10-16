@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=8 format=3 uid="uid://7vioca5vp7ry"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_tnp8t"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_fxcbr"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_ahlvg"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="3_kdrg6"]
+[ext_resource type="Resource" uid="uid://0yxhnkmh8x2k" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/hurt_1dmg.tres" id="4_lwfti"]
+[ext_resource type="Resource" uid="uid://da77l3s6tl4p1" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/energy_drink.tres" id="5_lrygl"]
+
+[sub_resource type="Resource" id="Resource_gqv2w"]
+script = ExtResource("1_tnp8t")
+cost_type = 3
+cost_amount = 2
+
+[resource]
+script = ExtResource("3_ahlvg")
+id = "01_forest_camp_attack"
+title = "01_forest_camp_attack"
+text = "01_forest_camp_attack_text"
+type = 4
+costs = Array[ExtResource("1_tnp8t")]([SubResource("Resource_gqv2w")])
+resources = Array[ExtResource("1_tnp8t")]([])
+rewards = Array[ExtResource("2_fxcbr")]([ExtResource("3_kdrg6"), ExtResource("3_kdrg6"), ExtResource("4_lwfti"), ExtResource("5_lrygl")])
+reward_amount = 1
+is_mandatory = true
+destroy_on_complete = true

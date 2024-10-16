@@ -76,7 +76,10 @@ func clear_data() -> void:
 
 func complete_card(_discard:Discard = null, _time:float = 0.2) -> void:
 	if data.destroy_on_complete:
-		queue_free.call_deferred()
+		if is_in_group("player_card") and Game.remove_card_from_lists(self):
+			queue_free.call_deferred()
+		elif is_in_group("event_card"):
+			queue_free.call_deferred()
 	else:
 		await move_card(global_position, _discard.global_position, _time)
 		Signals.DiscardCard.emit(self)

@@ -5,9 +5,9 @@
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_q5c61"]
 [ext_resource type="Texture2D" uid="uid://yign2rvuiweo" path="res://Textures/CostIcons/cost_icons_material.png" id="2_tbjja"]
 [ext_resource type="Texture2D" uid="uid://chl3vuagnejom" path="res://Textures/CostIcons/cost_icons_water.png" id="3_bnc4f"]
-[ext_resource type="Resource" uid="uid://0yxhnkmh8x2k" path="res://Data/CardsData/hurt_1dmg.tres" id="3_x0p61"]
-[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/card_nothing.tres" id="4_x5l6t"]
-[ext_resource type="Resource" uid="uid://42phi8h56ws8" path="res://Data/CardsData/mre.tres" id="5_1p3sd"]
+[ext_resource type="Resource" uid="uid://0yxhnkmh8x2k" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/hurt_1dmg.tres" id="3_x0p61"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="4_x5l6t"]
+[ext_resource type="Resource" uid="uid://42phi8h56ws8" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/mre.tres" id="5_1p3sd"]
 
 [sub_resource type="Resource" id="Resource_ft4bo"]
 script = ExtResource("1_dkby8")

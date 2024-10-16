@@ -1,0 +1,22 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=4 format=3 uid="uid://f8y4l88d6ijc"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_rww4k"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_onhkk"]
+
+[sub_resource type="Resource" id="Resource_1nweb"]
+script = ExtResource("1_rww4k")
+cost_type = 5
+cost_amount = 2
+
+[resource]
+script = ExtResource("2_onhkk")
+id = "first_aid_kit"
+title = "first_aid_kit"
+text = "first_aid_kit_text"
+type = 3
+costs = Array[ExtResource("1_rww4k")]([])
+resources = Array[ExtResource("1_rww4k")]([SubResource("Resource_1nweb")])
+rewards = Array[ExtResource("2_onhkk")]([])
+reward_amount = 0
+is_mandatory = false
+destroy_on_complete = true

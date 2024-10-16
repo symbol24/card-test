@@ -1,5 +1,10 @@
+res://Data/CardsData/Player_Cards/Forest_Cards
+res://Data/Decks/EventDecks
+res://Data/Decks/PlayerDecks
+res://Data/CardsData/EventCards/Forest
+res://Scenes/Autoload
+res://Code/Autoloads
 res://Data/UI
 res://Code/Decks
 res://Data/CardsData/EventCards
-res://Data/Decks/EventDecks
 res://Data/CardsData

@@ -1,0 +1,27 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://nh1tx2jwkhna"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_mislf"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_2dmx5"]
+
+[sub_resource type="Resource" id="Resource_v8wrt"]
+script = ExtResource("1_mislf")
+cost_type = 2
+cost_amount = 2
+
+[sub_resource type="Resource" id="Resource_e8a80"]
+script = ExtResource("1_mislf")
+cost_type = 3
+cost_amount = 2
+
+[resource]
+script = ExtResource("2_2dmx5")
+id = "hatchet"
+title = "hatchet"
+text = "hatchet_text"
+type = 3
+costs = Array[ExtResource("1_mislf")]([SubResource("Resource_v8wrt")])
+resources = Array[ExtResource("1_mislf")]([SubResource("Resource_e8a80")])
+rewards = Array[ExtResource("2_2dmx5")]([])
+reward_amount = 1
+is_mandatory = false
+destroy_on_complete = false
