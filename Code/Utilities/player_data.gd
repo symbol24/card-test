@@ -65,5 +65,7 @@ func check_available_resource(_type:CardData.Resource_Type, _amount:int) -> bool
 
 func setup_player_data() -> void:
 	current_hp = current_deck.starting_hp
+	energy = current_deck.starting_energy
+	weapons = current_deck.starting_weapons
 	update_all_resources()
 	print("setup_player_data done")

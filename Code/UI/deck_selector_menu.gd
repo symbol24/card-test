@@ -19,6 +19,7 @@ func _ready() -> void:
 	_build_selector_buttons(DeckData.Type.PLAYER)
 	if not seed_rtl.is_node_ready(): await seed_rtl.ready
 	_set_seed()
+	Game.setup_player()
 	Manager.ToggleLoadingScreen.emit(false)
 
 

@@ -33,6 +33,7 @@ signal AddNewPlayerCard(card_data:CardData, spawn_pos:Vector2)
 signal DisplayNothingReward()
 signal CheckCardsOnCard(card:Card, cards:Array[Card])
 signal CheckFailState()
+signal ResetGameData()
 
 
 # Discard

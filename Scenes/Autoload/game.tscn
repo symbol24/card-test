@@ -6,3 +6,5 @@
 script = ExtResource("1_5dcvw")
 debug_seed = "Symbol24"
 use_btn_hide_delay = 2.5
+check_fail_delay = 2.0
+post_check_delay = 5.0

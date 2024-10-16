@@ -22,10 +22,12 @@ var discard_layer:DiscardLayer
 var player_deck_button:DeckButton
 var event_deck_button:DeckButton
 
+# RNG
 var run_seed:String = ""
 var run_seed_hash:int
 var seeded_rng:SyRandomNumberGenerator
 
+# Player data and data management
 var player_data:PlayerData
 var current_event_deck:DeckData
 var data_manager:DataManager
@@ -73,6 +75,7 @@ func _ready() -> void:
 	Signals.PayResourceFromCard.connect(_pay_resource_from_card)
 	Signals.ShuffleDeck.connect(_shuffle_discard_under_deck)
 	Signals.CheckFailState.connect(_check_fail_coroutine)
+	Signals.ResetGameData.connect(_reset_data)
 
 
 func _process(_delta: float) -> void:
@@ -99,10 +102,8 @@ func setup_rng() -> String:
 
 
 func setup_player() -> void:
-	if player_data != null: 
-		var temp = player_data
+	if player_data != null:
 		player_data = null
-		temp.queue_free.call_deferred()
 	player_data = PlayerData.new()
 
 
@@ -121,15 +122,20 @@ func get_highest_card_z_index() -> int:
 
 func load_deck(_id:String, _type:DeckData.Type) -> void:
 	if _type == DeckData.Type.EVENT:
-		current_event_deck = data_manager.get_deck(_id, _type)
+		current_event_deck = data_manager.get_deck(_id, _type).duplicate(true)
 		current_event_deck.setup_deck()
 	else:
-		player_data.current_deck = data_manager.get_deck(_id, _type)
+		player_data.current_deck = data_manager.get_deck(_id, _type).duplicate(true)
 		player_data.current_deck.setup_deck()
 
 
 func toggle_pause(value:bool = false) -> void:
 	get_tree().paused = value
+
+
+func reset_decks() -> void:
+	current_event_deck.setup_deck()
+	player_data.current_deck.setup_deck()
 
 
 func _set_play_variables(_disc:Discard) ->void:
@@ -528,6 +534,18 @@ func _check_fail_state() -> bool:
 
 		return can_play
 	return true
+
+
+func _reset_data() -> void:
+	if active_event_card != null:
+		active_event_card.queue_free()
+	active_event_card = null
+	active_player_cards.clear()
+	discarded_player_cards.clear()
+	current_hand_count = 0
+	layer = 0
+	current_hand_count = 0
+	checking_fail = false
 
 
 func _print_cards(_array:Array[Card]) -> void:

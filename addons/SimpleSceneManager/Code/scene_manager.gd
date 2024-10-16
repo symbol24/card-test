@@ -2,6 +2,7 @@ extends Node
 
 signal ToggleLoadingScreen(_display:bool)
 signal LoadingPercentUpdated(_percent:float)
+signal LoadingComplete()
 
 const LOADING_SCREEN = "res://addons/SimpleSceneManager/Scenes/loading_screen.tscn"
 
@@ -84,11 +85,15 @@ func _complete_load() -> void:
 	active_level = new_level.instantiate()
 	ui.level_layer.add_child.call_deferred(active_level)
 	
+	if not active_level.is_node_ready():
+		await active_level.ready
+
 	# Adding load time if set in the level data
 	if level_data.loading_delay > 0.0:
 		var wait_timer := get_tree().create_timer(level_data.loading_delay)
 		await wait_timer.timeout
 	
 	get_tree().paused = false
+	LoadingComplete.emit()
 	# Send loadscreen toggle off
 	#ToggleLoadingScreen.emit(false)

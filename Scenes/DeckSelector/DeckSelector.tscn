@@ -60,12 +60,21 @@ layout_mode = 2
 
 [node name="seed_rtl" type="RichTextLabel" parent="."]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(400, 50)
+clip_contents = false
+custom_minimum_size = Vector2(400, 23)
 layout_mode = 0
 offset_left = 760.0
 offset_top = 520.0
 offset_right = 1160.0
 offset_bottom = 570.0
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+fit_content = true
 script = ExtResource("3_cjym0")
 bbcode = "seed"
 effects = 2

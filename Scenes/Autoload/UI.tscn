@@ -10,20 +10,20 @@
 [ext_resource type="Script" path="res://addons/richtext2/richer_text_label.gd" id="8_m4lpk"]
 [ext_resource type="Script" path="res://addons/richtext2/text_effects/anims/rte_console.gd" id="9_o608s"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_4ew68"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_dup5i"]
 resource_name = "back"
 script = ExtResource("2_5runj")
-metadata/rt = 1935956572126
+metadata/rt = 3085061650212
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_xtvgf"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_cqimh"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 2007981160542
+metadata/rt = 3157086243082
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_3bcar"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_mcles"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 2031687366758
+metadata/rt = 3180792449299
 
 [node name="Ui" type="CanvasLayer" groups=["UI"]]
 process_mode = 3
@@ -76,7 +76,7 @@ theme_override_font_sizes/normal_font_size = 104
 theme_override_font_sizes/bold_font_size = 104
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_4ew68")]
+custom_effects = [SubResource("RichTextEffect_dup5i")]
 script = ExtResource("3_xow8m")
 animation = "back"
 progress = 1.0
@@ -457,7 +457,7 @@ theme_override_font_sizes/normal_font_size = 16
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_xtvgf")]
+custom_effects = [SubResource("RichTextEffect_cqimh")]
 script = ExtResource("3_xow8m")
 animation = "console"
 progress = 1.0
@@ -558,7 +558,7 @@ theme_override_font_sizes/normal_font_size = 16
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_3bcar")]
+custom_effects = [SubResource("RichTextEffect_mcles")]
 script = ExtResource("3_xow8m")
 animation = "console"
 progress = 1.0

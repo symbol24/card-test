@@ -1,2 +1,16 @@
 res://Code/boot.gd
 res://Code/Autoloads/game.gd
+res://Code/Autoloads/ui.gd
+res://Code/UI/deck_selector_menu.gd
+res://Code/DeckSelector/deck_selector_button.gd
+res://Code/DeckSelector/selector_play_button.gd
+res://Code/Levels/level.gd
+res://Code/Utilities/player_data.gd
+res://addons/SimpleSceneManager/Code/scene_manager.gd
+res://Code/Utilities/grabber.gd
+res://Code/wrappers/sy_button.gd
+res://Code/Cards/event_card.gd
+res://Code/Autoloads/signals.gd
+res://Code/Cards/card.gd
+res://Code/Decks/deck_data.gd
+res://Code/Cards/card_data.gd

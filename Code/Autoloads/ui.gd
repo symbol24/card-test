@@ -23,12 +23,13 @@ func _button_dispatcher(_id:String, _from:String) -> void:
 		"deck_selector":
 			Manager.load_scene(2)
 		"play_with":
-			Game.setup_player()
 			Manager.load_scene(3)
 		"btn_result_retry":
+			Signals.ResetGameData.emit()
+			Game.reset_decks()
 			Manager.load_scene(3)
 		"btn_result_return":
-			print("Sending load to manager")
+			Signals.ResetGameData.emit()
 			Manager.load_scene(2)
 		"debug_result_success":
 			Signals.DisplayResultScreen.emit("result_success", true)

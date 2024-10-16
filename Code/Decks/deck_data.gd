@@ -31,10 +31,10 @@ func draw_card() -> CardData:
 
 
 func setup_deck() -> void:
-	if type == Type.EVENT:
-		play_cards = cards.duplicate(true)
-	else:
-		play_cards = shuffle_deck(cards)
+	play_cards = _set_card_datas(cards)
+	if type == Type.PLAYER:
+		var temp = play_cards.duplicate(true)
+		play_cards = shuffle_deck(temp)
 
 
 func shuffle_deck(_to_shuffle:Array[CardData]) -> Array[CardData]:
@@ -51,6 +51,23 @@ func shuffle_discard_into_deck() -> void:
 	var temp:Array[CardData] = shuffle_deck(discard)
 	play_cards.append_array(temp)
 	discard.clear()
+
+
+func _set_card_datas(_cards:Array[CardData]) -> Array[CardData]:
+	var new_datas:Array[CardData] = []
+	for each in _cards:
+		var new_data:CardData = each.duplicate()
+		new_data.costs.clear()
+		for cost in each.costs:
+			new_data.costs.append(cost.duplicate())
+		new_data.resources.clear()
+		for res in each.resources:
+			new_data.resources.append(res.duplicate())
+		new_data.rewards.clear()
+		for reward in each.rewards:
+			new_data.rewards.append(reward.duplicate())
+		new_datas.append(new_data)
+	return new_datas
 
 
 func _debug_print_cards(_cards:Array[CardData]) -> void:
