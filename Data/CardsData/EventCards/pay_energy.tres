@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=6 format=3 uid="uid://0jymrmjwfpmc"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_yks1g"]
+[ext_resource type="Texture2D" uid="uid://dj0f0jejy88uf" path="res://Textures/CostIcons/cost_icons_energy.png" id="2_ywq0r"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="3_dh1nx"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="4_plovi"]
+
+[sub_resource type="Resource" id="Resource_0xs5l"]
+script = ExtResource("1_yks1g")
+cost_type = 4
+cost_amount = 1
+cost_texture = ExtResource("2_ywq0r")
+
+[resource]
+script = ExtResource("4_plovi")
+id = "energypay"
+title = "energypay"
+text = "energypay"
+type = 5
+costs = Array[ExtResource("1_yks1g")]([SubResource("Resource_0xs5l")])
+resources = Array[ExtResource("1_yks1g")]([])
+rewards = Array[ExtResource("3_dh1nx")]([])
+reward_amount = 0
+is_mandatory = false
+destroy_on_complete = true

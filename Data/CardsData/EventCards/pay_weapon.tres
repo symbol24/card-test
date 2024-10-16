@@ -1,0 +1,26 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=7 format=3 uid="uid://ds14aq40igmv5"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_t4cbe"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_esgrs"]
+[ext_resource type="Texture2D" uid="uid://rk7ssm70f27f" path="res://Textures/CostIcons/cost_icons_weapon.png" id="2_uqu0e"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_lssfb"]
+[ext_resource type="Resource" uid="uid://dd4njpg4x6veg" path="res://Data/CardsData/EventCards/desert_success_card.tres" id="4_8js8r"]
+
+[sub_resource type="Resource" id="Resource_whde2"]
+script = ExtResource("1_t4cbe")
+cost_type = 3
+cost_amount = 1
+cost_texture = ExtResource("2_uqu0e")
+
+[resource]
+script = ExtResource("3_lssfb")
+id = "weapon_pay"
+title = "weapon_pay"
+text = "weapon_pay"
+type = 5
+costs = Array[ExtResource("1_t4cbe")]([SubResource("Resource_whde2")])
+resources = Array[ExtResource("1_t4cbe")]([])
+rewards = Array[ExtResource("2_esgrs")]([ExtResource("4_8js8r")])
+reward_amount = 1
+is_mandatory = false
+destroy_on_complete = true

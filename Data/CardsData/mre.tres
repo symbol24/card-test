@@ -28,4 +28,4 @@ resources = Array[ExtResource("1_m3rgb")]([SubResource("Resource_ovgl0"), SubRes
 rewards = Array[ExtResource("1_ux8ji")]([])
 reward_amount = 0
 is_mandatory = false
-destroy_on_use = false
+destroy_on_complete = false

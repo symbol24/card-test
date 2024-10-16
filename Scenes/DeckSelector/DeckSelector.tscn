@@ -1,7 +1,8 @@
-[gd_scene load_steps=3 format=3 uid="uid://pbywo1tmpqjb"]
+[gd_scene load_steps=4 format=3 uid="uid://pbywo1tmpqjb"]
 
 [ext_resource type="Script" path="res://Code/UI/deck_selector_menu.gd" id="1_gxs81"]
 [ext_resource type="Script" path="res://Code/DeckSelector/selector_play_button.gd" id="2_iphc0"]
+[ext_resource type="Script" path="res://addons/richtext2/richer_text_label.gd" id="3_cjym0"]
 
 [node name="DeckSelector" type="Control"]
 layout_mode = 3
@@ -56,3 +57,61 @@ vertical_scroll_mode = 0
 [node name="player_hbox" type="HBoxContainer" parent="PlayerDeckPanel/ScrollContainer"]
 unique_name_in_owner = true
 layout_mode = 2
+
+[node name="seed_rtl" type="RichTextLabel" parent="."]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(400, 50)
+layout_mode = 0
+offset_left = 760.0
+offset_top = 520.0
+offset_right = 1160.0
+offset_bottom = 570.0
+script = ExtResource("3_cjym0")
+bbcode = "seed"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10

@@ -17,6 +17,7 @@ enum Card_Type {
 				RESOURCE = 3,
 				ENEMY = 4,
 				CHALLENGE = 5,
+				SUCCESS = 6,
 				}
 
 
@@ -42,7 +43,7 @@ enum Card_Type {
 
 var cost_payed:bool:
 	get:
-		if costs.is_empty(): return true
+		if costs.is_empty(): return false
 		else:
 			var all_payed:bool = true
 			for each in costs:
@@ -52,12 +53,13 @@ var cost_payed:bool:
 			return all_payed
 var has_only_payables:bool:
 	get:
-		if costs.is_empty(): return true
+		if costs.is_empty(): return false
 		else:
+			var payables_count:int = 0
 			for each in costs:
-				if not each.cost_type in payables:
-					return false
-			return true
+				if each.cost_type in payables:
+					payables_count += 1
+			return true if payables_count == costs.size() else false
 var payment:Array[Cost]
 var payables:Array[Resource_Type] = [Resource_Type.ENERGY, Resource_Type.WEAPON, Resource_Type.HP]
 

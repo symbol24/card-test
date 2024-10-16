@@ -7,7 +7,7 @@
 [sub_resource type="Resource" id="Resource_ayr0h"]
 script = ExtResource("1_ptjt1")
 cost_type = 5
-cost_amount = 1
+cost_amount = -1
 cost_texture = ExtResource("3_2moyu")
 
 [resource]
@@ -21,4 +21,4 @@ resources = Array[ExtResource("1_ptjt1")]([])
 rewards = Array[ExtResource("1_luqye")]([])
 reward_amount = 0
 is_mandatory = false
-destroy_on_use = false
+destroy_on_complete = true

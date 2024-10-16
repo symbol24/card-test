@@ -1,10 +1,11 @@
-[gd_resource type="Resource" script_class="EventCardData" load_steps=8 format=3 uid="uid://bae2e37pvklgr"]
+[gd_resource type="Resource" script_class="EventCardData" load_steps=9 format=3 uid="uid://bae2e37pvklgr"]
 
 [ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_hhaku"]
 [ext_resource type="Texture2D" uid="uid://chl3vuagnejom" path="res://Textures/CostIcons/cost_icons_water.png" id="2_7oirn"]
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_a2kg3"]
 [ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_1s611"]
 [ext_resource type="Texture2D" uid="uid://dsio4e72mlpy8" path="res://Textures/CostIcons/cost_icons_food.png" id="3_xfpkd"]
+[ext_resource type="Resource" uid="uid://dd4njpg4x6veg" path="res://Data/CardsData/EventCards/desert_success_card.tres" id="5_gcy5s"]
 
 [sub_resource type="Resource" id="Resource_r8v0q"]
 script = ExtResource("1_hhaku")
@@ -26,7 +27,7 @@ text = "desert_camp_text"
 type = 5
 costs = Array[ExtResource("1_hhaku")]([SubResource("Resource_r8v0q"), SubResource("Resource_65rj3")])
 resources = Array[ExtResource("1_hhaku")]([])
-rewards = Array[ExtResource("2_a2kg3")]([])
+rewards = Array[ExtResource("2_a2kg3")]([ExtResource("5_gcy5s")])
 reward_amount = 1
 is_mandatory = true
 destroy_on_complete = true

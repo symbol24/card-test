@@ -1,17 +1,24 @@
-[gd_resource type="Resource" script_class="EventCardData" load_steps=8 format=3 uid="uid://cs37uioafwd5q"]
+[gd_resource type="Resource" script_class="EventCardData" load_steps=10 format=3 uid="uid://cs37uioafwd5q"]
 
 [ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_o3eob"]
 [ext_resource type="Texture2D" uid="uid://dsio4e72mlpy8" path="res://Textures/CostIcons/cost_icons_food.png" id="2_3aa2o"]
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_x8ukg"]
 [ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_0vvd5"]
 [ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/card_nothing.tres" id="3_gict3"]
+[ext_resource type="Texture2D" uid="uid://yign2rvuiweo" path="res://Textures/CostIcons/cost_icons_material.png" id="3_kpgaj"]
 [ext_resource type="Resource" uid="uid://ce6aarhim64eh" path="res://Data/CardsData/desert_grub.tres" id="4_bs4h4"]
 
 [sub_resource type="Resource" id="Resource_fcbd5"]
 script = ExtResource("1_o3eob")
 cost_type = 1
-cost_amount = 2
+cost_amount = 1
 cost_texture = ExtResource("2_3aa2o")
+
+[sub_resource type="Resource" id="Resource_n02cu"]
+script = ExtResource("1_o3eob")
+cost_type = 2
+cost_amount = 1
+cost_texture = ExtResource("3_kpgaj")
 
 [resource]
 script = ExtResource("3_0vvd5")
@@ -19,7 +26,7 @@ id = "cold_night"
 title = "cold_night"
 text = "cold_night_text"
 type = 5
-costs = Array[ExtResource("1_o3eob")]([SubResource("Resource_fcbd5")])
+costs = Array[ExtResource("1_o3eob")]([SubResource("Resource_fcbd5"), SubResource("Resource_n02cu")])
 resources = Array[ExtResource("1_o3eob")]([])
 rewards = Array[ExtResource("2_x8ukg")]([ExtResource("3_gict3"), ExtResource("3_gict3"), ExtResource("3_gict3"), ExtResource("4_bs4h4")])
 reward_amount = 1

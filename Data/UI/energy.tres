@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardIconData" load_steps=3 format=3 uid="uid://cby52kqtij6x5"]
+
+[ext_resource type="Script" path="res://Code/UI/card_icon_data.gd" id="1_lejwd"]
+[ext_resource type="Texture2D" uid="uid://dj0f0jejy88uf" path="res://Textures/CostIcons/cost_icons_energy.png" id="2_fggqe"]
+
+[resource]
+script = ExtResource("1_lejwd")
+id = "energy"
+type = 4
+texture = ExtResource("2_fggqe")

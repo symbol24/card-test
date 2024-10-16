@@ -1,0 +1,25 @@
+[gd_resource type="Resource" script_class="EventCardData" load_steps=6 format=3 uid="uid://b5ncidkwqt8rd"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_lduma"]
+[ext_resource type="Texture2D" uid="uid://do5rr2bum1b8l" path="res://Textures/CostIcons/cost_icons_damage.png" id="2_3tdy1"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_thdgg"]
+[ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_h72r2"]
+
+[sub_resource type="Resource" id="Resource_dtph7"]
+script = ExtResource("1_lduma")
+cost_type = 5
+cost_amount = 1
+cost_texture = ExtResource("2_3tdy1")
+
+[resource]
+script = ExtResource("3_h72r2")
+id = "hp_pay"
+title = "hp_pay"
+text = "hp_pay"
+type = 5
+costs = Array[ExtResource("1_lduma")]([SubResource("Resource_dtph7")])
+resources = Array[ExtResource("1_lduma")]([])
+rewards = Array[ExtResource("2_thdgg")]([])
+reward_amount = 0
+is_mandatory = false
+destroy_on_complete = true

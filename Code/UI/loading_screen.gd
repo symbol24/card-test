@@ -1,4 +1,4 @@
-class_name CardLoadingScreen extends PanelContainer
+class_name CardLoadingScreen extends SyPanelContainer
 
 
 @onready var loading_label:RichTextAnimation = %loading_label

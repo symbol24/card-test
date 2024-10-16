@@ -4,6 +4,7 @@ class_name DeckSelectorMenu extends MenuControl
 @onready var event_hbox:HBoxContainer = %event_hbox
 @onready var player_hbox:HBoxContainer = %player_hbox
 @onready var play_button:Button = %play_button
+@onready var seed_rtl:RicherTextLabel = %seed_rtl
 
 var selected_event_deck:String = ""
 var selected_player_deck:String = ""
@@ -16,7 +17,14 @@ func _ready() -> void:
 	play_button.disabled = true
 	_build_selector_buttons(DeckData.Type.EVENT)
 	_build_selector_buttons(DeckData.Type.PLAYER)
+	if not seed_rtl.is_node_ready(): await seed_rtl.ready
+	_set_seed()
 	Manager.ToggleLoadingScreen.emit(false)
+
+
+func _set_seed() -> void:
+	Game.setup_rng()
+	seed_rtl.set_deferred("bbcode", tr("seed_rtl") + " " + Game.seeded_rng.current_seed)
 
 
 func _build_selector_buttons(_type:DeckData.Type) -> void:

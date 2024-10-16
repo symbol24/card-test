@@ -1,4 +1,4 @@
-[gd_scene load_steps=13 format=3 uid="uid://dovcqdm8wvsk7"]
+[gd_scene load_steps=22 format=3 uid="uid://dovcqdm8wvsk7"]
 
 [ext_resource type="Script" path="res://Code/Utilities/data_manager.gd" id="1_kuk14"]
 [ext_resource type="PackedScene" uid="uid://b7vq3l83vu5hj" path="res://Scenes/CardsandDecks/card.tscn" id="2_mjewf"]
@@ -12,6 +12,15 @@
 [ext_resource type="Resource" uid="uid://bvkjkqnhxbphb" path="res://Data/Decks/EventDecks/desert_01.tres" id="8_ojvnn"]
 [ext_resource type="PackedScene" uid="uid://4vatt2lm5le5" path="res://Scenes/Utilities/grabber_selector_panel.tscn" id="8_tg1n7"]
 [ext_resource type="PackedScene" uid="uid://6x4ivvauhxda" path="res://Scenes/CardsandDecks/ui_card_btn.tscn" id="9_axu4h"]
+[ext_resource type="PackedScene" uid="uid://ciwyjrmvk65lj" path="res://Scenes/UI/result_screen.tscn" id="10_8q2qd"]
+[ext_resource type="Resource" uid="uid://cloywso4bt2oc" path="res://Data/Decks/EventDecks/pay_only_deck.tres" id="14_82n74"]
+[ext_resource type="Script" path="res://Code/UI/card_icon_data.gd" id="15_q6wxl"]
+[ext_resource type="Resource" uid="uid://cby52kqtij6x5" path="res://Data/UI/energy.tres" id="16_m04wl"]
+[ext_resource type="Resource" uid="uid://dw06vr5dimq4d" path="res://Data/UI/food.tres" id="17_k6t73"]
+[ext_resource type="Resource" uid="uid://clegyucp0wxi6" path="res://Data/UI/hp.tres" id="18_m25cb"]
+[ext_resource type="Resource" uid="uid://c53fmekqe8qeu" path="res://Data/UI/material.tres" id="19_6hury"]
+[ext_resource type="Resource" uid="uid://c1pxrrwkw8du3" path="res://Data/UI/water.tres" id="20_jb77r"]
+[ext_resource type="Resource" uid="uid://dd280bs2oopqw" path="res://Data/UI/weapon.tres" id="21_06bf6"]
 
 [node name="DataManager" type="Node"]
 process_mode = 3
@@ -24,5 +33,7 @@ event_deck_selector_button = ExtResource("6_2hq8b")
 player_deck_selector_button = ExtResource("7_fpnf0")
 grabber_selector_panel = ExtResource("8_tg1n7")
 ui_card_btn = ExtResource("9_axu4h")
+result_screen = ExtResource("10_8q2qd")
 player_decks = Array[ExtResource("6_avuvk")]([ExtResource("7_pot31")])
-event_decks = Array[ExtResource("6_avuvk")]([ExtResource("8_ojvnn")])
+event_decks = Array[ExtResource("6_avuvk")]([ExtResource("8_ojvnn"), ExtResource("14_82n74")])
+card_icons = Array[ExtResource("15_q6wxl")]([ExtResource("16_m04wl"), ExtResource("17_k6t73"), ExtResource("18_m25cb"), ExtResource("19_6hury"), ExtResource("20_jb77r"), ExtResource("21_06bf6")])

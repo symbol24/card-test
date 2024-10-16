@@ -56,6 +56,7 @@ func _process(_delta: float) -> void:
 func load_scene(_id:int = -1) -> void:
 	# Send loadscreen toggle on
 	ToggleLoadingScreen.emit(true)
+	get_tree().paused = true
 	
 	# If path is empty, dont try to load.
 	var path := level_data.get_level_path(_id)
@@ -65,7 +66,7 @@ func load_scene(_id:int = -1) -> void:
 	# If there is an active level, queue_free it.
 	if active_level != null: 
 		var temp := active_level
-		ui.remove_child.call_deferred(temp)
+		ui.level_layer.remove_child.call_deferred(temp)
 		temp.queue_free.call_deferred()
 	
 	# Starting the ResourceLoader.
@@ -81,12 +82,13 @@ func _complete_load() -> void:
 	# Get the new level from the ResourceLoader and instantiate it.
 	var new_level := ResourceLoader.load_threaded_get(to_load)
 	active_level = new_level.instantiate()
-	ui.add_child.call_deferred(active_level)
+	ui.level_layer.add_child.call_deferred(active_level)
 	
 	# Adding load time if set in the level data
 	if level_data.loading_delay > 0.0:
 		var wait_timer := get_tree().create_timer(level_data.loading_delay)
 		await wait_timer.timeout
-		
+	
+	get_tree().paused = false
 	# Send loadscreen toggle off
 	#ToggleLoadingScreen.emit(false)

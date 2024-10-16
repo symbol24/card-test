@@ -21,6 +21,8 @@ func _ready() -> void:
 func _deck_btn_pressed() -> void:
 	if can_draw:
 		Signals.DrawCards.emit(deck_type, 1, true)
+		if deck_type == DeckData.Type.PLAYER:
+			Signals.CheckFailState.emit()
 
 	
 func _flash_empty() -> void:

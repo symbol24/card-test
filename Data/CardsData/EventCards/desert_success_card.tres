@@ -1,0 +1,17 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=3 format=3 uid="uid://dd4njpg4x6veg"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_ef040"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_qgvfq"]
+
+[resource]
+script = ExtResource("2_qgvfq")
+id = "desert_success"
+title = ""
+text = ""
+type = 6
+costs = Array[ExtResource("1_ef040")]([])
+resources = Array[ExtResource("1_ef040")]([])
+rewards = Array[ExtResource("2_qgvfq")]([])
+reward_amount = 0
+is_mandatory = false
+destroy_on_complete = false

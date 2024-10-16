@@ -1,12 +1,14 @@
-[gd_scene load_steps=6 format=3 uid="uid://bdyu0cqaucrkd"]
+[gd_scene load_steps=7 format=3 uid="uid://bdyu0cqaucrkd"]
 
 [ext_resource type="Script" path="res://Code/UI/resource_label.gd" id="2_etu1o"]
 [ext_resource type="PackedScene" uid="uid://c28o3sb1vkhl8" path="res://Scenes/CardsandDecks/deck.tscn" id="3_2dasr"]
+[ext_resource type="Script" path="res://Code/Decks/btn_shuffle_deck.gd" id="4_5feaq"]
 [ext_resource type="PackedScene" uid="uid://cpp0obgdjba83" path="res://Scenes/PlayArea/discard.tscn" id="4_u01th"]
 [ext_resource type="PackedScene" uid="uid://dxmwqi11tuww7" path="res://Scenes/Utilities/grabber.tscn" id="5_7nojo"]
 [ext_resource type="PackedScene" uid="uid://clr3am7obsst2" path="res://Scenes/CardsandDecks/event_deck.tscn" id="6_e2yfp"]
 
 [node name="play_area" type="Panel"]
+process_mode = 1
 clip_contents = true
 custom_minimum_size = Vector2(1920, 1080)
 offset_right = 1280.0
@@ -15,6 +17,7 @@ theme_type_variation = &"PlayPanel"
 metadata/_edit_lock_ = true
 
 [node name="resources" type="Control" parent="."]
+process_mode = 1
 custom_minimum_size = Vector2(150, 300)
 layout_mode = 1
 anchors_preset = 0
@@ -25,6 +28,7 @@ mouse_filter = 2
 
 [node name="energy_label" type="Label" parent="resources"]
 unique_name_in_owner = true
+process_mode = 1
 layout_mode = 1
 offset_left = 31.0
 offset_top = 105.0
@@ -37,6 +41,7 @@ resource_type = 4
 
 [node name="hp_label" type="Label" parent="resources"]
 unique_name_in_owner = true
+process_mode = 1
 layout_mode = 1
 offset_left = 31.0
 offset_top = 140.0
@@ -49,6 +54,7 @@ resource_type = 5
 
 [node name="weapons_label" type="Label" parent="resources"]
 unique_name_in_owner = true
+process_mode = 1
 layout_mode = 1
 offset_left = 31.0
 offset_top = 177.0
@@ -61,6 +67,7 @@ resource_type = 3
 
 [node name="player_play_area" type="Panel" parent="."]
 unique_name_in_owner = true
+process_mode = 1
 custom_minimum_size = Vector2(1720, 400)
 layout_mode = 1
 offset_left = 100.0
@@ -70,6 +77,7 @@ offset_bottom = 1050.0
 metadata/_edit_lock_ = true
 
 [node name="Deck" parent="player_play_area" node_paths=PackedStringArray("card_placement_pos") instance=ExtResource("3_2dasr")]
+process_mode = 1
 layout_mode = 1
 offset_left = 10.0
 offset_top = 10.0
@@ -78,6 +86,7 @@ offset_bottom = -190.0
 card_placement_pos = NodePath("../../card_end_point")
 
 [node name="Discard" parent="player_play_area" instance=ExtResource("4_u01th")]
+process_mode = 1
 layout_mode = 1
 anchors_preset = 3
 anchor_left = 1.0
@@ -89,8 +98,19 @@ offset_bottom = -190.0
 grow_horizontal = 0
 grow_vertical = 0
 
+[node name="btn_shuffle_deck" type="Button" parent="player_play_area"]
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_left = 10.0
+offset_top = 330.0
+offset_right = 210.0
+offset_bottom = 430.0
+text = "btn_shuffle_deck"
+script = ExtResource("4_5feaq")
+
 [node name="other_area" type="Panel" parent="."]
 unique_name_in_owner = true
+process_mode = 1
 custom_minimum_size = Vector2(1720, 500)
 layout_mode = 1
 offset_left = 100.0
@@ -100,6 +120,7 @@ offset_bottom = 530.0
 metadata/_edit_lock_ = true
 
 [node name="EventDeck" parent="other_area" node_paths=PackedStringArray("card_placement_pos") instance=ExtResource("6_e2yfp")]
+process_mode = 1
 layout_mode = 1
 anchors_preset = 0
 anchor_right = 0.0
@@ -113,9 +134,11 @@ grow_vertical = 1
 card_placement_pos = NodePath("../../card_end_point2")
 
 [node name="card_end_point" type="Marker2D" parent="."]
+process_mode = 1
 position = Vector2(700, 560)
 
 [node name="card_end_point2" type="Marker2D" parent="."]
+process_mode = 1
 position = Vector2(700, 40)
 
 [node name="Grabber" parent="." instance=ExtResource("5_7nojo")]

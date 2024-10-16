@@ -16,11 +16,12 @@ var selector_panel:GrabberSelectorPanel = null
 
 
 func _input(_event: InputEvent) -> void:
-	if Input.is_action_just_pressed("mouse_left"):
-		_grab()
-		
-	elif Input.is_action_just_released("mouse_left"):
-		_release()
+	if not get_tree().paused:
+		if Input.is_action_just_pressed("mouse_left"):
+			_grab()
+			
+		elif Input.is_action_just_released("mouse_left"):
+			_release()
 
 
 func _process(delta: float) -> void:

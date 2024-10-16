@@ -1,4 +1,4 @@
-[gd_resource type="Theme" load_steps=16 format=3 uid="uid://bd5vyy8rmqk2s"]
+[gd_resource type="Theme" load_steps=22 format=3 uid="uid://bd5vyy8rmqk2s"]
 
 [ext_resource type="StyleBox" uid="uid://6gb78gemoaqb" path="res://Data/CardStyles/card_normal.tres" id="1_wbksu"]
 [ext_resource type="StyleBox" uid="uid://b13c8bv4qxkhu" path="res://Data/CardStyles/Deck_btn_hover.tres" id="2_i1mck"]
@@ -27,8 +27,30 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_kttvq"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+border_width_left = 30
+border_width_top = 30
+border_width_right = 30
+border_width_bottom = 30
+border_color = Color(0.613875, 0.635972, 0.203726, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_qo1f8"]
 bg_color = Color(0.113725, 0.113725, 0.113725, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_wd7iv"]
+content_margin_left = 30.0
+content_margin_top = 30.0
+content_margin_right = 30.0
+content_margin_bottom = 30.0
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_hwc3b"]
+bg_color = Color(0.121569, 0.121569, 0.121569, 1)
 
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_rxsuu"]
 content_margin_left = 10.0
@@ -45,6 +67,11 @@ corner_radius_top_right = 6
 corner_radius_bottom_right = 6
 corner_radius_bottom_left = 6
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_h3itc"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_ik4be"]
+bg_color = Color(0.0745098, 0.0745098, 0.0745098, 1)
+
 [sub_resource type="StyleBoxFlat" id="StyleBoxFlat_8gry4"]
 bg_color = Color(1, 0.32549, 0.4, 0.243137)
 border_width_left = 5
@@ -57,9 +84,13 @@ corner_radius_top_right = 5
 corner_radius_bottom_right = 5
 corner_radius_bottom_left = 5
 
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_ghipy"]
+
 [resource]
 AdventurePanel/base_type = &"PanelContainer"
 AdventurePanel/styles/panel = SubResource("StyleBoxFlat_4xr60")
+BigPopupPanel/base_type = &"PanelContainer"
+BigPopupPanel/styles/panel = SubResource("StyleBoxFlat_kttvq")
 DeckBack/base_type = &"PanelContainer"
 DeckBack/styles/panel = ExtResource("1_wbksu")
 DeckButton/base_type = &"Button"
@@ -93,11 +124,23 @@ LoadingScreen/base_type = &"PanelContainer"
 LoadingScreen/styles/panel = SubResource("StyleBoxFlat_qo1f8")
 LoadingText/base_type = &"RichTextLabel"
 LoadingText/font_sizes/normal_font_size = 72
+PauseMenuContainer/base_type = &"PanelContainer"
+PauseMenuContainer/styles/panel = SubResource("StyleBoxFlat_wd7iv")
+PauseMenuPanel/base_type = &"PanelContainer"
+PauseMenuPanel/styles/panel = SubResource("StyleBoxFlat_hwc3b")
 PlayerCardBack/base_type = &"PanelContainer"
 PlayerCardBack/styles/panel = ExtResource("1_wbksu")
 PlayerCardHover/base_type = &"PanelContainer"
 PlayerCardHover/styles/panel = ExtResource("6_bl5dx")
 PlayerDeckPanel/base_type = &"PanelContainer"
 PlayerDeckPanel/styles/panel = SubResource("StyleBoxFlat_rxsuu")
+PopupBackground/base_type = &"PanelContainer"
+PopupBackground/styles/panel = SubResource("StyleBoxEmpty_h3itc")
+ResultScreenPanel/base_type = &"PanelContainer"
+ResultScreenPanel/styles/panel = SubResource("StyleBoxFlat_ik4be")
+ResultScreenTitle/base_type = &"RichTextLabel"
+ResultScreenTitle/font_sizes/normal_font_size = 42
 SelectorPanel/base_type = &"Panel"
 SelectorPanel/styles/panel = SubResource("StyleBoxFlat_8gry4")
+SmallPopupBack/base_type = &"PanelContainer"
+SmallPopupBack/styles/panel = SubResource("StyleBoxEmpty_ghipy")

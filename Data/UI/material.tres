@@ -1,0 +1,10 @@
+[gd_resource type="Resource" script_class="CardIconData" load_steps=3 format=3 uid="uid://c53fmekqe8qeu"]
+
+[ext_resource type="Script" path="res://Code/UI/card_icon_data.gd" id="1_nehmy"]
+[ext_resource type="Texture2D" uid="uid://yign2rvuiweo" path="res://Textures/CostIcons/cost_icons_material.png" id="2_hxtd5"]
+
+[resource]
+script = ExtResource("1_nehmy")
+id = "material"
+type = 2
+texture = ExtResource("2_hxtd5")

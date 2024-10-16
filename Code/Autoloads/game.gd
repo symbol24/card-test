@@ -12,6 +12,8 @@ const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
 @export var delay_to_discard:float = 0.2
 @export var card_spawn_time:float = 0.3
 @export var new_card_wait:float = 1
+@export var check_fail_delay:float = 5
+@export var post_check_delay:float = 10
 
 # Game Elements
 var discard_pile:Discard
@@ -51,6 +53,9 @@ var layer:int = 0:
 		if layer > 2: layer = 0
 var cards_amount:int = 0
 
+# Check Fail
+var checking_fail:bool = false
+
 
 func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
@@ -66,6 +71,8 @@ func _ready() -> void:
 	Signals.CompleteCard.connect(_complete_card)
 	Signals.DrawCards.connect(_multiple_draw_card)
 	Signals.PayResourceFromCard.connect(_pay_resource_from_card)
+	Signals.ShuffleDeck.connect(_shuffle_discard_under_deck)
+	Signals.CheckFailState.connect(_check_fail_coroutine)
 
 
 func _process(_delta: float) -> void:
@@ -94,6 +101,7 @@ func setup_rng() -> String:
 func setup_player() -> void:
 	if player_data != null: 
 		var temp = player_data
+		player_data = null
 		temp.queue_free.call_deferred()
 	player_data = PlayerData.new()
 
@@ -118,6 +126,10 @@ func load_deck(_id:String, _type:DeckData.Type) -> void:
 	else:
 		player_data.current_deck = data_manager.get_deck(_id, _type)
 		player_data.current_deck.setup_deck()
+
+
+func toggle_pause(value:bool = false) -> void:
+	get_tree().paused = value
 
 
 func _set_play_variables(_disc:Discard) ->void:
@@ -177,7 +189,7 @@ func _add_resource(_type:CardData.Resource_Type, _amount:int) -> void:
 
 
 func _use_resource(_type:CardData.Resource_Type, _amount:int) -> void:
-	player_data._use_resource(_type, _amount)
+	player_data.use_resource(_type, _amount)
 
 
 func _get_all_cards() -> Array[Card]:
@@ -237,7 +249,7 @@ func _check_card_completion(_receiver:Card, _payers:Array[Card]) -> void:
 	for each in payments:
 		if each["amount_used"] > 0:
 			if used_payers.find(each["card"]) == -1:
-				print("Used card: ", each["card"].name)
+				#print("Used card: ", each["card"].name)
 				used_payers.append(each["card"])
 	_receiver.used_cards = used_payers
 
@@ -249,13 +261,14 @@ func _check_card_completion(_receiver:Card, _payers:Array[Card]) -> void:
 
 
 func _check_card_cost_payed(_card:Card) -> void:
-	if _card.data.cost_payed:
-		if _card.data.has_only_payables:
-			pass
+	if not _card.data.costs.is_empty():
+		if _card.data.cost_payed:
+			if _card.data.has_only_payables:
+				Signals.ToggleCardForButton.emit(UiCardButton.Type.COMPLETE, _card, true)
+			else:
+				Signals.ToggleCardForButton.emit(UiCardButton.Type.COMPLETE, _card, true)
 		else:
-			Signals.ToggleCardForButton.emit(UiCardButton.Type.COMPLETE, _card, true)
-	else:
-		Signals.ToggleCardForButton.emit(UiCardButton.Type.COMPLETE, _card, false)
+			Signals.ToggleCardForButton.emit(UiCardButton.Type.COMPLETE, _card, false)
 
 
 func _use_card(_card:Card) -> void:
@@ -272,31 +285,40 @@ func _pay_resource_from_card(_card:Card) -> void:
 	var resources:Array[Cost] = _card.data.costs
 	if not resources.is_empty():
 		for each in resources:
-			if each.cost_type == CardData.Resource_Type.ENERGY or each.cost_type == CardData.Resource_Type.WEAPON or each.cost_type == CardData.Resource_Type.HP:
-				Signals.AddResource.emit(each.cost_type, each.cost_amount)
-				each.payed = true
+			if each.cost_type in _card.data.payables:
+				if player_data.check_available_resource(each.cost_type, each.cost_amount):
+					Signals.UseResource.emit(each.cost_type, each.cost_amount)
+					each.payed = true
+				else:
+					Signals.NotifyResourceEmpty.emit(each.cost_type)
 		
+		Signals.ToggleCardForButton.emit(UiCardButton.Type.PAY, _card, false)
 		_check_card_cost_payed(_card)
 
 
 func _complete_card(_card:Card) -> void:
-	if _card.is_in_group("player_card") and _card.data.type == CardData.Card_Type.RESOURCE:
-		for each in _card.data.resources:
-			Signals.AddResource.emit(each.cost_type, each.cost_amount)
+	if _card.is_in_group("player_card"):
+		if _card.data.type == CardData.Card_Type.RESOURCE:
+			for each in _card.data.resources:
+				Signals.AddResource.emit(each.cost_type, each.cost_amount)
 		
 	elif _card.is_in_group("event_card"):
 		var reward_array:Array[CardData] = _card.data.get_reward()
 		for reward in reward_array:
-			if reward.type != CardData.Card_Type.NOTHING:
-				_add_player_card(reward, Vector2((1920/2)-100, (1080/2)-150))
+			if reward.type == CardData.Card_Type.SUCCESS:
+				Signals.DisplayResultScreen.emit(reward.id, true)
+			elif reward.type == CardData.Card_Type.NOTHING:
+				Signals.DisplaySmallPopup.emit("No reward received.", 3)
 			else:
-				print("Reward is NOTHING!")
-				Signals.DisplayNothingReward.emit()
+				_add_player_card(reward, Vector2((1920/2)-100, (1080/2)-150))
+				Signals.DisplaySmallPopup.emit(reward.id + " received.", 3)
 
-	for used in _card.used_cards:
-		await used.move_card(used.global_position, discard_pile.global_position, delay_to_discard)
+	if not _card.used_cards.is_empty():
+		for used in _card.used_cards:
+			await used.move_card(used.global_position, discard_pile.global_position, delay_to_discard)
+			_discard_player_card(used)
 
-	_card.complete_card(discard_pile)
+	_card.complete_card(discard_pile, delay_to_discard)
 
 
 func _add_player_card(_card_data:CardData, _spawn_pos:Vector2) -> void:
@@ -316,7 +338,7 @@ func _multiple_draw_card(_type:DeckData.Type, _amount:int = 1, _use_cost:bool = 
 		for i in _amount:
 			_draw_card(player_deck_button, _use_cost)
 
-	if _type == DeckData.Type.EVENT:
+	elif _type == DeckData.Type.EVENT:
 		var result:int = 0
 		for i in _amount:
 			result += _draw_card(event_deck_button, _use_cost)
@@ -325,43 +347,50 @@ func _multiple_draw_card(_type:DeckData.Type, _amount:int = 1, _use_cost:bool = 
 			current_hand_count = 0
 			layer = 0
 			await _clear_active_player_cards()
-			_shuffle_discard_into_deck()
+			_shuffle_discard_under_deck()
 			_multiple_draw_card(DeckData.Type.PLAYER, player_data.current_deck.round_draw_amount)
 
 
 func _draw_card(_deck:DeckButton, _use_cost:bool = false) -> int:
 	if _deck.deck_type == DeckData.Type.PLAYER:
-		if Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1) and not Game.player_data.current_deck.is_deck_empty:
-			_spawn_next_card(_deck)
+		if not Game.player_data.current_deck.is_deck_empty:
+			var draw:bool = true
 			if _use_cost:
-				Game.player_data.use_resource(CardData.Resource_Type.ENERGY, 1)
-			return 1
-		elif not Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1):
-			if _use_cost:
-				Signals.NotifyResourceEmpty.emit(CardData.Resource_Type.ENERGY)
-			return 0
-		elif Game.player_data.current_deck.is_deck_empty:
+				if Game.player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1):
+					Game.player_data.use_resource(CardData.Resource_Type.ENERGY, 1)
+				else:
+					Signals.NotifyResourceEmpty.emit(CardData.Resource_Type.ENERGY)
+					draw = false
+			if draw: 
+				_spawn_next_card(_deck)
+				return 1
+			else: 
+				return 0
+		else:
 			Signals.NotifyDeckEmpty.emit(_deck)
 			return 0
 	else:
-		if Game.current_event_deck.is_deck_empty:
-			Signals.NotifyDeckEmpty.emit(_deck)
-			return 0
-		elif active_event_card != null:
+		if active_event_card != null:
 			Signals.FlashCard.emit(active_event_card, Color.GREEN_YELLOW)
 			return 0
-		elif not Game.current_event_deck.is_deck_empty and active_event_card == null:
+		elif Game.current_event_deck.is_deck_empty:
+			Signals.NotifyDeckEmpty.emit(_deck)
+			return 0
+		else:
 			_spawn_next_card(_deck)
 			return 1
-	return 0
 
 
 func _spawn_next_card(_deck:DeckButton) -> void:
-	var data_to_spawn:CardData
+	var data_to_spawn:CardData = null
 	if _deck.deck_type == DeckData.Type.EVENT:
 		data_to_spawn = current_event_deck.draw_card()
 	else:
 		data_to_spawn = player_data.current_deck.draw_card()
+
+	if data_to_spawn == null:
+		Signals.NotifyDeckEmpty.emit(_deck)
+		return
 
 	var new_card = _get_card_scene(_deck.deck_type)
 
@@ -391,6 +420,7 @@ func _spawn_next_card(_deck:DeckButton) -> void:
 
 
 func _discard_player_card(_card:Card) -> void:
+	if _card.is_in_discard: return
 	card_layer.remove_child.call_deferred(_card)
 	discard_layer.add_child.call_deferred(_card)
 	_card.set_deferred("global_position", Vector2(randf_range(300,1220), randf_range(200,450)))
@@ -400,7 +430,11 @@ func _discard_player_card(_card:Card) -> void:
 	active_player_cards.erase(_card)
 
 
-func _shuffle_discard_into_deck() -> void:
+func _shuffle_discard_under_deck() -> void:
+	if discarded_player_cards.is_empty():
+		Signals.NotifyDiscardEmpty.emit()
+		return
+
 	for each in discarded_player_cards:
 		var data_to_add:CardData = each.data.duplicate(true)
 		player_data.current_deck.discard.append(data_to_add)
@@ -437,8 +471,74 @@ func _get_card_scene(_type:DeckData.Type) -> Card:
 		return data_manager.default_player_card.instantiate() as Card
 
 
+func _check_fail_coroutine() -> void:
+	if not checking_fail:
+		checking_fail = true
+		await get_tree().create_timer(check_fail_delay).timeout
+		var can_play:bool = _check_fail_state()
+		if not can_play:
+			var fail_id:String = player_data.current_deck.fail_id if player_data.current_deck.fail_id != "" else "generic_fail"
+			Signals.DisplayResultScreen.emit(fail_id, false)
+		else:
+			await get_tree().create_timer(post_check_delay).timeout
+		checking_fail = false
+
+
+func _check_fail_state() -> bool:
+	if active_event_card != null:
+		var can_play:bool = false
+		var card_costs:Array[Cost] = active_event_card.data.costs
+
+		# check energy to draw
+		if not can_play:
+			#print("Checking energy: ", player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1))
+			if player_data.check_available_resource(CardData.Resource_Type.ENERGY, 1):
+				can_play = true
+
+		# Check each resource against active event card costs
+		if not can_play:
+			#print("Checking payable costs.")
+			for cost in card_costs:
+				if cost.cost_type in active_event_card.data.payables:
+					#print("Checking payable: ", player_data.check_available_resource(cost.cost_type, cost.cost_amount))
+					if player_data.check_available_resource(cost.cost_type, cost.cost_amount):
+						can_play = true
+						break
+
+		# check each active card against active event card
+		if not can_play:
+			#print("Checking active cards.")
+			for each in active_player_cards:
+				for res in each.data.resources:
+					if not res.cost_type in active_event_card.data.payables:
+						for cost in card_costs:
+							#print("if player card resource >= event card cost: ", res.cost_type == cost.cost_type and res.cost_amount >= cost.cost_amount)
+							if res.cost_type == cost.cost_type and res.cost_amount >= cost.cost_amount:
+								can_play = true
+								break
+
+		# check active cards to gain energy
+		if not can_play:
+			#print("Checking if player has energy in active cards.")
+			for each in active_player_cards:
+				for res in each.data.resources:
+					if res.cost_type == CardData.Resource_Type.ENERGY:
+						can_play = true
+						break
+
+		return can_play
+	return true
+
+
 func _print_cards(_array:Array[Card]) -> void:
 	if not _array.is_empty():
 		for each in _array:
 			print("Card id: ", each)
 	print("Total cards: ", _array.size())
+
+
+func _print_payed(_array:Array[Cost]) -> void:
+	if not _array.is_empty():
+		for each in _array:
+			print("Cost type: ", each.cost_type, " and is payed: ", each.payed)
+	print("------------")

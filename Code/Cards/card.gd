@@ -14,7 +14,7 @@ class_name Card extends CardPanelContainer
 
 var data:CardData
 var cost_grid:GridContainer
-var ui_button:Button = null
+var ui_buttons:Array[Button] = []
 var overlapping_cards:Array[Card] = []
 var used_cards:Array[Card]
 var ui_btn_displayed:bool = false
@@ -43,9 +43,10 @@ func _process(delta: float) -> void:
 
 func discard() -> void:
 	is_in_discard = true
-	if data.is_mandatory:
-		for each in data.resources:
-			Signals.AddResource.emit(each.cost_type, each.cost_amount)
+	clear_ui_buttons()
+	#if data.is_mandatory:
+	#	for each in data.resources:
+	#		Signals.AddResource.emit(each.cost_type, each.cost_amount)
 
 
 func setup_card(_card_data:CardData) -> void:
@@ -68,9 +69,7 @@ func clear_data() -> void:
 		use_btn_timer = 0.0
 		data = null
 		if cost_grid != null: _clear_costs()
-		if ui_button != null: 
-			ui_button.queue_free()
-			ui_button = null
+		clear_ui_buttons()
 		title.text = ""
 		text.text = ""
 
@@ -90,25 +89,33 @@ func move_card(from:Vector2, to:Vector2, time:float) -> void:
 	await tween.finished
 
 
+func clear_ui_buttons() -> void:
+	if not ui_buttons.is_empty():
+		for each in ui_buttons:
+			each.queue_free()
+		ui_buttons.clear()
+
+
 func _set_up_cost() -> GridContainer:
 	var grid:GridContainer = GridContainer.new()
 	grid.custom_minimum_size = Vector2(20,20)
-	grid.columns = 1
-	cost_area.add_child.call_deferred(grid)
+	cost_area.add_child(grid)
 	if not grid.is_node_ready():
 		await grid.ready
+	grid.set_columns(1)
 	var columns:int = 0
-	print("Card ", name, " has ", data.costs.size(), " costs.")
+	#print("Card ", name, " has ", data.costs.size(), " costs.")
 	for _cost:Cost in data.costs:
 		var amount = _cost.cost_amount if _cost.cost_amount >= 0 else -_cost.cost_amount
 		for count in amount:
 			var new_texture_rect:TextureRect = TextureRect.new()
-			new_texture_rect.texture = _cost.cost_texture
+			new_texture_rect.texture = Game.data_manager.get_card_icon_texture(_cost.cost_type)
 			new_texture_rect.custom_minimum_size = Vector2(20,20)
 			grid.add_child.call_deferred(new_texture_rect)
 			columns += 1
-	print("card ", name, " has ", columns, " column(s)")
-	grid.set_deferred("columns", columns)
+	#print("card ", name, " has ", columns, " column(s)")
+	if columns> 0:
+		grid.set_deferred("columns", columns)
 	cost_grid = grid
 	return grid
 
@@ -159,9 +166,9 @@ func _area_exited(_area) -> void:
 	if _enterer != null and _enterer is Card:
 		overlapping_cards.erase(_enterer)
 		Signals.CheckCardsOnCard.emit(self, overlapping_cards)
-		print("Exited card: ", name)
-		print("Used cards: ")
-		Game._print_cards(used_cards)
+		#print("Exited card: ", name)
+		#print("Used cards: ")
+		#Game._print_cards(used_cards)
 
 
 func _reshuffle() -> void:

@@ -1,6 +1,4 @@
-CardData
+CardIconData
 EventCardData
 DeckData
-Cost
-Theme
-LevelData
+CardData

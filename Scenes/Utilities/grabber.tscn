@@ -3,5 +3,6 @@
 [ext_resource type="Script" path="res://Code/Utilities/grabber.gd" id="1_fradn"]
 
 [node name="Grabber" type="Node2D"]
+process_mode = 1
 script = ExtResource("1_fradn")
 move_delay = 0.0

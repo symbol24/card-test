@@ -7,10 +7,13 @@ enum Type {
 
 @export var id:String = ""
 @export var cards:Array[CardData] = []
+@export var fail_id:String = ""
 @export var type:Type
 @export var tween_time:float = 0.3
 @export var round_draw_amount:int = 3
 @export var starting_hp:int = 3
+@export var starting_energy:int = 5
+@export var starting_weapons:int = 0
 
 var play_cards:Array[CardData]
 var is_deck_empty:bool:
@@ -20,8 +23,10 @@ var discard:Array[CardData] = []
 
 
 func draw_card() -> CardData:
-	if play_cards.is_empty(): 
+	if play_cards.is_empty():
 		push_error(id, " deck has not been shuffled")
+	elif play_cards.size() == 1: 
+		Signals.ToggleShuffleButton.emit(true)
 	return play_cards.pop_front()
 
 
@@ -45,6 +50,7 @@ func shuffle_deck(_to_shuffle:Array[CardData]) -> Array[CardData]:
 func shuffle_discard_into_deck() -> void:
 	var temp:Array[CardData] = shuffle_deck(discard)
 	play_cards.append_array(temp)
+	discard.clear()
 
 
 func _debug_print_cards(_cards:Array[CardData]) -> void:

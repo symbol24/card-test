@@ -1,20 +1,45 @@
-[gd_scene load_steps=6 format=3 uid="uid://p4c6pubf17rl"]
+[gd_scene load_steps=13 format=3 uid="uid://p4c6pubf17rl"]
 
 [ext_resource type="Script" path="res://Code/Autoloads/ui.gd" id="1_htsia"]
 [ext_resource type="Script" path="res://addons/richtext2/text_effects/anims/rte_back.gd" id="2_5runj"]
 [ext_resource type="Script" path="res://Code/UI/loading_screen.gd" id="2_uo2nw"]
 [ext_resource type="Script" path="res://addons/richtext2/rich_text_animation.gd" id="3_xow8m"]
+[ext_resource type="Script" path="res://Code/UI/pause_menu.gd" id="5_8vu2q"]
+[ext_resource type="Script" path="res://Code/wrappers/pause_button.gd" id="6_7lr7y"]
+[ext_resource type="Script" path="res://Code/UI/popups.gd" id="7_5yb1n"]
+[ext_resource type="Script" path="res://addons/richtext2/richer_text_label.gd" id="8_m4lpk"]
+[ext_resource type="Script" path="res://addons/richtext2/text_effects/anims/rte_console.gd" id="9_o608s"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_h0fv6"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_4ew68"]
 resource_name = "back"
 script = ExtResource("2_5runj")
-metadata/rt = 1834840291154
+metadata/rt = 1935956572126
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_xtvgf"]
+resource_name = "console"
+script = ExtResource("9_o608s")
+metadata/rt = 2007981160542
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_3bcar"]
+resource_name = "console"
+script = ExtResource("9_o608s")
+metadata/rt = 2031687366758
 
 [node name="Ui" type="CanvasLayer" groups=["UI"]]
+process_mode = 3
 script = ExtResource("1_htsia")
 
-[node name="LoadingScreen" type="PanelContainer" parent="."]
+[node name="level_layer" type="Control" parent="."]
 unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(1920, 1080)
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="LoadingScreen" type="PanelContainer" parent="."]
+process_mode = 3
 visible = false
 top_level = true
 z_index = 4096
@@ -25,6 +50,7 @@ offset_bottom = 40.0
 mouse_force_pass_scroll_events = false
 theme_type_variation = &"LoadingScreen"
 script = ExtResource("2_uo2nw")
+id = "loading_screen"
 
 [node name="animation_layer" type="Control" parent="LoadingScreen"]
 unique_name_in_owner = true
@@ -50,13 +76,15 @@ theme_override_font_sizes/normal_font_size = 104
 theme_override_font_sizes/bold_font_size = 104
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_h0fv6")]
+custom_effects = [SubResource("RichTextEffect_4ew68")]
 script = ExtResource("3_xow8m")
 animation = "back"
+progress = 1.0
+visible_character = 7
 _transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
 _char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
-_alpha = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
-_alpha_goal = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
 _forced_finish_delay = -0.0365728
 animation = "back"
 default_wait_time = 1.0
@@ -121,3 +149,484 @@ override_fitContent = true
 fit_width = false
 fit_width_padding = 10
 metadata/rand = Array[int]([1259352484, 2670840870, 2422956008, 2962835364, 684071512, 3866440128, 128646533])
+
+[node name="PauseMenu" type="PanelContainer" parent="."]
+process_mode = 2
+visible = false
+z_index = 4000
+clip_contents = true
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_force_pass_scroll_events = false
+theme_type_variation = &"PauseMenuPanel"
+script = ExtResource("5_8vu2q")
+id = "pause_menu"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="spacer2" type="Control" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="pause_title" type="RichTextLabel" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+bbcode_enabled = true
+text = "[center]pause_menu_title[/center]"
+fit_content = true
+scroll_active = false
+autowrap_mode = 0
+shortcut_keys_enabled = false
+deselect_on_focus_loss_enabled = false
+drag_and_drop_selection_enabled = false
+
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="spacer" type="Control" parent="PauseMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 1)
+layout_mode = 2
+
+[node name="pause_menu_container" type="PanelContainer" parent="PauseMenu/VBoxContainer/HBoxContainer"]
+unique_name_in_owner = true
+layout_mode = 2
+size_flags_horizontal = 3
+theme_type_variation = &"PauseMenuContainer"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container"]
+layout_mode = 2
+
+[node name="Control" type="Control" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+
+[node name="Control2" type="Control" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer"]
+clip_contents = true
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Button" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer/Control2"]
+clip_contents = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 1
+anchors_preset = 3
+anchor_left = 1.0
+anchor_top = 1.0
+anchor_right = 1.0
+anchor_bottom = 1.0
+offset_left = -200.0
+offset_top = -100.0
+grow_horizontal = 0
+grow_vertical = 0
+text = "pause_back_btn
+"
+text_overrun_behavior = 1
+clip_text = true
+script = ExtResource("6_7lr7y")
+toggle_pause = 2
+
+[node name="spacer2" type="Control" parent="PauseMenu/VBoxContainer/HBoxContainer"]
+custom_minimum_size = Vector2(200, 1)
+layout_mode = 2
+
+[node name="spacer" type="Control" parent="PauseMenu/VBoxContainer"]
+custom_minimum_size = Vector2(0, 100)
+layout_mode = 2
+
+[node name="Popups" type="PanelContainer" parent="."]
+process_mode = 3
+clip_contents = true
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_type_variation = &"PopupBackground"
+script = ExtResource("7_5yb1n")
+
+[node name="Control" type="Control" parent="Popups"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="big_popup" type="PanelContainer" parent="Popups/Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(960, 525)
+layout_mode = 0
+offset_left = 480.0
+offset_top = 150.0
+offset_right = 1440.0
+offset_bottom = 675.0
+theme_type_variation = &"BigPopupPanel"
+
+[node name="VBoxContainer" type="VBoxContainer" parent="Popups/Control/big_popup"]
+layout_mode = 2
+theme_override_constants/separation = 0
+
+[node name="big_popup_title" type="RichTextLabel" parent="Popups/Control/big_popup/VBoxContainer"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(0, 253)
+layout_mode = 2
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("8_m4lpk")
+bbcode = "popup_title"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
+
+[node name="spacer" type="Control" parent="Popups/Control/big_popup/VBoxContainer"]
+custom_minimum_size = Vector2(0, 10)
+layout_mode = 2
+
+[node name="text" type="HBoxContainer" parent="Popups/Control/big_popup/VBoxContainer"]
+layout_mode = 2
+size_flags_vertical = 3
+theme_override_constants/separation = 0
+
+[node name="Control" type="Control" parent="Popups/Control/big_popup/VBoxContainer/text"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="big_popup_text" type="RichTextLabel" parent="Popups/Control/big_popup/VBoxContainer/text"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(0, 322)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 3
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+fit_content = true
+script = ExtResource("8_m4lpk")
+bbcode = "text goes here"
+effects = 2
+alignment = 0
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
+
+[node name="Control2" type="Control" parent="Popups/Control/big_popup/VBoxContainer/text"]
+custom_minimum_size = Vector2(50, 0)
+layout_mode = 2
+
+[node name="buttons" type="HBoxContainer" parent="Popups/Control/big_popup/VBoxContainer"]
+layout_direction = 3
+layout_mode = 2
+
+[node name="PopupButton1" type="Button" parent="Popups/Control/big_popup/VBoxContainer/buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "btn_popup_cancel"
+
+[node name="PopupButton2" type="Button" parent="Popups/Control/big_popup/VBoxContainer/buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "btn_popup_confirm"
+
+[node name="PopupButton3" type="Button" parent="Popups/Control/big_popup/VBoxContainer/buttons"]
+unique_name_in_owner = true
+custom_minimum_size = Vector2(200, 50)
+layout_direction = 3
+layout_mode = 2
+size_flags_horizontal = 4
+size_flags_vertical = 4
+text = "btn_popup_3"
+
+[node name="delay_timer" type="RichTextLabel" parent="Popups/Control/big_popup/VBoxContainer/buttons"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(0, 46)
+layout_mode = 2
+size_flags_horizontal = 3
+size_flags_vertical = 4
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_xtvgf")]
+script = ExtResource("3_xow8m")
+animation = "console"
+progress = 1.0
+visible_character = 2
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
+_alpha = Array[float]([1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0])
+_forced_finish_delay = -0.0469129
+animation = "console"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 10.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "15"
+effects = 2
+alignment = 1
+color = Color(1, 1, 1, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10
+metadata/mouse_position = Vector2(2786.57, -213.035)
+metadata/frame = 2894856
+metadata/rand = Array[int]([4109802843, 40613490, 3224755983, 2159725347, 4051752791, 1196702082, 3587545077, 809482297, 2553497514])
+
+[node name="small_popup" type="PanelContainer" parent="Popups/Control"]
+unique_name_in_owner = true
+visible = false
+custom_minimum_size = Vector2(640, 360)
+layout_mode = 0
+offset_left = 640.0
+offset_top = 150.0
+offset_right = 1280.0
+offset_bottom = 510.0
+theme_type_variation = &"SmallPopupBack"
+
+[node name="small_popup_text" type="RichTextLabel" parent="Popups/Control/small_popup"]
+unique_name_in_owner = true
+clip_contents = false
+custom_minimum_size = Vector2(0, 368)
+layout_mode = 2
+theme_override_colors/default_color = Color(0.613875, 0.635972, 0.203726, 1)
+theme_override_colors/font_outline_color = Color(0.126041, 0.125284, 0.0419776, 1)
+theme_override_font_sizes/bold_italics_font_size = 16
+theme_override_font_sizes/italics_font_size = 16
+theme_override_font_sizes/mono_font_size = 16
+theme_override_font_sizes/normal_font_size = 16
+theme_override_font_sizes/bold_font_size = 16
+bbcode_enabled = true
+fit_content = true
+custom_effects = [SubResource("RichTextEffect_3bcar")]
+script = ExtResource("3_xow8m")
+animation = "console"
+progress = 1.0
+visible_character = 16
+_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
+_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
+_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_forced_finish_delay = -0.0357486
+animation = "console"
+default_wait_time = 1.0
+play_on_bbcode = true
+play_speed = 10.0
+fade_out = false
+fade_in_speed = 10.0
+fade_out_speed = 120.0
+ctc_offset = Vector2(1, -0.5)
+ctc_on_finished = false
+ctc_on_wait = false
+shortcut_expression = true
+shortcut_bookmark = true
+signal_quotes = true
+signal_stars = true
+bbcode = "hello my name is"
+effects = 2
+alignment = 1
+color = Color(0.613875, 0.635972, 0.203726, 1)
+emoji_scale = 1.0
+font = ""
+font_auto_setup = true
+font_size = 16
+font_bold_weight = 1.5
+font_italics_slant = 0.25
+font_italics_weight = -0.25
+shadow_enabled = false
+shadow_offset = 0.08
+shadow_alpha = 0.25
+shadow_outline_size = 0.1
+outline_size = 0
+outline_mode = 1
+outline_adjust = 0.8
+outline_hue_adjust = 0.0125
+nicer_quotes_enabled = true
+nicer_quotes_format = "“%s”"
+markdown_enabled = true
+markdown_format_bold = "[b]%s[]"
+markdown_format_italics = "[i]%s[]"
+markdown_format_bold_italics = "[bi]%s[]"
+markdown_format_highlight = "[green;sin]%s[]"
+markdown_format_bold2 = "[b]*%s*[]"
+markdown_format_italics2 = "[i;gray]*%s*[]"
+markdown_format_bold_italics2 = "%s"
+context_enabled = true
+context_path = NodePath("/root/State")
+context_state = {}
+context_rich_objects = true
+context_rich_ints = true
+context_rich_array = true
+autostyle_numbers = true
+autostyle_numbers_tag = "[salmon]%s[]"
+autostyle_numbers_pad_decimals = true
+autostyle_numbers_decimals = 2
+autostyle_emojis = true
+effect_weight = 0.0
+meta_auto_https = true
+meta_cursor = 2
+override_bbcodeEnabled = true
+override_clipContents = false
+override_fitContent = true
+fit_width = false
+fit_width_padding = 10

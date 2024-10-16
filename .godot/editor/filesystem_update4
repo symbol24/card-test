@@ -1,8 +1,2 @@
-res://Code/Autoloads/signals.gd
-res://Code/Cards/card_data.gd
-res://Code/Cards/cost.gd
+res://Code/boot.gd
 res://Code/Autoloads/game.gd
-res://Code/Cards/use_card_btn.gd
-res://Code/Cards/card.gd
-res://Code/Autoloads/ui.gd
-res://Code/Cards/event_card.gd

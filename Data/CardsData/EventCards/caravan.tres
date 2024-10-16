@@ -1,6 +1,7 @@
-[gd_resource type="Resource" script_class="EventCardData" load_steps=8 format=3 uid="uid://e32q4e1aymux"]
+[gd_resource type="Resource" script_class="EventCardData" load_steps=10 format=3 uid="uid://e32q4e1aymux"]
 
 [ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_n3wl3"]
+[ext_resource type="Texture2D" uid="uid://chl3vuagnejom" path="res://Textures/CostIcons/cost_icons_water.png" id="2_1w2n6"]
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_srxha"]
 [ext_resource type="Resource" uid="uid://byhgf5gokmvki" path="res://Data/CardsData/bottled_water.tres" id="3_1ura3"]
 [ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_umkqf"]
@@ -8,13 +9,19 @@
 [ext_resource type="Resource" uid="uid://42phi8h56ws8" path="res://Data/CardsData/mre.tres" id="5_swtwd"]
 [ext_resource type="Resource" uid="uid://567by5qv4p0r" path="res://Data/CardsData/metal_scraps.tres" id="6_dicxu"]
 
+[sub_resource type="Resource" id="Resource_l44np"]
+script = ExtResource("1_n3wl3")
+cost_type = 0
+cost_amount = 1
+cost_texture = ExtResource("2_1w2n6")
+
 [resource]
 script = ExtResource("3_umkqf")
 id = "desert_caravan"
 title = "desert_caravan"
 text = "desert_caravan_text"
 type = 5
-costs = Array[ExtResource("1_n3wl3")]([])
+costs = Array[ExtResource("1_n3wl3")]([SubResource("Resource_l44np")])
 resources = Array[ExtResource("1_n3wl3")]([])
 rewards = Array[ExtResource("2_srxha")]([ExtResource("3_1ura3"), ExtResource("4_hdc2j"), ExtResource("5_swtwd"), ExtResource("6_dicxu")])
 reward_amount = 1

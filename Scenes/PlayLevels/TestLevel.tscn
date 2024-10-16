@@ -1,11 +1,14 @@
-[gd_scene load_steps=5 format=3 uid="uid://c1gycvdilodxr"]
+[gd_scene load_steps=7 format=3 uid="uid://c1gycvdilodxr"]
 
 [ext_resource type="Script" path="res://Code/Levels/level.gd" id="1_fsqvu"]
 [ext_resource type="PackedScene" uid="uid://bdyu0cqaucrkd" path="res://Scenes/PlayArea/play_area.tscn" id="2_mea5g"]
 [ext_resource type="PackedScene" uid="uid://b2jlcnly76uid" path="res://Scenes/PlayArea/card_layer.tscn" id="3_rwnj4"]
 [ext_resource type="PackedScene" uid="uid://bx4mxwa6v3dyh" path="res://Scenes/PlayArea/discard_layer.tscn" id="4_ycjol"]
+[ext_resource type="Script" path="res://Code/wrappers/pause_button.gd" id="5_xeixo"]
+[ext_resource type="Script" path="res://Code/wrappers/sy_button.gd" id="6_upxa0"]
 
 [node name="TestLevel" type="Control"]
+process_mode = 1
 layout_mode = 3
 anchors_preset = 15
 anchor_right = 1.0
@@ -21,7 +24,69 @@ offset_right = 1920.0
 offset_bottom = 1080.0
 
 [node name="card_layer" parent="." groups=["disard_layer"] instance=ExtResource("3_rwnj4")]
+process_mode = 1
 
 [node name="DiscardHiddenArea" parent="." instance=ExtResource("4_ycjol")]
 unique_name_in_owner = true
+process_mode = 1
 visible = false
+
+[node name="SyButton" type="Button" parent="."]
+process_mode = 1
+clip_contents = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -91.0
+offset_top = 38.0
+offset_right = -16.0
+offset_bottom = 113.0
+grow_horizontal = 0
+text = "open_pause_btn"
+text_overrun_behavior = 1
+clip_text = true
+script = ExtResource("5_xeixo")
+destination = "pause_menu"
+open = true
+toggle_pause = 1
+
+[node name="debug_test" type="Button" parent="."]
+process_mode = 1
+clip_contents = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -91.0
+offset_top = 128.0
+offset_right = -16.0
+offset_bottom = 203.0
+grow_horizontal = 0
+text = "success_test
+"
+text_overrun_behavior = 1
+clip_text = true
+script = ExtResource("6_upxa0")
+id = "debug_result_success"
+
+[node name="debug_test2" type="Button" parent="."]
+process_mode = 1
+clip_contents = true
+custom_minimum_size = Vector2(75, 75)
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -91.0
+offset_top = 221.0
+offset_right = -16.0
+offset_bottom = 296.0
+grow_horizontal = 0
+text = "fail_test"
+text_overrun_behavior = 1
+clip_text = true
+script = ExtResource("6_upxa0")
+id = "debug_result_failure"
