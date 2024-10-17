@@ -1,24 +1,24 @@
 [gd_resource type="Resource" script_class="CardData" load_steps=5 format=3 uid="uid://0yxhnkmh8x2k"]
 
-[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_luqye"]
-[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_ptjt1"]
-[ext_resource type="Texture2D" uid="uid://do5rr2bum1b8l" path="res://Textures/CostIcons/cost_icons_damage.png" id="3_2moyu"]
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_f38ax"]
+[ext_resource type="Texture2D" uid="uid://do5rr2bum1b8l" path="res://Textures/CostIcons/cost_icons_damage.png" id="2_o63hh"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="3_wf0jk"]
 
 [sub_resource type="Resource" id="Resource_ayr0h"]
-script = ExtResource("1_ptjt1")
+script = ExtResource("1_f38ax")
 cost_type = 5
-cost_amount = -1
-cost_texture = ExtResource("3_2moyu")
+cost_amount = 1
+cost_texture = ExtResource("2_o63hh")
 
 [resource]
-script = ExtResource("1_luqye")
+script = ExtResource("3_wf0jk")
 id = "hurt_1dmg"
 title = "hurt_1dmg"
 text = "hurt_1dmg_text"
 type = 5
-costs = Array[ExtResource("1_ptjt1")]([SubResource("Resource_ayr0h")])
-resources = Array[ExtResource("1_ptjt1")]([])
-rewards = Array[ExtResource("1_luqye")]([])
+costs = Array[ExtResource("1_f38ax")]([SubResource("Resource_ayr0h")])
+resources = Array[ExtResource("1_f38ax")]([])
+rewards = Array[ExtResource("3_wf0jk")]([])
 reward_amount = 0
 is_mandatory = false
 destroy_on_complete = true

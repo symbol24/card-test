@@ -70,7 +70,7 @@ func _display_card_button(_type:UiCardButton.Type, _card:Card, _display:bool) ->
 			new_btn.set_deferred("global_position", pos)
 			new_btn.set_deferred("card", _card)
 			new_btn.set_type.call_deferred(_type)
-			new_btn.set_deferred("z_index", Game.get_highest_card_z_index()+1)
+			new_btn.set_deferred("z_index", Game.get_highest_card_z_index()+1000)
 
 			_card.ui_buttons.append(new_btn)
 

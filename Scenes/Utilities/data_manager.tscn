@@ -9,7 +9,7 @@
 [ext_resource type="Script" path="res://Code/Decks/deck_data.gd" id="6_avuvk"]
 [ext_resource type="PackedScene" uid="uid://co4ygm0o7hx6e" path="res://Scenes/DeckSelector/deck_selector_button.tscn" id="7_fpnf0"]
 [ext_resource type="Resource" uid="uid://bck7hnm1hltqn" path="res://Data/Decks/PlayerDecks/starter_deck.tres" id="7_pot31"]
-[ext_resource type="Resource" uid="uid://bvkjkqnhxbphb" path="res://Data/Decks/EventDecks/desert_01.tres" id="8_ojvnn"]
+[ext_resource type="Resource" uid="uid://bvkjkqnhxbphb" path="res://Data/Decks/EventDecks/desert_01_event_deck.tres" id="8_ojvnn"]
 [ext_resource type="PackedScene" uid="uid://4vatt2lm5le5" path="res://Scenes/Utilities/grabber_selector_panel.tscn" id="8_tg1n7"]
 [ext_resource type="PackedScene" uid="uid://6x4ivvauhxda" path="res://Scenes/CardsandDecks/ui_card_btn.tscn" id="9_axu4h"]
 [ext_resource type="PackedScene" uid="uid://ciwyjrmvk65lj" path="res://Scenes/UI/result_screen.tscn" id="10_8q2qd"]

@@ -100,6 +100,7 @@ func clear_ui_buttons() -> void:
 
 
 func _set_up_cost() -> GridContainer:
+	_clear_costs()
 	var grid:GridContainer = GridContainer.new()
 	grid.custom_minimum_size = Vector2(20,20)
 	cost_area.add_child(grid)
@@ -124,22 +125,32 @@ func _set_up_cost() -> GridContainer:
 
 
 func _clear_costs() -> void:
-	var children = cost_grid.get_children()
-	for child in children:
-		cost_grid.remove_child.call_deferred(child)
-		child.queue_free.call_deferred()
-	cost_grid.queue_free.call_deferred()
-	set_deferred("cost_grid", null)
+	if cost_grid != null:
+		var children:Array = cost_grid.get_children()
+		if not children.is_empty():
+			for child in children:
+				cost_grid.remove_child(child)
+				child.queue_free()
+			cost_grid.queue_free()
+			set_deferred("cost_grid", null)
 
 
 func _display_ui_button() -> void:
 	if not is_in_discard :
 		var btn_type:UiCardButton.Type = UiCardButton.Type.NONE
 		var payable:Cost = data.get_payable()
+
+		#print("payable: ", payable)
+		#if payable != null: print("Payable payed? ", payable.payed)
+		#print("if card in challenge or enemy: ", data.type in [CardData.Card_Type.CHALLENGE, CardData.Card_Type.ENEMY])
+		#print("data.cost_payed: ", data.cost_payed)
+
 		if data.type == CardData.Card_Type.RESOURCE and data.contains_resource(CardData.Resource_Type.ENERGY):
 			btn_type = UiCardButton.Type.USE
 		elif payable != null and not payable.payed:
 			btn_type = UiCardButton.Type.PAY
+		elif data.type in [CardData.Card_Type.CHALLENGE, CardData.Card_Type.ENEMY] and data.cost_payed:
+			btn_type = UiCardButton.Type.COMPLETE
 		
 		if btn_type != UiCardButton.Type.NONE:
 			Signals.ToggleCardForButton.emit(btn_type, self, true)

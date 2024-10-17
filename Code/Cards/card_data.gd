@@ -119,3 +119,20 @@ func get_payable() -> Cost:
 		if each.cost_type in payables:
 			return each
 	return null
+
+
+func get_duplicate() -> CardData:
+	var new:CardData = self.duplicate()
+	new.costs.clear()
+	new.resources.clear()
+	new.rewards.clear()
+	for each in costs:
+		each.setup_local_to_scene()
+		new.costs.append(each.duplicate())
+	for each in resources:
+		each.setup_local_to_scene()
+		new.resources.append(each.duplicate())
+	for each in rewards:
+		each.setup_local_to_scene()
+		new.rewards.append(each.duplicate())
+	return new

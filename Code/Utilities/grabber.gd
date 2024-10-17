@@ -13,6 +13,7 @@ var grabbing:bool = false
 var multi_grab:bool = false
 var connection_point:Vector2
 var selector_panel:GrabberSelectorPanel = null
+var panels:Array = []
 
 
 func _input(_event: InputEvent) -> void:
@@ -51,6 +52,7 @@ func _grab() -> void:
 			new_panel.set_deferred("position", get_global_mouse_position())
 			new_panel.set_deferred("z_index", Game.get_highest_card_z_index()+1)
 			selector_panel = new_panel
+			panels.append(new_panel)
 	elif not grabbed_items.is_empty():
 		grabbing = true
 
@@ -101,7 +103,12 @@ func _release() -> void:
 		Signals.ToggleCollider.emit(true)
 	elif selector_panel != null:
 		grabbed_items = _get_panel_cards(selector_panel)
-		selector_panel.queue_free.call_deferred()
+		selector_panel.queue_free()
+		if not panels.is_empty():
+			for each in panels:
+				if each != null:
+					each.queue_free.call_deferred()
+			panels.clear()
 
 
 func _get_panel_cards(_panel:GrabberSelectorPanel) -> Array[Card]:

@@ -10,20 +10,20 @@
 [ext_resource type="Script" path="res://addons/richtext2/richer_text_label.gd" id="8_m4lpk"]
 [ext_resource type="Script" path="res://addons/richtext2/text_effects/anims/rte_console.gd" id="9_o608s"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_dup5i"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_wldao"]
 resource_name = "back"
 script = ExtResource("2_5runj")
-metadata/rt = 3085061650212
+metadata/rt = 31158628847736
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_cqimh"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_wjox2"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 3157086243082
+metadata/rt = 31233874661312
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_mcles"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_dyg2a"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 3180792449299
+metadata/rt = 31258654609387
 
 [node name="Ui" type="CanvasLayer" groups=["UI"]]
 process_mode = 3
@@ -76,7 +76,7 @@ theme_override_font_sizes/normal_font_size = 104
 theme_override_font_sizes/bold_font_size = 104
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_dup5i")]
+custom_effects = [SubResource("RichTextEffect_wldao")]
 script = ExtResource("3_xow8m")
 animation = "back"
 progress = 1.0
@@ -239,6 +239,8 @@ layout_mode = 2
 
 [node name="Popups" type="PanelContainer" parent="."]
 process_mode = 3
+z_index = 4000
+z_as_relative = false
 clip_contents = true
 custom_minimum_size = Vector2(1920, 1080)
 offset_right = 40.0
@@ -457,7 +459,7 @@ theme_override_font_sizes/normal_font_size = 16
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_cqimh")]
+custom_effects = [SubResource("RichTextEffect_wjox2")]
 script = ExtResource("3_xow8m")
 animation = "console"
 progress = 1.0
@@ -558,7 +560,7 @@ theme_override_font_sizes/normal_font_size = 16
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_mcles")]
+custom_effects = [SubResource("RichTextEffect_dyg2a")]
 script = ExtResource("3_xow8m")
 animation = "console"
 progress = 1.0

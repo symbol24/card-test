@@ -1,0 +1,24 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=11 format=3 uid="uid://bvkjkqnhxbphb"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_hgs3b"]
+[ext_resource type="Resource" uid="uid://cf4fnwfvsck" path="res://Data/CardsData/EventCards/Desert/exit_crash.tres" id="2_0ltxp"]
+[ext_resource type="Resource" uid="uid://dgvujpnluwhhi" path="res://Data/CardsData/EventCards/Desert/empty_stretch.tres" id="3_ughsr"]
+[ext_resource type="Resource" uid="uid://cs37uioafwd5q" path="res://Data/CardsData/EventCards/Desert/cold_night.tres" id="4_8dgnv"]
+[ext_resource type="Resource" uid="uid://dwc57836msysh" path="res://Data/CardsData/EventCards/Desert/crash_site.tres" id="5_gcm6r"]
+[ext_resource type="Resource" uid="uid://ceq8ljqfxsrcp" path="res://Data/CardsData/EventCards/Desert/creature_encounter.tres" id="6_di4j5"]
+[ext_resource type="Resource" uid="uid://730bqq3wrihu" path="res://Data/CardsData/EventCards/Desert/oasis.tres" id="7_t0of2"]
+[ext_resource type="Resource" uid="uid://e32q4e1aymux" path="res://Data/CardsData/EventCards/Desert/caravan.tres" id="8_5fkov"]
+[ext_resource type="Resource" uid="uid://bae2e37pvklgr" path="res://Data/CardsData/EventCards/Desert/desert_camp.tres" id="9_b35ic"]
+[ext_resource type="Script" path="res://Code/Decks/deck_data.gd" id="10_lna5j"]
+
+[resource]
+script = ExtResource("10_lna5j")
+id = "desert_01_event_deck"
+cards = Array[ExtResource("1_hgs3b")]([ExtResource("2_0ltxp"), ExtResource("3_ughsr"), ExtResource("4_8dgnv"), ExtResource("5_gcm6r"), ExtResource("6_di4j5"), ExtResource("7_t0of2"), ExtResource("8_5fkov"), ExtResource("3_ughsr"), ExtResource("6_di4j5"), ExtResource("9_b35ic")])
+fail_id = ""
+type = 1
+tween_time = 0.3
+round_draw_amount = 1
+starting_hp = 3
+starting_energy = 5
+starting_weapons = 0

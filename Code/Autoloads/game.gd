@@ -342,7 +342,7 @@ func _complete_card(_card:Card) -> void:
 			elif reward.type == CardData.Card_Type.NOTHING:
 				Signals.DisplaySmallPopup.emit("No reward received.", 3)
 			else:
-				_add_player_card(reward, Vector2((1920/2)-100, (1080/2)-150))
+				_add_player_card(reward.get_duplicate(), Vector2((1920/2)-100, (1080/2)-150))
 				Signals.DisplaySmallPopup.emit(reward.id + " received.", 3)
 
 	if not _card.used_cards.is_empty():
