@@ -15,10 +15,11 @@
 script = ExtResource("10_lna5j")
 id = "desert_01_event_deck"
 cards = Array[ExtResource("1_hgs3b")]([ExtResource("2_0ltxp"), ExtResource("3_ughsr"), ExtResource("4_8dgnv"), ExtResource("5_gcm6r"), ExtResource("6_di4j5"), ExtResource("7_t0of2"), ExtResource("8_5fkov"), ExtResource("3_ughsr"), ExtResource("6_di4j5"), ExtResource("9_b35ic")])
-fail_id = ""
+fail_id = "desert_01_event_deck_failure"
 type = 1
-tween_time = 0.3
+starter_deck = true
 round_draw_amount = 1
 starting_hp = 3
 starting_energy = 5
 starting_weapons = 0
+tween_time = 0.3

@@ -18,15 +18,25 @@ class_name DataManager extends Node
 @export_category("Event Decks")
 @export var event_decks:Array[DeckData]
 
+@export_category("Unlockables")
+@export var deck_unlock_conditions:Array[UnlockCondition]
+
 @export_category("Other")
 @export var card_icons:Array[CardIconData]
 
 
-func get_deck(_id:String, _type:DeckData.Type) -> DeckData:
-	var list = event_decks if _type == DeckData.Type.EVENT else player_decks
-	for deck in list:
-		if deck.id == _id: return deck
-	
+func get_deck(_id:String, _type:DeckData.Type = DeckData.Type.ANY) -> DeckData:
+	var result:DeckData
+	if _type == DeckData.Type.ANY:
+		result = get_deck(_id, DeckData.Type.EVENT)
+		if result == null:
+			result = get_deck(_id, DeckData.Type.PLAYER)
+		return result
+	else:		
+		var list:Array[DeckData] = event_decks if _type == DeckData.Type.EVENT else player_decks
+		for deck in list:
+			if deck.id == _id: return deck
+		
 	push_error("No deck found with id: ", _id)
 	return null
 

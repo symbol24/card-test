@@ -1,0 +1,32 @@
+[gd_resource type="Resource" script_class="CardData" load_steps=6 format=3 uid="uid://dcjua04fh3wht"]
+
+[ext_resource type="Script" path="res://Code/Cards/cost.gd" id="1_fbly1"]
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_wyebp"]
+
+[sub_resource type="Resource" id="Resource_qjdbw"]
+script = ExtResource("1_fbly1")
+cost_type = 0
+cost_amount = 1
+
+[sub_resource type="Resource" id="Resource_ngvra"]
+script = ExtResource("1_fbly1")
+cost_type = 1
+cost_amount = 1
+
+[sub_resource type="Resource" id="Resource_fu8ih"]
+script = ExtResource("1_fbly1")
+cost_type = 2
+cost_amount = 1
+
+[resource]
+script = ExtResource("2_wyebp")
+id = "survival_pack"
+title = "survival_pack"
+text = "survival_pack_text"
+type = 3
+costs = Array[ExtResource("1_fbly1")]([])
+resources = Array[ExtResource("1_fbly1")]([SubResource("Resource_qjdbw"), SubResource("Resource_ngvra"), SubResource("Resource_fu8ih")])
+rewards = Array[ExtResource("2_wyebp")]([])
+reward_amount = 0
+is_mandatory = false
+destroy_on_complete = false

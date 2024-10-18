@@ -5,6 +5,6 @@
 [resource]
 script = ExtResource("1_rbm7j")
 levels = Array[String](["res://Scenes/Into/boot.tscn", "res://Scenes/MainMenu/main_menu.tscn", "res://Scenes/DeckSelector/DeckSelector.tscn", "res://Scenes/PlayLevels/TestLevel.tscn"])
-load_first_level_on_boot = true
+load_first_level_on_boot = false
 use_own_loading_screen = true
 loading_delay = 1.0

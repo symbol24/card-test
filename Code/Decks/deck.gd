@@ -14,7 +14,7 @@ var can_draw:bool = false
 
 func _ready() -> void:
 	super()
-	Signals.UnlockDeck.connect(_unlock_deck)
+	Signals.UnlockDeckToPlay.connect(_unlock_deck)
 	deck_btn.pressed.connect(_deck_btn_pressed)
 
 

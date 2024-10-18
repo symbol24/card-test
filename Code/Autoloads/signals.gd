@@ -4,6 +4,8 @@ extends Node
 signal Save()
 signal Load()
 signal DeleteSave()
+signal DeleteAndLoad()
+signal UnlockDeckInSave(data:DeckData)
 
 # UI
 signal ToggleUiMenu(id:String, display:bool)
@@ -25,7 +27,9 @@ signal PlayWith(event_deck_id:String, player_deck_id:String)
 
 
 # GAME
-signal LoadDataManager()
+signal LoadManagers()
+signal ManagerLoaded()
+signal AllManagersLoaded()
 signal AddResource(type:CardData.Resource_Type, amount:int)
 signal UseResource(type:CardData.Resource_Type, amount:int)
 signal ResourceUpdated(type:CardData.Resource_Type, amount:int)
@@ -39,6 +43,8 @@ signal DisplayNothingReward()
 signal CheckCardsOnCard(card:Card, cards:Array[Card])
 signal CheckFailState()
 signal ResetGameData()
+signal ClearPlayVariables()
+signal CheckEndOfMatchDeckUnlocks(result_id:String, decks_used:Array[String])
 
 
 # Discard
@@ -54,10 +60,16 @@ signal NullActiveCard()
 signal ToggleCollider(is_on:bool)
 signal ToggleCardForButton(type:UiCardButton, card:Card, display:bool)
 signal DrawCards(deck_type:DeckData.Type, amount:int, use_cost:bool)
-signal UnlockDeck()
+signal UnlockDeckToPlay()
 signal ShuffleDeck()
 
 
 # Grabber
 signal SelectCard(card:Card)
 signal UnselectCard(card:Card)
+
+
+# Unlocking
+signal MatchPlayedWithDeck(result:String, deck:DeckData)
+signal UnlockTarget(type:UnlockTarget.Target_Type, target:String)
+signal CheckDeckUnlock()

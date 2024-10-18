@@ -1,0 +1,23 @@
+[gd_resource type="Resource" script_class="DeckData" load_steps=9 format=3 uid="uid://kngsrv4ssear"]
+
+[ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="1_1c42f"]
+[ext_resource type="Script" path="res://Code/Decks/deck_data.gd" id="2_vb2u3"]
+[ext_resource type="Resource" uid="uid://dcjua04fh3wht" path="res://Data/CardsData/Player_Cards/Desert_Cards/survival_pack.tres" id="2_y6bye"]
+[ext_resource type="Resource" uid="uid://da77l3s6tl4p1" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/energy_drink.tres" id="3_inlcy"]
+[ext_resource type="Resource" uid="uid://dfuev48aefl1l" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/makeshift_weapon.tres" id="4_ln52n"]
+[ext_resource type="Resource" uid="uid://567by5qv4p0r" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/metal_scraps.tres" id="5_e7p32"]
+[ext_resource type="Resource" uid="uid://42phi8h56ws8" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/mre.tres" id="6_nig8q"]
+[ext_resource type="Resource" uid="uid://wcmunj6suvfq" path="res://Data/CardsData/Player_Cards/Default_Player_Cards/card_nothing.tres" id="7_kcraf"]
+
+[resource]
+script = ExtResource("2_vb2u3")
+id = "desert_deck_01"
+cards = Array[ExtResource("1_1c42f")]([ExtResource("2_y6bye"), ExtResource("3_inlcy"), ExtResource("4_ln52n"), ExtResource("5_e7p32"), ExtResource("6_nig8q"), ExtResource("7_kcraf"), ExtResource("7_kcraf"), ExtResource("7_kcraf")])
+fail_id = "desert_deck_01_failure"
+type = 0
+starter_deck = false
+round_draw_amount = 4
+starting_hp = 2
+starting_energy = 3
+starting_weapons = 0
+tween_time = 0.3

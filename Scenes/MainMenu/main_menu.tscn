@@ -22,3 +22,13 @@ offset_bottom = 573.0
 text = "Play"
 script = ExtResource("2_oq65e")
 id = "deck_selector"
+
+[node name="delete_save_btn" type="Button" parent="."]
+layout_mode = 0
+offset_left = 941.0
+offset_top = 645.0
+offset_right = 1037.0
+offset_bottom = 676.0
+text = "delete save"
+script = ExtResource("2_oq65e")
+id = "delete_save"

@@ -3,6 +3,8 @@ extends Node
 
 const SEED_OPTIONS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@$%^&*?"
 const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
+const UNLOCKMANAGER = "res://Scenes/Utilities/unlock_manager.tscn"
+const INPUTMANAGER = "res://Scenes/Utilities/input_manager.tscn"
 
 
 @export var seed_length:int = 10
@@ -16,6 +18,7 @@ const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
 @export var post_check_delay:float = 10
 
 # Game Elements
+var active_level:Level
 var discard_pile:Discard
 var card_layer:Control
 var discard_layer:DiscardLayer
@@ -27,15 +30,25 @@ var run_seed:String = ""
 var run_seed_hash:int
 var seeded_rng:SyRandomNumberGenerator
 
-# Player data and data management
+# Player data
 var player_data:PlayerData
 var current_event_deck:DeckData
+
+# Managers
+var to_load_managers:Array[String] = [
+										DATAMANAGER,
+										UNLOCKMANAGER,
+										INPUTMANAGER,
+									]
 var data_manager:DataManager
+var unlock_manager:UnlockManager
+var other_managers:Array = []
 var is_loading := false
 var to_load := ""
 var load_complete := false
 var loading_status := 0.0
 var progress := []
+var loaded_manager_count:int = 0
 
 # Cards
 var player_card_pool:Array[Card] = []
@@ -57,6 +70,7 @@ var cards_amount:int = 0
 
 # Check Fail
 var checking_fail:bool = false
+var last_result:String = ""
 
 
 func _ready() -> void:
@@ -66,7 +80,7 @@ func _ready() -> void:
 	Signals.DiscardReady.connect(_set_play_variables)
 	Signals.AddResource.connect(_add_resource)
 	Signals.UseResource.connect(_use_resource)
-	Signals.LoadDataManager.connect(_setup_data_manager)
+	Signals.LoadManagers.connect(_load_all_managers)
 	Signals.CheckCardsOnCard.connect(_check_card_completion)
 	Signals.DiscardCard.connect(_discard_player_card)
 	Signals.UseCard.connect(_use_card)
@@ -76,6 +90,7 @@ func _ready() -> void:
 	Signals.ShuffleDeck.connect(_shuffle_discard_under_deck)
 	Signals.CheckFailState.connect(_check_fail_coroutine)
 	Signals.ResetGameData.connect(_reset_data)
+	Signals.ClearPlayVariables.connect(_clear_play_variables)
 
 
 func _process(_delta: float) -> void:
@@ -170,6 +185,16 @@ func _set_play_variables(_disc:Discard) ->void:
 	discard_layer = get_tree().get_first_node_in_group("discard_layer")
 	player_deck_button = get_tree().get_first_node_in_group("player_deck")
 	event_deck_button = get_tree().get_first_node_in_group("event_deck")
+	active_level = get_tree().get_first_node_in_group("level")
+
+
+func _clear_play_variables() -> void:
+	discard_pile = null
+	card_layer = null
+	discard_layer = null
+	player_deck_button = null
+	event_deck_button = null
+	active_level = null
 
 
 func _set_decks(_event_id:String,_player_id:String) -> void:
@@ -177,8 +202,18 @@ func _set_decks(_event_id:String,_player_id:String) -> void:
 	load_deck(_player_id, DeckData.Type.PLAYER)
 
 
-func _setup_data_manager() -> void:
-	to_load = DATAMANAGER
+func _load_all_managers() -> void:
+	while loaded_manager_count < to_load_managers.size():
+		if to_load_managers[loaded_manager_count] != "":
+			_load_manager(to_load_managers[loaded_manager_count])
+			await Signals.ManagerLoaded
+			loaded_manager_count += 1
+	print("All managers loaded")
+	Signals.AllManagersLoaded.emit()
+
+
+func _load_manager(_to_load:String) -> void:
+	to_load = _to_load
 	ResourceLoader.load_threaded_request(to_load)
 	is_loading = true
 	load_complete = false
@@ -197,8 +232,12 @@ func _complete_load() -> void:
 	match to_load:
 		DATAMANAGER:
 			data_manager = instantiated
+		UNLOCKMANAGER:
+			unlock_manager = instantiated
 		_:
-			pass
+			other_managers.append(instantiated)
+	
+	Signals.ManagerLoaded.emit()
 
 
 func _get_seed(_length:int) -> String:
@@ -338,11 +377,13 @@ func _complete_card(_card:Card) -> void:
 		var reward_array:Array[CardData] = _card.data.get_reward()
 		for reward in reward_array:
 			if reward.type == CardData.Card_Type.SUCCESS:
-				Signals.DisplayResultScreen.emit(reward.id, true)
+				_trigger_match_end(reward.id)
 			elif reward.type == CardData.Card_Type.NOTHING:
 				Signals.DisplaySmallPopup.emit("No reward received.", 3)
 			else:
-				_add_player_card(reward.get_duplicate(), Vector2((1920/2)-100, (1080/2)-150))
+				var x:int = ProjectSettings.get_setting("display/window/size/viewport_width")
+				var y:int = ProjectSettings.get_setting("display/window/size/viewport_height")
+				_add_player_card(reward.get_duplicate(), Vector2((x/2)-_card.size.x, (y/2)-_card.size.y))
 				Signals.DisplaySmallPopup.emit(reward.id + " received.", 3)
 
 	if not _card.used_cards.is_empty():
@@ -510,8 +551,8 @@ func _check_fail_coroutine() -> void:
 		await get_tree().create_timer(check_fail_delay).timeout
 		var can_play:bool = _check_fail_state()
 		if not can_play:
-			var fail_id:String = player_data.current_deck.fail_id if player_data.current_deck.fail_id != "" else "generic_fail"
-			Signals.DisplayResultScreen.emit(fail_id, false)
+			var fail_id:String = current_event_deck.fail_id if current_event_deck.fail_id != "" else "generic_failure"
+			_trigger_match_end(fail_id)
 		else:
 			await get_tree().create_timer(post_check_delay).timeout
 		checking_fail = false
@@ -573,6 +614,13 @@ func _reset_data() -> void:
 	layer = 0
 	current_hand_count = 0
 	checking_fail = false
+
+
+func _trigger_match_end(_result_id:String) -> void:
+	last_result = _result_id
+	Signals.CheckEndOfMatchDeckUnlocks.emit(last_result, [current_event_deck.id, player_data.current_deck.id])
+	var result:bool = true if _result_id.contains("success") else false
+	Signals.DisplayResultScreen.emit(_result_id, result)
 
 
 func _print_cards(_array:Array[Card]) -> void:

@@ -36,6 +36,8 @@ func _button_dispatcher(_id:String, _from:String) -> void:
 			Signals.DisplayResultScreen.emit("result_success", true)
 		"debug_result_failure":
 			Signals.DisplayResultScreen.emit("result_failure", false)
+		"delete_save":
+			Signals.DeleteAndLoad.emit()
 		_:
 			pass
 

@@ -192,6 +192,7 @@ text = "btn_result_return"
 text_overrun_behavior = 1
 script = ExtResource("3_okcdb")
 id = "btn_result_return"
+send_clear = true
 
 [node name="btn_result_retry" type="Button" parent="VBoxContainer/button"]
 unique_name_in_owner = true
@@ -202,6 +203,7 @@ text = "btn_result_retry"
 text_overrun_behavior = 1
 script = ExtResource("3_okcdb")
 id = "btn_result_retry"
+send_clear = true
 
 [node name="spacer3" type="Control" parent="VBoxContainer"]
 process_mode = 2

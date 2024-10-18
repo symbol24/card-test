@@ -7,7 +7,7 @@
 [ext_resource type="Script" path="res://Code/wrappers/pause_button.gd" id="5_xeixo"]
 [ext_resource type="Script" path="res://Code/wrappers/sy_button.gd" id="6_upxa0"]
 
-[node name="TestLevel" type="Control"]
+[node name="TestLevel" type="Control" groups=["level"]]
 process_mode = 1
 layout_mode = 3
 anchors_preset = 15
@@ -23,7 +23,7 @@ layout_mode = 0
 offset_right = 1920.0
 offset_bottom = 1080.0
 
-[node name="card_layer" parent="." groups=["disard_layer"] instance=ExtResource("3_rwnj4")]
+[node name="card_layer" parent="." instance=ExtResource("3_rwnj4")]
 process_mode = 1
 
 [node name="DiscardHiddenArea" parent="." instance=ExtResource("4_ycjol")]
@@ -31,7 +31,7 @@ unique_name_in_owner = true
 process_mode = 1
 visible = false
 
-[node name="SyButton" type="Button" parent="."]
+[node name="pause_btn" type="Button" parent="."]
 process_mode = 1
 clip_contents = true
 custom_minimum_size = Vector2(75, 75)
@@ -54,6 +54,7 @@ toggle_pause = 1
 
 [node name="debug_test" type="Button" parent="."]
 process_mode = 1
+visible = false
 clip_contents = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 1
@@ -74,6 +75,7 @@ id = "debug_result_success"
 
 [node name="debug_test2" type="Button" parent="."]
 process_mode = 1
+visible = false
 clip_contents = true
 custom_minimum_size = Vector2(75, 75)
 layout_mode = 1

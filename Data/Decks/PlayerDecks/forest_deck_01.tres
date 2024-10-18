@@ -14,10 +14,11 @@
 script = ExtResource("2_5tpus")
 id = "forest_desk_01"
 cards = Array[ExtResource("1_bh02g")]([ExtResource("2_3llbk"), ExtResource("3_10n7h"), ExtResource("4_pkki2"), ExtResource("5_yvtbg"), ExtResource("6_tyqph"), ExtResource("7_1cedt"), ExtResource("7_dwmtn"), ExtResource("7_dwmtn")])
-fail_id = "forest_desk_01_fail"
+fail_id = "forest_desk_01_failure"
 type = 0
-tween_time = 0.3
+starter_deck = false
 round_draw_amount = 3
 starting_hp = 5
 starting_energy = 4
 starting_weapons = 0
+tween_time = 0.3

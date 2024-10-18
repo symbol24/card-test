@@ -13,6 +13,8 @@ func _ready() -> void:
 	Signals.Save.connect(_save)
 	Signals.Load.connect(_load)
 	Signals.DeleteSave.connect(_delete_save)
+	Signals.UnlockDeckInSave.connect(_add_deck)
+	Signals.DeleteAndLoad.connect(_delete_and_recreate)
 
 
 func _load():
@@ -61,4 +63,15 @@ func _delete_save() -> void:
 		if result == 0: 
 			data = null
 			print("Save file deleted")
+			Game.unlock_manager.reset_conditions()
+			Signals.DisplaySmallPopup.emit("Save file Deleted", 3)
 		else: print("Delete save file error: ", result)
+
+
+func _add_deck(_data:DeckData) -> void:
+	data.add_unlocked_deck(_data)
+
+
+func _delete_and_recreate() -> void:
+	_delete_save()
+	_load()

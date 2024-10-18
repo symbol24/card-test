@@ -5,7 +5,7 @@
 [ext_resource type="Script" path="res://Code/Cards/card_data.gd" id="2_a2kg3"]
 [ext_resource type="Script" path="res://Code/Cards/event_card_data.gd" id="3_1s611"]
 [ext_resource type="Texture2D" uid="uid://dsio4e72mlpy8" path="res://Textures/CostIcons/cost_icons_food.png" id="3_xfpkd"]
-[ext_resource type="Resource" uid="uid://dd4njpg4x6veg" path="res://Data/CardsData/EventCards/Desert/desert_success_card.tres" id="5_gcy5s"]
+[ext_resource type="Resource" uid="uid://dd4njpg4x6veg" path="res://Data/CardsData/Player_Cards/Desert_Cards/desert_success_card.tres" id="5_gcy5s"]
 
 [sub_resource type="Resource" id="Resource_r8v0q"]
 script = ExtResource("1_hhaku")

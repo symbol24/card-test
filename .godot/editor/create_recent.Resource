@@ -1,4 +1,6 @@
-CardData
+UnlockCondition
+UnlockTarget
 DeckData
+CardData
 EventCardData
 CardIconData

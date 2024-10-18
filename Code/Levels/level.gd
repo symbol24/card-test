@@ -12,4 +12,4 @@ func _finish_loading_level() -> void:
 	Signals.DrawCards.emit(DeckData.Type.PLAYER, Game.player_data.current_deck.round_draw_amount, false)
 	Signals.DrawCards.emit(DeckData.Type.EVENT, Game.current_event_deck.round_draw_amount, false)
 	await get_tree().create_timer(1).timeout
-	Signals.UnlockDeck.emit()
+	Signals.UnlockDeckToPlay.emit()
