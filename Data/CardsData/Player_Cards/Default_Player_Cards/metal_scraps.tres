@@ -13,7 +13,7 @@ cost_texture = ExtResource("2_25osi")
 [resource]
 script = ExtResource("1_6352g")
 id = "metal_scraps"
-title = "metal_scraps_title"
+title = "metal_scraps"
 text = "metal_scraps_text"
 type = 3
 costs = Array[ExtResource("1_xvs6n")]([])

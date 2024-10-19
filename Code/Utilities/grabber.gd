@@ -14,10 +14,11 @@ var multi_grab:bool = false
 var connection_point:Vector2
 var selector_panel:GrabberSelectorPanel = null
 var panels:Array = []
+var multi_enabled:bool = false
 
 
 func _input(_event: InputEvent) -> void:
-	if not get_tree().paused:
+	if not get_tree().paused and Game.active_level != null and not UI.is_result_displayed:
 		if Input.is_action_just_pressed("mouse_left"):
 			_grab()
 			
@@ -45,14 +46,15 @@ func _grab() -> void:
 		if not grabbed_items.is_empty():
 			grabbing = true
 		else:
-			var new_panel = Game.data_manager.grabber_selector_panel.instantiate()
-			UI.add_child.call_deferred(new_panel)
-			new_panel.set_deferred("custom_minimum_size", Vector2.ZERO)
-			new_panel.set_deferred("size", Vector2.ZERO)
-			new_panel.set_deferred("position", get_global_mouse_position())
-			new_panel.set_deferred("z_index", Game.get_highest_card_z_index()+1)
-			selector_panel = new_panel
-			panels.append(new_panel)
+			if multi_enabled:
+				var new_panel = Game.data_manager.grabber_selector_panel.instantiate()
+				UI.add_child.call_deferred(new_panel)
+				new_panel.set_deferred("custom_minimum_size", Vector2.ZERO)
+				new_panel.set_deferred("size", Vector2.ZERO)
+				new_panel.set_deferred("position", get_global_mouse_position())
+				new_panel.set_deferred("z_index", Game.get_highest_card_z_index()+1)
+				selector_panel = new_panel
+				panels.append(new_panel)
 	elif not grabbed_items.is_empty():
 		grabbing = true
 

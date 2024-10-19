@@ -20,7 +20,7 @@ cost_texture = ExtResource("3_urk6b")
 [resource]
 script = ExtResource("1_f47l0")
 id = "makeshift_weapon"
-title = "makeshift_weapon_title"
+title = "makeshift_weapon"
 text = "makeshift_weapon_text"
 type = 3
 costs = Array[ExtResource("1_x7ly0")]([SubResource("Resource_gqpwe")])

@@ -1,0 +1,123 @@
+keys,en
+lorem_ipsum,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor ornare lorem, non lobortis sem eleifend at. Donec euismod ullamcorper est sed eleifend. In non magna nisl. Nulla blandit elit dolor, in eleifend nibh tincidunt eu. Cras iaculis orci et felis rhoncus tempor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam ut suscipit diam. Sed luctus laoreet nisl id tincidunt. Phasellus congue, urna a placerat posuere, ex metus pellentesque velit, vel pretium eros neque quis enim. Vivamus elementum scelerisque urna sit amet tristique. Vestibulum elementum massa quis diam accumsan semper. Aenean accumsan odio at hendrerit dignissim."
+loading_text,Loading
+main_menu_play_btn,Play
+delete_save_btn,Delete Save
+main_menu_bugs_btn,Submit Issue
+main_menu_discord_btn,Discord
+result_screen,Result
+result_text,"Lorem ipsum dolor sit amet, consectetur adipiscing elit. Pellentesque porttitor ornare lorem, non lobortis sem eleifend at. Donec euismod ullamcorper est sed eleifend. In non magna nisl. Nulla blandit elit dolor, in eleifend nibh tincidunt eu. Cras iaculis orci et felis rhoncus tempor. Vestibulum ante ipsum primis in faucibus orci luctus et ultrices posuere cubilia curae; Nam ut suscipit diam. Sed luctus laoreet nisl id tincidunt. Phasellus congue, urna a placerat posuere, ex metus pellentesque velit, vel pretium eros neque quis enim. Vivamus elementum scelerisque urna sit amet tristique. Vestibulum elementum massa quis diam accumsan semper. Aenean accumsan odio at hendrerit dignissim."
+btn_result_return,Main Menu
+btn_result_retry,Retry
+result_bugs_btn,Submit Issue
+result_discord_btn,Discord
+pause_menu_title,[center]Paused[/center]
+pause_back_btn,Close
+pause_retry_btn,Retry
+pause_quit_btn,Main Menu
+pause_bugs_btn,Submit Issue
+pause_discord_btn,Discord
+deck_selector_play_with_btn,Play with Selected
+discard_btn,Discard
+player_deck_btn,Draw 1 card for 1 [energy]
+event_deck_btn,Draw next card when the active card is complete
+btn_shuffle_deck,Shuffle
+complete_card_btn,Complete
+use_card_btn,Use
+pay_card_btn,Pay
+seed_rtl,Seed: 
+received_card_popup_end, card received!
+nothing_card_popup_msg,No rewards
+open_pause_btn,Pause
+result_title_failure,Failure
+result_title_success,Success
+save_file_delete,Save file Deleted
+desert_caravan,A caravan of desert nomads
+desert_caravan_text,"You encounter a caravan of native desert nomads. Although you cannot communicate with words, you understand they are willing to trade for some [cost]."
+desert_cold_night,The cold deseet night
+desert_cold_night_text,The nights in the desert are known to get cold. [cost] are needed to survive. 
+desert_crash_site,An abandoned crash site
+desert_crash_site_text,You encounter an old abandoned crash site. Seach the wreckage for anything to use with [cost].
+desert_creature_encounter,A desert critter
+desert_creature_encounter_text,A small critter lunges at you from behind a rock. Defend yourself with [cost].
+desert_camp,Civilisation
+desert_camp_text,You can see a large camp with vehicles in the distance. use [cost].
+desert_empty_stretch,Empty stretch of desert
+desert_empty_stretch_text,An infinite landscape of dunes extends in front of you. Use [cost] before your courage runs out.
+desert_exit_crash,How did you get here?
+desert_exit_crash_text,"Hanging upside down on the one tree on this desert, latched in a ejector seat, your memory is fuzy. Something about a plane? Use [cost] to get yourself free, hope you don't hurt yourself on the fall."
+desert_oasis,An oasis
+desert_oasis_text,What you thought was a mirage turned out real. A small oasis with what looks like clear water. Use [cost] to try and take some with you.
+01_forest_camp_attack,Attacked at Camp
+01_forest_camp_attack_text,A wild animal wakes you up in the middle of the night while camping. Use [cost] to try and fend it off.
+02_forest_cliff_face,A sheer cliff face
+02_forest_cliff_face_text,The only way is up. The beast is still after you. Use [cost] to climb.
+03_forest_camp_setup,Time to rest
+03_forest_camp_setup_text,"You are out of danger. Time to make camp, again, with [cost]."
+04_forest_forage_food,Forage for food
+04_forest_forage_food_text,"Now that camp is established, forage for food. Use [cost], and don't get hurt."
+05_forest_find_water,Running water?
+05_forest_find_water_text,You think you hear a river or a stream near by. Go in search of it [cost].
+06_forest_bear_attack,The Beast round 2
+06_forest_bear_attack_text,The beast followed you. Defend yourself [cost].
+07_forest_make_first_aid,Emergency. Paging Dr. Mike.
+07_forest_make_first_aid_text,"Although you survived the attack and killed the beast, you are hurt. Find supplies to make a first aid kit [cost]."
+08_forest_camp_attack,Wolves!
+08_forest_camp_attack_text,"The smell of blood and cooked meat has attracted a lone wolf. As deadly as the beast, fend it off [cost]."
+09_forest_fire_signal,Make a signal
+09_forest_fire_signal_text,You have been hearing search planes and helicopters. Make a smoke signal with [cost].
+10_forest_helicopter_rescue,Helicopter Rescue!
+10_forest_helicopter_rescue_text,You want to reach the highest point possible for the rescue helicopter to get you. [cost]
+bottled_water,Bottle water
+bottled_water_text,A generic small bottle of water. Provides [resources]
+card_nothing,Nothing
+card_nothing_text,This card does nothing.
+energy_drink,Energy Drink
+energy_drink_text,An energy drink can be used to hydrate and get temporary energy. Can be used for [r1] or [r2].
+hurt_1dmg,Hurt
+hurt_1dmg_text,"You are hurt. To get rid of this card, lose [cost]."
+makeshift_weapon,Makeshift Weapon
+makeshift_weapon_text,Use [cost] to make a small makeshift weapon. Provides [resources].
+metal_scraps,Metal Scraps
+metal_scraps_text,A jumble of assorted metal scraps. Provides [resources].
+card_mre,M.R.E. Meal Ready to Eat
+card_mre_text,A camper's and survivor's delight. Can be used for [r1] or [r2].
+dehydration,Dehydrated
+dehydration_text,You are dehydrated and must pay [cost] everytime this card appears in your hand.
+desert_grub,Meat from a desert critter
+desert_grub_text,A small critter you captured and cooked provides barely enough to go on. Provides [resources]
+desert_success,You survived!
+desert_success_text,"After your long ordeal in the desert, the people of this small community are happy to help you return home."
+oasis_water,Water from an oasis
+oasis_water_text,"You don't know why, but this is the best water you have ever had. Can be used for [r1] or [r2]."
+survival_pack,Emergency Survival Kit
+survival_pack_text,"A small emergency survival kit comon on aircrafts. Can be used for [r1], r[2], or [r3]."
+bear_meat,Bear meat
+bear_meat_text,The beast provides tough but nutritious meat. Provides [resources]
+first_aid_kit,First Aid Kit
+first_aid_kit_text,"A first aid kit, makeshift or not, heals up to [resources], but can only be used once."
+foraged_food,Foraged Food
+foraged_food_text,"A random assortment of wild berries, edible moss and roots. Provides [resources]."
+foraged_material,Foraged Material
+foraged_material_text,"An assortment of rocks, wood and rare metal scraps. Provides [resources]."
+forest_bottled_water,Water Canteen
+forest_bottled_water_text,"The only water you managed to save. It can only be used once, and provides [resources]."
+forest_success,Rescued
+forest_success_text,The helicopter dropped a rescue worker who secured you in a transport bed. You were then taken to safty and returned to your family.
+hatchet,Sturdy Hatchet
+hatchet_text,"A survivor's best friend. This hatchet is small enough to be light, but sturdy enough to cut down medium trees. Use [cost] to gain [resources]."
+hiking_gear,Hiking Gear
+hiking_gear_text,The typical gear carried by hikers. Provides the necessary [resources] for almost any situation.
+makeshift_shelter,Makeshift Shelter
+makeshift_shelter_text,"It isn't the Ritz, nor a good tent. But this will do. Provides [resources]."
+trail_mix,Trail Mix
+trail_mix_text,A hickers go to snack. Provides [
+water_access,Access to Water
+water_access_text,"With access to water, you feel confident and energized. Provides [resources]."
+desert_01_event_deck_failure,"No one ever found your remains as the desert swallowed you up, polishing your bones pure white."
+forest_01_event_deck_failure,You succumbed to your injuries before you could be found.
+desert_01_event_deck,Desert Crash Landing
+forest_01_event_deck,Attacked at Camp
+desert_deck_01,The Survivor
+forest_desk_01,The Camper
+starter_deck,The Unprepared

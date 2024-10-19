@@ -5,6 +5,7 @@ class_name DeckButton extends CardPanelContainer
 @export var card_placement_pos:Marker2D
 @export var empty_color:Color = Color.RED
 @export var empty_flash_time:float = 0.3
+@export var text:String
 
 @onready var deck_area:Area2D = %deck_area
 @onready var deck_btn:Button = %deck_btn
@@ -16,6 +17,7 @@ func _ready() -> void:
 	super()
 	Signals.UnlockDeckToPlay.connect(_unlock_deck)
 	deck_btn.pressed.connect(_deck_btn_pressed)
+	deck_btn.text = Text.replace_tags(tr(text))
 
 
 func _deck_btn_pressed() -> void:

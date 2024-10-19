@@ -57,8 +57,8 @@ func _update_time_display(_value:int) -> void:
 
 
 func _display_big_popup(_title:String, _text:String, _timer:int = 0, _has_btn_1:bool = true, _has_btn_2:bool = true,_has_btn_3:bool = false) -> void:
-	big_popup_title.set_deferred("text", (_title))
-	big_popup_text.set_deferred("text", (_text))
+	big_popup_title.set_deferred("bbcode", _title)
+	big_popup_text.set_deferred("bbcode", _text)
 	big_popup.set_deferred("visible", true)
 	_set_btn(popup_button_1, _has_btn_1)
 	_set_btn(popup_button_2, _has_btn_2)
@@ -66,7 +66,7 @@ func _display_big_popup(_title:String, _text:String, _timer:int = 0, _has_btn_1:
 	if _timer > 0:
 		timer = _timer
 		timer_active = true
-		delay_timer.set_deferred("bbcode", (_timer))
+		delay_timer.set_deferred("bbcode", _timer)
 		delay_timer.set_deferred("visible", true)
 	else:
 		delay_timer.set_deferred("visible", false)
@@ -88,8 +88,9 @@ func _set_btn(_btn:Button, _has_btn:bool = true) -> void:
 
 func _display_small_popup(_text:String, _timer:float = 5.0) -> void:
 	small_popup.set_deferred("visible", true)
-	small_popup_text.set_deferred("bbcode", (_text))
+	small_popup_text.set_deferred("bbcode", _text)
 	small_timer = _timer
+	await small_popup_text.anim_finished
 	small_timer_active = true
 
 

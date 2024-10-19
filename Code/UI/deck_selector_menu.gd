@@ -30,7 +30,7 @@ func _ready() -> void:
 
 func _set_seed() -> void:
 	Game.setup_rng()
-	seed_rtl.set_deferred("text", tr("seed_rtl") + ": " + Game.seeded_rng.current_seed)
+	seed_rtl.set_deferred("text", tr("seed_rtl") + Game.seeded_rng.current_seed)
 
 
 func _build_selector_buttons(_type:DeckData.Type) -> void:

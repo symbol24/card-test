@@ -1,4 +1,4 @@
-[gd_scene load_steps=12 format=3 uid="uid://bkw0gwvqpeo6k"]
+[gd_scene load_steps=15 format=3 uid="uid://bkw0gwvqpeo6k"]
 
 [ext_resource type="Script" path="res://Code/Utilities/unlock_manager.gd" id="1_v4bue"]
 [ext_resource type="Script" path="res://Code/Unlock/unlock_condition.gd" id="2_liisx"]
@@ -24,7 +24,7 @@ unlock_target_id = "desert_deck_01"
 
 [sub_resource type="Resource" id="Resource_v2kc0"]
 script = ExtResource("2_liisx")
-id = "desert_deck_01"
+id = "unlock desert_deck_01"
 type = 1
 conditions = Array[ExtResource("3_i74jc")]([SubResource("Resource_kvrn5"), SubResource("Resource_33n82")])
 to_unlock = Array[ExtResource("4_32s5g")]([SubResource("Resource_uecle")])
@@ -34,7 +34,7 @@ already_unlocked = false
 script = ExtResource("3_i74jc")
 condition_type = 0
 condition_target = "desert_01_event_deck"
-amount_needed = 4
+amount_needed = 5
 
 [sub_resource type="Resource" id="Resource_ochg4"]
 script = ExtResource("4_32s5g")
@@ -43,12 +43,31 @@ unlock_target_id = "forest_01_event_deck"
 
 [sub_resource type="Resource" id="Resource_t3hav"]
 script = ExtResource("2_liisx")
-id = "forest_01_event_deck"
+id = "unlock forest_01_event_deck"
 type = 0
 conditions = Array[ExtResource("3_i74jc")]([SubResource("Resource_ymhkd")])
 to_unlock = Array[ExtResource("4_32s5g")]([SubResource("Resource_ochg4")])
 already_unlocked = false
 
+[sub_resource type="Resource" id="Resource_xdwoi"]
+script = ExtResource("3_i74jc")
+condition_type = 0
+condition_target = "forest_01_event_deck"
+amount_needed = 5
+
+[sub_resource type="Resource" id="Resource_oix7l"]
+script = ExtResource("4_32s5g")
+unlock_target_type = 1
+unlock_target_id = "forest_desk_01"
+
+[sub_resource type="Resource" id="Resource_hagan"]
+script = ExtResource("2_liisx")
+id = "unlock forest_desk_01"
+type = 0
+conditions = Array[ExtResource("3_i74jc")]([SubResource("Resource_xdwoi")])
+to_unlock = Array[ExtResource("4_32s5g")]([SubResource("Resource_oix7l")])
+already_unlocked = false
+
 [node name="UnlockManager" type="Node"]
 script = ExtResource("1_v4bue")
-deck_unlock_conditions = Array[ExtResource("2_liisx")]([SubResource("Resource_v2kc0"), SubResource("Resource_t3hav")])
+deck_unlock_conditions = Array[ExtResource("2_liisx")]([SubResource("Resource_v2kc0"), SubResource("Resource_t3hav"), SubResource("Resource_hagan")])

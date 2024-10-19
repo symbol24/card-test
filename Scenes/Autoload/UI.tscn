@@ -1,29 +1,33 @@
-[gd_scene load_steps=13 format=3 uid="uid://p4c6pubf17rl"]
+[gd_scene load_steps=16 format=3 uid="uid://p4c6pubf17rl"]
 
 [ext_resource type="Script" path="res://Code/Autoloads/ui.gd" id="1_htsia"]
-[ext_resource type="Script" path="res://addons/richtext2/text_effects/anims/rte_back.gd" id="2_5runj"]
 [ext_resource type="Script" path="res://Code/UI/loading_screen.gd" id="2_uo2nw"]
 [ext_resource type="Script" path="res://addons/richtext2/rich_text_animation.gd" id="3_xow8m"]
 [ext_resource type="Script" path="res://Code/UI/pause_menu.gd" id="5_8vu2q"]
 [ext_resource type="Script" path="res://Code/wrappers/pause_button.gd" id="6_7lr7y"]
 [ext_resource type="Script" path="res://Code/UI/popups.gd" id="7_5yb1n"]
+[ext_resource type="Script" path="res://Code/wrappers/sy_button.gd" id="7_yhoug"]
 [ext_resource type="Script" path="res://addons/richtext2/richer_text_label.gd" id="8_m4lpk"]
 [ext_resource type="Script" path="res://addons/richtext2/text_effects/anims/rte_console.gd" id="9_o608s"]
+[ext_resource type="Script" path="res://Code/UI/save_icon.gd" id="11_7misu"]
+[ext_resource type="Texture2D" uid="uid://c6bngimic5c1b" path="res://Textures/save_icon_big.png" id="12_5h6e6"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_621o1"]
-resource_name = "back"
-script = ExtResource("2_5runj")
-metadata/rt = 3686961065866
-
-[sub_resource type="RichTextEffect" id="RichTextEffect_0r2b5"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_q61pq"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 3762609533778
+metadata/rt = 1829253463970
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_magf1"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_fkt4g"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 3787523699507
+metadata/rt = 1831837169931
+
+[sub_resource type="RichTextEffect" id="RichTextEffect_8uypx"]
+resource_name = "console"
+script = ExtResource("9_o608s")
+metadata/rt = 1832323709203
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1mk6w"]
 
 [node name="Ui" type="CanvasLayer" groups=["UI"]]
 process_mode = 3
@@ -62,7 +66,7 @@ layout_mode = 2
 [node name="loading_label" type="RichTextLabel" parent="LoadingScreen/text_layer"]
 unique_name_in_owner = true
 clip_contents = false
-custom_minimum_size = Vector2(500, 143)
+custom_minimum_size = Vector2(500, 0)
 layout_mode = 0
 offset_left = 1171.0
 offset_top = 768.0
@@ -76,20 +80,14 @@ theme_override_font_sizes/normal_font_size = 104
 theme_override_font_sizes/bold_font_size = 104
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_621o1")]
+custom_effects = [SubResource("RichTextEffect_q61pq")]
 script = ExtResource("3_xow8m")
-animation = "back"
-progress = 1.0
-visible_character = 7
-_transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
-_char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
-_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
-_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+animation = "console"
 _forced_finish_delay = -0.0365728
-animation = "back"
+animation = "console"
 default_wait_time = 1.0
 play_on_bbcode = true
-play_speed = 3.0
+play_speed = 5.0
 fade_out = false
 fade_in_speed = 10.0
 fade_out_speed = 120.0
@@ -100,7 +98,7 @@ shortcut_expression = true
 shortcut_bookmark = true
 signal_quotes = true
 signal_stars = true
-bbcode = "Loading"
+bbcode = ""
 effects = 2
 alignment = 0
 color = Color(1, 1, 1, 1)
@@ -175,7 +173,7 @@ layout_mode = 2
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 bbcode_enabled = true
-text = "[center]pause_menu_title[/center]"
+text = "pause_menu_title"
 fit_content = true
 scroll_active = false
 autowrap_mode = 0
@@ -209,25 +207,59 @@ clip_contents = true
 custom_minimum_size = Vector2(0, 100)
 layout_mode = 2
 
-[node name="Button" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer/Control2"]
+[node name="HBoxContainer" type="HBoxContainer" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer/Control2"]
+layout_mode = 1
+anchors_preset = 1
+anchor_left = 1.0
+anchor_right = 1.0
+offset_left = -608.0
+offset_bottom = 100.0
+grow_horizontal = 0
+theme_override_constants/separation = 20
+
+[node name="pause_back_btn" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer/Control2/HBoxContainer"]
 clip_contents = true
 custom_minimum_size = Vector2(200, 100)
-layout_mode = 1
-anchors_preset = 3
-anchor_left = 1.0
-anchor_top = 1.0
-anchor_right = 1.0
-anchor_bottom = 1.0
-offset_left = -200.0
-offset_top = -100.0
-grow_horizontal = 0
-grow_vertical = 0
-text = "pause_back_btn
-"
+layout_mode = 2
+text = "pause_back_btn"
 text_overrun_behavior = 1
 clip_text = true
 script = ExtResource("6_7lr7y")
 toggle_pause = 2
+
+[node name="pause_retry_btn" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "pause_retry_btn"
+script = ExtResource("7_yhoug")
+id = "btn_result_retry"
+send_clear = true
+
+[node name="pause_quit_btn" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer/Control2/HBoxContainer"]
+custom_minimum_size = Vector2(200, 0)
+layout_mode = 2
+text = "pause_quit_btn"
+script = ExtResource("7_yhoug")
+id = "btn_result_return"
+send_clear = true
+
+[node name="bugs_btn" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer/Control2/HBoxContainer"]
+process_mode = 2
+clip_contents = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "pause_bugs_btn"
+script = ExtResource("7_yhoug")
+id = "bugs_btn"
+
+[node name="discord_btn" type="Button" parent="PauseMenu/VBoxContainer/HBoxContainer/pause_menu_container/VBoxContainer/Control2/HBoxContainer"]
+process_mode = 2
+clip_contents = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 2
+text = "pause_discord_btn"
+script = ExtResource("7_yhoug")
+id = "discord_btn"
 
 [node name="spacer2" type="Control" parent="PauseMenu/VBoxContainer/HBoxContainer"]
 custom_minimum_size = Vector2(200, 1)
@@ -459,15 +491,13 @@ theme_override_font_sizes/normal_font_size = 16
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_0r2b5")]
+custom_effects = [SubResource("RichTextEffect_fkt4g")]
 script = ExtResource("3_xow8m")
 animation = "console"
-progress = 1.0
-visible_character = 2
 _transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
 _char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
-_alpha = Array[float]([1.0, 1.0])
-_alpha_goal = Array[float]([1.0, 1.0])
+_alpha = Array[float]([0.0, 0.0])
+_alpha_goal = Array[float]([0.0, 0.0])
 _forced_finish_delay = -0.0469129
 animation = "console"
 default_wait_time = 1.0
@@ -549,26 +579,23 @@ theme_type_variation = &"SmallPopupBack"
 [node name="small_popup_text" type="RichTextLabel" parent="Popups/Control/small_popup"]
 unique_name_in_owner = true
 clip_contents = false
-custom_minimum_size = Vector2(0, 368)
+custom_minimum_size = Vector2(0, 99)
 layout_mode = 2
-theme_override_colors/default_color = Color(0.613875, 0.635972, 0.203726, 1)
-theme_override_colors/font_outline_color = Color(0.126041, 0.125284, 0.0419776, 1)
-theme_override_font_sizes/bold_italics_font_size = 16
-theme_override_font_sizes/italics_font_size = 16
-theme_override_font_sizes/mono_font_size = 16
-theme_override_font_sizes/normal_font_size = 16
-theme_override_font_sizes/bold_font_size = 16
+theme_override_colors/font_outline_color = Color(0.2, 0.2, 0.2, 1)
+theme_override_font_sizes/bold_italics_font_size = 72
+theme_override_font_sizes/italics_font_size = 72
+theme_override_font_sizes/mono_font_size = 72
+theme_override_font_sizes/normal_font_size = 72
+theme_override_font_sizes/bold_font_size = 72
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_magf1")]
+custom_effects = [SubResource("RichTextEffect_8uypx")]
 script = ExtResource("3_xow8m")
 animation = "console"
-progress = 1.0
-visible_character = 16
 _transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
 _char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
-_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
-_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+_alpha_goal = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 _forced_finish_delay = -0.0357486
 animation = "console"
 default_wait_time = 1.0
@@ -587,11 +614,11 @@ signal_stars = true
 bbcode = "hello my name is"
 effects = 2
 alignment = 1
-color = Color(0.613875, 0.635972, 0.203726, 1)
+color = Color(1, 1, 1, 1)
 emoji_scale = 1.0
 font = ""
 font_auto_setup = true
-font_size = 16
+font_size = 72
 font_bold_weight = 1.5
 font_italics_slant = 0.25
 font_italics_weight = -0.25
@@ -632,3 +659,26 @@ override_clipContents = false
 override_fitContent = true
 fit_width = false
 fit_width_padding = 10
+
+[node name="Save" type="PanelContainer" parent="."]
+visible = false
+custom_minimum_size = Vector2(1920, 1080)
+offset_right = 40.0
+offset_bottom = 40.0
+mouse_filter = 2
+theme_override_styles/panel = SubResource("StyleBoxEmpty_1mk6w")
+script = ExtResource("11_7misu")
+id = "save_icon"
+
+[node name="floater_Control" type="Control" parent="Save"]
+layout_mode = 2
+mouse_filter = 2
+
+[node name="save_icon" type="TextureRect" parent="Save/floater_Control"]
+unique_name_in_owner = true
+layout_mode = 0
+offset_left = 75.0
+offset_top = 749.0
+offset_right = 331.0
+offset_bottom = 1005.0
+texture = ExtResource("12_5h6e6")

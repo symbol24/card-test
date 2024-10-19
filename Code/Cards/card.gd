@@ -53,8 +53,8 @@ func setup_card(_card_data:CardData) -> void:
 	if _card_data != null:
 		data = _card_data
 		await _set_up_cost()
-		title.text = _card_data.title
-		text.text = _card_data.text
+		title.text = "[center]" + Text.replace_tags(tr(_card_data.title), _card_data) + "[/center]"
+		text.text = Text.replace_tags(tr(_card_data.text), _card_data)
 		if _card_data.image != null and _card_data.image is CompressedTexture2D:
 			image.texture = _card_data.image
 

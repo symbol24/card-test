@@ -14,21 +14,49 @@ script = ExtResource("1_53pf0")
 id = "main_menu"
 
 [node name="MainMenuButton" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(300, 200)
 layout_mode = 1
-offset_left = 875.0
-offset_top = 483.0
-offset_right = 1099.0
-offset_bottom = 573.0
-text = "Play"
+offset_left = 810.0
+offset_top = 403.0
+offset_right = 1110.0
+offset_bottom = 603.0
+text = "main_menu_play_btn"
 script = ExtResource("2_oq65e")
 id = "deck_selector"
 
 [node name="delete_save_btn" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(200, 50)
 layout_mode = 0
-offset_left = 941.0
-offset_top = 645.0
-offset_right = 1037.0
-offset_bottom = 676.0
-text = "delete save"
+offset_left = 860.0
+offset_top = 642.0
+offset_right = 1060.0
+offset_bottom = 692.0
+text = "delete_save_btn"
 script = ExtResource("2_oq65e")
 id = "delete_save"
+
+[node name="bugs_btn" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_left = 1336.0
+offset_top = 880.0
+offset_right = 1536.0
+offset_bottom = 980.0
+text = "main_menu_bugs_btn"
+script = ExtResource("2_oq65e")
+id = "bugs_btn"
+
+[node name="discord_btn" type="Button" parent="."]
+clip_contents = true
+custom_minimum_size = Vector2(200, 100)
+layout_mode = 0
+offset_left = 1564.0
+offset_top = 880.0
+offset_right = 1764.0
+offset_bottom = 980.0
+text = "main_menu_discord_btn"
+script = ExtResource("2_oq65e")
+id = "discord_btn"

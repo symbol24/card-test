@@ -1,3 +1,7 @@
+res://Scenes/Autoload
+res://Code/Autoloads
+res://Data/Localization
+res://Code/UI
 res://Scenes/Utilities
 res://Code/Utilities
 res://Data/Decks/PlayerDecks
@@ -5,8 +9,6 @@ res://Data/CardsData/Player_Cards/Desert_Cards
 res://Data/CardsData/Player_Cards/Forest_Cards
 res://Data/Decks/EventDecks
 res://Data/CardsData/EventCards/Forest
-res://Scenes/Autoload
-res://Code/Autoloads
 res://Data/UI
 res://Code/Decks
 res://Data/CardsData/EventCards

@@ -379,12 +379,12 @@ func _complete_card(_card:Card) -> void:
 			if reward.type == CardData.Card_Type.SUCCESS:
 				_trigger_match_end(reward.id)
 			elif reward.type == CardData.Card_Type.NOTHING:
-				Signals.DisplaySmallPopup.emit("No reward received.", 3)
+				Signals.DisplaySmallPopup.emit(tr("nothing_card_popup_msg"), 3)
 			else:
 				var x:int = ProjectSettings.get_setting("display/window/size/viewport_width")
 				var y:int = ProjectSettings.get_setting("display/window/size/viewport_height")
 				_add_player_card(reward.get_duplicate(), Vector2((x/2)-_card.size.x, (y/2)-_card.size.y))
-				Signals.DisplaySmallPopup.emit(reward.id + " received.", 3)
+				Signals.DisplaySmallPopup.emit(tr(reward.title) + tr("received_card_popup_end"), 3)
 
 	if not _card.used_cards.is_empty():
 		for used in _card.used_cards:

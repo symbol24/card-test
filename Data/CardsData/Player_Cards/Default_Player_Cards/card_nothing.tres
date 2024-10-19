@@ -6,8 +6,12 @@
 [resource]
 script = ExtResource("1_w8kif")
 id = "nothing"
-title = "nothing_title"
-text = "nothing_text"
+title = "card_nothing"
+text = "card_nothing_text"
+type = 0
 costs = Array[ExtResource("1_th3ru")]([])
-resources = {}
+resources = Array[ExtResource("1_th3ru")]([])
+rewards = Array[ExtResource("1_w8kif")]([])
+reward_amount = 0
 is_mandatory = false
+destroy_on_complete = false

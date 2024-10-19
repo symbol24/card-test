@@ -22,9 +22,9 @@ cost_texture = ExtResource("3_kpgaj")
 
 [resource]
 script = ExtResource("3_0vvd5")
-id = "cold_night"
-title = "cold_night"
-text = "cold_night_text"
+id = "desert_cold_night"
+title = "desert_cold_night"
+text = "desert_cold_night_text"
 type = 5
 costs = Array[ExtResource("1_o3eob")]([SubResource("Resource_fcbd5"), SubResource("Resource_n02cu")])
 resources = Array[ExtResource("1_o3eob")]([])

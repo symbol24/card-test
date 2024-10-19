@@ -20,7 +20,7 @@ cost_texture = ExtResource("3_cir6a")
 [resource]
 script = ExtResource("1_flty5")
 id = "energy_drink"
-title = "energy_drink_title"
+title = "energy_drink"
 text = "energy_drink_text"
 type = 3
 costs = Array[ExtResource("1_n666g")]([])

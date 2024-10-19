@@ -19,6 +19,7 @@ signal DisplaySmallPopup(text:String, timer:float)
 signal DisplayBigPopup(title:String, text:String, timer:int, has_btn_1:bool, has_btn_2:bool, has_btn_3:bool)
 signal DisplayResultScreen(result_id:String, success:bool)
 signal ToggleShuffleButton(disable:bool)
+signal DisplaySaveIcon()
 
 
 # DeckButton Selection

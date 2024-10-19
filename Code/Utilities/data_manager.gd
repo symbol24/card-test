@@ -37,7 +37,7 @@ func get_deck(_id:String, _type:DeckData.Type = DeckData.Type.ANY) -> DeckData:
 		for deck in list:
 			if deck.id == _id: return deck
 		
-	push_error("No deck found with id: ", _id)
+	push_warning("No deck found with id: ", _id)
 	return null
 
 

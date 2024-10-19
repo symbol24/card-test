@@ -1283,12 +1283,14 @@ id = "deck_selector"
 
 [node name="play_button" type="Button" parent="."]
 unique_name_in_owner = true
+clip_contents = true
+custom_minimum_size = Vector2(200, 100)
 layout_mode = 1
 offset_left = 1588.0
 offset_top = 488.0
-offset_right = 1803.0
-offset_bottom = 594.0
-text = "Play With Selected decks"
+offset_right = 1815.0
+offset_bottom = 519.0
+text = "deck_selector_play_with_btn"
 script = ExtResource("2_iphc0")
 
 [node name="adventure_panel" type="PanelContainer" parent="."]

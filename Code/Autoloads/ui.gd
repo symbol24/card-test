@@ -3,6 +3,11 @@ extends CanvasLayer
 @onready var level_layer:Control = %level_layer
 @onready var screens:Array[SyPanelContainer] = []
 
+var active_result_screen:ResultScreen = null
+var is_result_displayed:bool:
+	get:
+		return active_result_screen != null and active_result_screen.visible
+
 
 func _ready() -> void:
 	var children = get_children()
@@ -38,6 +43,10 @@ func _button_dispatcher(_id:String, _from:String) -> void:
 			Signals.DisplayResultScreen.emit("result_failure", false)
 		"delete_save":
 			Signals.DeleteAndLoad.emit()
+		"bugs_btn":
+			OS.shell_open("https://forms.gle/2zZqJd7tn48aEnX77")
+		"discord_btn":
+			OS.shell_open("https://discord.gg/53jFqh7GPt")
 		_:
 			pass
 
@@ -86,6 +95,9 @@ func _toggle_screen(_id:String, _value:bool) -> void:
 
 
 func _display_result_screen(_result_id:String, _success:bool) -> void:
+	if active_result_screen != null:
+		active_result_screen.queue_free()
+		active_result_screen = null
 	var panel:SyPanelContainer = _get_already_present("result_screen")
 	if panel == null:
 		panel = Game.data_manager.result_screen.instantiate()
@@ -96,6 +108,7 @@ func _display_result_screen(_result_id:String, _success:bool) -> void:
 	panel.set_buttons(_success)
 	panel.set_title(_success)
 	panel.set_result_text(_result_id)
+	active_result_screen = panel
 	_toggle_screen("result_screen", true)
 
 

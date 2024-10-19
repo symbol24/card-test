@@ -39,6 +39,7 @@ func _load():
 
 
 func _save() -> void:
+	Signals.DisplaySaveIcon.emit()
 	if not DirAccess.open(FOLDER):
 		var _res = DirAccess.make_dir_absolute(FOLDER)
 	var to_save := {"save":"data"}
@@ -64,7 +65,7 @@ func _delete_save() -> void:
 			data = null
 			print("Save file deleted")
 			Game.unlock_manager.reset_conditions()
-			Signals.DisplaySmallPopup.emit("Save file Deleted", 3)
+			Signals.DisplaySmallPopup.emit("save_file_delete", 3)
 		else: print("Delete save file error: ", result)
 
 

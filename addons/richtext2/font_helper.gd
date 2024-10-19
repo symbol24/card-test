@@ -16,7 +16,7 @@ const FONT_FORMATS := ["otf", "ttf", "ttc", "otc", "woff", "woff2", "pfb", "pfm"
 
 ## Scans entire project now.
 ## If you set it to res://fonts you could save a lot of time on large projects.
-const FONT_DIR := "res://"
+const FONT_DIR := "res://fonts"
 
 ## TODO: Cache fonts here.
 static var cache: Dictionary

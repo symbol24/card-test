@@ -20,8 +20,8 @@ cost_texture = ExtResource("3_j1ai6")
 [resource]
 script = ExtResource("1_ux8ji")
 id = "mre"
-title = "mre_title"
-text = "mre_text"
+title = "card_mre"
+text = "card_mre_text"
 type = 3
 costs = Array[ExtResource("1_m3rgb")]([])
 resources = Array[ExtResource("1_m3rgb")]([SubResource("Resource_ovgl0"), SubResource("Resource_1qquc")])

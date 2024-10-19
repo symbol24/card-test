@@ -17,15 +17,15 @@ grow_horizontal = 2
 grow_vertical = 2
 theme_type_variation = &"DeckBack"
 script = ExtResource("2_fiqjq")
+text = "player_deck_btn"
 
 [node name="deck_btn" type="Button" parent="."]
 unique_name_in_owner = true
 clip_contents = true
 layout_mode = 2
 theme_type_variation = &"DeckButton"
-text = "Click to
-Draw
--1E"
+text = "player_deck_btn"
+autowrap_mode = 3
 clip_text = true
 
 [node name="deck_area" type="Area2D" parent="."]

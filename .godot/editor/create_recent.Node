@@ -1,5 +1,10 @@
 SyButton
+TextureRect
+Control
+SyPanelContainer
+Button
+HBoxContainer
+VBoxContainer
 Node
 RichTextLabel
 RicherTextLabel
-Button
