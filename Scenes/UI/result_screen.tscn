@@ -184,7 +184,7 @@ theme_override_constants/separation = 40
 
 [node name="btn_result_return" type="Button" parent="VBoxContainer/button"]
 unique_name_in_owner = true
-process_mode = 2
+process_mode = 3
 clip_contents = true
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
@@ -196,7 +196,7 @@ send_clear = true
 
 [node name="btn_result_retry" type="Button" parent="VBoxContainer/button"]
 unique_name_in_owner = true
-process_mode = 2
+process_mode = 3
 custom_minimum_size = Vector2(200, 0)
 layout_mode = 2
 text = "btn_result_retry"
@@ -206,6 +206,7 @@ id = "btn_result_retry"
 send_clear = true
 
 [node name="bugs_btn" type="Button" parent="VBoxContainer/button"]
+process_mode = 3
 clip_contents = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
@@ -214,6 +215,7 @@ script = ExtResource("3_okcdb")
 id = "bugs_btn"
 
 [node name="discord_btn" type="Button" parent="VBoxContainer/button"]
+process_mode = 3
 clip_contents = true
 custom_minimum_size = Vector2(200, 100)
 layout_mode = 2
