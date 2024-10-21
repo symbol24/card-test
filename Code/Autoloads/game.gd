@@ -582,14 +582,16 @@ func _check_fail_state() -> bool:
 		# check each active card against active event card
 		if not can_play:
 			#print("Checking active cards.")
+			var possible_resources:int = 0
 			for each in active_player_cards:
 				for res in each.data.resources:
 					if not res.cost_type in active_event_card.data.payables:
 						for cost in card_costs:
 							#print("if player card resource >= event card cost: ", res.cost_type == cost.cost_type and res.cost_amount >= cost.cost_amount)
 							if res.cost_type == cost.cost_type and res.cost_amount >= cost.cost_amount:
-								can_play = true
-								break
+								possible_resources += 1
+			if possible_resources >= active_event_card.data.costs.size():
+				can_play = true
 
 		# check active cards to gain energy
 		if not can_play:

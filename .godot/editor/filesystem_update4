@@ -1,13 +1,2 @@
-res://Data/Localization/loc.en.translation
-res://Scenes/CardsandDecks/deck.tscn
-res://Data/main_theme.tres
-res://Scenes/CardsandDecks/event_deck.tscn
-res://Scenes/Into/boot.tscn
-res://Scenes/Autoload/UI.tscn
-res://Scenes/DeckSelector/DeckSelector.tscn
-res://Scenes/PlayLevels/TestLevel.tscn
-res://Scenes/PlayArea/play_area.tscn
-res://Scenes/MainMenu/main_menu.tscn
-res://Scenes/Autoload/text_server.tscn
-res://Scenes/CardsandDecks/card.tscn
-res://Scenes/UI/result_screen.tscn
+res://Code/UI/result_screen.gd
+res://Code/Autoloads/game.gd
