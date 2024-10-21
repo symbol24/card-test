@@ -66,9 +66,16 @@ func _replace_seperated_costs(_text:String = "", _array:Array[Cost] = [], is_cos
 	var i:int = 1
 	for cost in _array:
 		var to_replace:String = "[c" if is_cost else "[r"
-		
 		to_replace += str(i) + "]"
-		_text = _text.replace(to_replace, _get_type_replacement(cost.cost_type))
+
+		var with:String = ""
+		for j in cost.cost_amount:
+			if j > 0:
+				with += ", "
+			with += _get_type_replacement(cost.cost_type)
+
+		_text = _text.replace(to_replace, with)
+
 		i += 1
 	return _text
 

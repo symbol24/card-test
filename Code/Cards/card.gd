@@ -9,7 +9,6 @@ class_name Card extends CardPanelContainer
 @onready var title:RichTextLabel = %title
 @onready var text:RichTextLabel = %text
 @onready var card_area:Area2D = %card_area
-@onready var image: TextureRect = %image
 @onready var btn_control:Control = %btn_control
 
 var data:CardData
@@ -55,8 +54,6 @@ func setup_card(_card_data:CardData) -> void:
 		await _set_up_cost()
 		title.text = "[center]" + Text.replace_tags(tr(_card_data.title), _card_data) + "[/center]"
 		text.text = Text.replace_tags(tr(_card_data.text), _card_data)
-		if _card_data.image != null and _card_data.image is CompressedTexture2D:
-			image.texture = _card_data.image
 
 
 func clear_data() -> void:

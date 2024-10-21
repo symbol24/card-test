@@ -39,18 +39,13 @@ mouse_filter = 2
 
 [node name="title" type="RichTextLabel" parent="vbx"]
 unique_name_in_owner = true
-custom_minimum_size = Vector2(0, 30)
+custom_minimum_size = Vector2(0, 60)
 layout_mode = 2
 mouse_filter = 2
 theme_type_variation = &"CardTitle"
 bbcode_enabled = true
 text = "[center]Title goes here[/center]"
 scroll_active = false
-
-[node name="image" type="TextureRect" parent="vbx"]
-unique_name_in_owner = true
-custom_minimum_size = Vector2(50, 50)
-layout_mode = 2
 
 [node name="text" type="RichTextLabel" parent="vbx"]
 unique_name_in_owner = true

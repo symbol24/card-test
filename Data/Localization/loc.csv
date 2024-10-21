@@ -91,7 +91,7 @@ desert_success_text,"After your long ordeal in the desert, the people of this sm
 oasis_water,Water from an oasis
 oasis_water_text,"You don't know why, but this is the best water you have ever had. Can be used for [r1] or [r2]."
 survival_pack,Emergency Survival Kit
-survival_pack_text,"A small emergency survival kit comon on aircrafts. Can be used for [r1], r[2], or [r3]."
+survival_pack_text,"A small emergency survival kit comon on aircrafts. Can be used for [r1], [r2], and [r3]."
 bear_meat,Bear meat
 bear_meat_text,The beast provides tough but nutritious meat. Provides [resources]
 first_aid_kit,First Aid Kit
