@@ -1,8 +1,0 @@
-[gd_scene load_steps=3 format=3 uid="uid://d31a04t8ria1m"]
-
-[ext_resource type="Script" path="res://addons/SimpleSceneManager/Code/scene_manager.gd" id="1_l2ukd"]
-[ext_resource type="Resource" uid="uid://deg76elgaoig4" path="res://Data/level_data.tres" id="2_oqt2t"]
-
-[node name="SceneManager" type="Node"]
-script = ExtResource("1_l2ukd")
-level_data = ExtResource("2_oqt2t")

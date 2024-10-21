@@ -18,7 +18,7 @@ func _ready() -> void:
 	Signals.ToggleCardForButton.connect(_display_card_button)
 	Signals.ToggleUiMenu.connect(_toggle_screen)
 	Signals.DisplayResultScreen.connect(_display_result_screen)
-	Manager.ToggleLoadingScreen.connect(_toggle_loading_screen)
+	Signals.ToggleLoadingScreen.connect(_toggle_loading_screen)
 
 
 func _button_dispatcher(_id:String, _from:String) -> void:
@@ -27,16 +27,16 @@ func _button_dispatcher(_id:String, _from:String) -> void:
 			pass
 		"deck_selector":
 			Signals.Save.emit()
-			Manager.load_scene(2)
+			Signals.LoadScene.emit("deck_selector")
 		"play_with":
-			Manager.load_scene(3)
+			Signals.LoadScene.emit("play_level")
 		"btn_result_retry":
 			Signals.ResetGameData.emit()
 			Game.reset_decks()
-			Manager.load_scene(3)
+			Signals.LoadScene.emit("play_level")
 		"btn_result_return":
 			Signals.ResetGameData.emit()
-			Manager.load_scene(2)
+			Signals.LoadScene.emit("deck_selector")
 		"debug_result_success":
 			Signals.DisplayResultScreen.emit("result_success", true)
 		"debug_result_failure":
@@ -57,8 +57,8 @@ func _play_with(_event_id:String, _player_id:String) -> void:
 
 func _toggle_loading_screen(_value:bool) -> void:
 	if not _value:
-		if Manager.level_data.loading_delay > 0.0:
-			await get_tree().create_timer(Manager.level_data.loading_delay).timeout
+		if Game.scene_manager.level_data.extra_loading_time > 0.0:
+			await get_tree().create_timer(Game.scene_manager.level_data.extra_loading_time).timeout
 	_toggle_screen("loading_screen", _value)
 
 

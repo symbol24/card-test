@@ -1,10 +1,12 @@
-[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://deg76elgaoig4"]
+[gd_resource type="Resource" script_class="LevelData" load_steps=2 format=3 uid="uid://ci08rykk7v1d0"]
 
-[ext_resource type="Script" path="res://addons/SimpleSceneManager/Code/level_data.gd" id="1_rbm7j"]
+[ext_resource type="Script" path="res://Code/Utilities/level_data.gd" id="1_c25y0"]
 
 [resource]
-script = ExtResource("1_rbm7j")
-levels = Array[String](["res://Scenes/Into/boot.tscn", "res://Scenes/MainMenu/main_menu.tscn", "res://Scenes/DeckSelector/DeckSelector.tscn", "res://Scenes/PlayLevels/TestLevel.tscn"])
-load_first_level_on_boot = false
-use_own_loading_screen = true
-loading_delay = 1.0
+script = ExtResource("1_c25y0")
+levels = {
+"deck_selector": "res://Scenes/DeckSelector/DeckSelector.tscn",
+"main_menu": "res://Scenes/MainMenu/main_menu.tscn",
+"play_level": "res://Scenes/PlayLevels/TestLevel.tscn"
+}
+extra_loading_time = 1.0

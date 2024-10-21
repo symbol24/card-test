@@ -1,6 +1,11 @@
-[gd_scene load_steps=2 format=3 uid="uid://dffx6y7rmqcjf"]
+[gd_scene load_steps=3 format=3 uid="uid://dffx6y7rmqcjf"]
 
 [ext_resource type="Script" path="res://Code/boot.gd" id="1_nmr8y"]
+[ext_resource type="Texture2D" uid="uid://dx2i2rhdc8gdb" path="res://Textures/logo.png" id="2_60hjf"]
 
 [node name="Boot" type="Node2D"]
 script = ExtResource("1_nmr8y")
+
+[node name="Logo" type="Sprite2D" parent="."]
+position = Vector2(933, 531)
+texture = ExtResource("2_60hjf")

@@ -12,20 +12,20 @@
 [ext_resource type="Script" path="res://Code/UI/save_icon.gd" id="11_7misu"]
 [ext_resource type="Texture2D" uid="uid://c6bngimic5c1b" path="res://Textures/save_icon_big.png" id="12_5h6e6"]
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_q61pq"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_vvx34"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 1829253463970
+metadata/rt = 1810177783922
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_fkt4g"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_whi0c"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 1831837169931
+metadata/rt = 1812761475303
 
-[sub_resource type="RichTextEffect" id="RichTextEffect_8uypx"]
+[sub_resource type="RichTextEffect" id="RichTextEffect_qv8gm"]
 resource_name = "console"
 script = ExtResource("9_o608s")
-metadata/rt = 1832323709203
+metadata/rt = 1813248014575
 
 [sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1mk6w"]
 
@@ -80,7 +80,7 @@ theme_override_font_sizes/normal_font_size = 104
 theme_override_font_sizes/bold_font_size = 104
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_q61pq")]
+custom_effects = [SubResource("RichTextEffect_vvx34")]
 script = ExtResource("3_xow8m")
 animation = "console"
 _forced_finish_delay = -0.0365728
@@ -491,15 +491,13 @@ theme_override_font_sizes/normal_font_size = 16
 theme_override_font_sizes/bold_font_size = 16
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_fkt4g")]
+custom_effects = [SubResource("RichTextEffect_whi0c")]
 script = ExtResource("3_xow8m")
 animation = "console"
-progress = 1.0
-visible_character = 2
 _transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
 _char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0)])
-_alpha = Array[float]([1.0, 1.0])
-_alpha_goal = Array[float]([1.0, 1.0])
+_alpha = Array[float]([0.0, 0.0])
+_alpha_goal = Array[float]([0.0, 0.0])
 _forced_finish_delay = -0.0469129
 animation = "console"
 default_wait_time = 1.0
@@ -591,15 +589,13 @@ theme_override_font_sizes/normal_font_size = 72
 theme_override_font_sizes/bold_font_size = 72
 bbcode_enabled = true
 fit_content = true
-custom_effects = [SubResource("RichTextEffect_8uypx")]
+custom_effects = [SubResource("RichTextEffect_qv8gm")]
 script = ExtResource("3_xow8m")
 animation = "console"
-progress = 1.0
-visible_character = 16
 _transforms = Array[Transform2D]([Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0), Transform2D(1, 0, 0, 1, 0, 0)])
 _char_size = Array[Vector2]([Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0), Vector2(0, 0)])
-_alpha = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
-_alpha_goal = Array[float]([1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0, 1.0])
+_alpha = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
+_alpha_goal = Array[float]([0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0, 0.0])
 _forced_finish_delay = -0.0357486
 animation = "console"
 default_wait_time = 1.0

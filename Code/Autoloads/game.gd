@@ -2,9 +2,10 @@ extends Node
 
 
 const SEED_OPTIONS:String = "ABCDEFGHIJKLMNOPQRSTUVWXYZ1234567890!@$%^&*?"
-const DATAMANAGER = "res://Scenes/Utilities/data_manager.tscn"
-const UNLOCKMANAGER = "res://Scenes/Utilities/unlock_manager.tscn"
-const INPUTMANAGER = "res://Scenes/Utilities/input_manager.tscn"
+const DATAMANAGER:String = "res://Scenes/Utilities/data_manager.tscn"
+const UNLOCKMANAGER:String = "res://Scenes/Utilities/unlock_manager.tscn"
+const INPUTMANAGER:String = "res://Scenes/Utilities/input_manager.tscn"
+const SCENEMANAGER:String = "res://Scenes/Utilities/scene_manager.tscn"
 
 
 @export var seed_length:int = 10
@@ -39,9 +40,11 @@ var to_load_managers:Array[String] = [
 										DATAMANAGER,
 										UNLOCKMANAGER,
 										INPUTMANAGER,
+										SCENEMANAGER,
 									]
 var data_manager:DataManager
 var unlock_manager:UnlockManager
+var scene_manager:SceneManager
 var other_managers:Array = []
 var is_loading := false
 var to_load := ""
@@ -234,6 +237,8 @@ func _complete_load() -> void:
 			data_manager = instantiated
 		UNLOCKMANAGER:
 			unlock_manager = instantiated
+		SCENEMANAGER:
+			scene_manager = instantiated
 		_:
 			other_managers.append(instantiated)
 	

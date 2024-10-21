@@ -1,28 +1,14 @@
-extends Node
+class_name SceneManager extends Node
 
-signal ToggleLoadingScreen(_display:bool)
-signal LoadingPercentUpdated(_percent:float)
-signal LoadingComplete()
 
-const LOADING_SCREEN = "res://addons/SimpleSceneManager/Scenes/loading_screen.tscn"
-
-## Use the resource LevelData that you create here.
 @export var level_data:LevelData
 
-# A quick variable to check if the tree is paused.
-var is_paused:bool:
-	get:
-		return get_tree().paused
-		
-#Levels and loading
 var active_level:Node
 var is_loading := false
 var to_load := ""
 var load_complete := false
 var loading_status := 0.0
 var progress := []
-var extra_loading := false
-var loading_screen:LoadingScreen
 var ui:CanvasLayer
 
 
@@ -31,37 +17,32 @@ func _ready() -> void:
 	process_mode = PROCESS_MODE_ALWAYS
 	
 	ui = get_tree().get_first_node_in_group("UI") as CanvasLayer
-	
-	# If use_own_loading_screen is false, load the loading screen and instantiate to be used.
-	if !level_data.use_own_loading_screen:
-		loading_screen = load(LOADING_SCREEN).instantiate()
-		add_child.call_deferred(loading_screen)
-		
-	# If load_first_level_on_boot then loading the first in the list.
-	if level_data.load_first_level_on_boot:
-		load_scene(0)
+
+	Signals.LoadScene.connect(_load_scene)
+
+	if level_data == null: push_error("Level data in scene manager is not set.")
 
 
 func _process(_delta: float) -> void:
 	if is_loading:
 		loading_status = ResourceLoader.load_threaded_get_status(to_load, progress)
-		LoadingPercentUpdated.emit(progress[0])
 		
 		# When loading is complete in ResourceLoader, launch the _complete_load function.
 		if loading_status == ResourceLoader.THREAD_LOAD_LOADED:
 			if !load_complete:
 				load_complete = true
 				_complete_load()
+	
 
-
-func load_scene(_id:int = -1) -> void:
+func _load_scene(_id:String = "") -> void:
 	# Send loadscreen toggle on
-	ToggleLoadingScreen.emit(true)
+	Signals.ToggleLoadingScreen.emit(true)
 	get_tree().paused = true
 	
 	# If path is empty, dont try to load.
-	var path := level_data.get_level_path(_id)
+	var path:String = level_data.get_level_path(_id)
 	if path == "":
+		push_error("Path to load is empty.")
 		return
 	
 	# If there is an active level, queue_free it.
@@ -87,13 +68,6 @@ func _complete_load() -> void:
 	
 	if not active_level.is_node_ready():
 		await active_level.ready
-
-	# Adding load time if set in the level data
-	if level_data.loading_delay > 0.0:
-		var wait_timer := get_tree().create_timer(level_data.loading_delay)
-		await wait_timer.timeout
 	
 	get_tree().paused = false
-	LoadingComplete.emit()
-	# Send loadscreen toggle off
-	#ToggleLoadingScreen.emit(false)
+	Signals.SceneLoadingComplete.emit()

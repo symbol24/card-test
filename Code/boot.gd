@@ -5,4 +5,6 @@ func _ready() -> void:
 	Signals.LoadManagers.emit()
 	await Signals.AllManagersLoaded
 	Signals.Load.emit()
-	Manager.load_scene(1)
+	await get_tree().create_timer(1).timeout
+	Signals.LoadScene.emit("main_menu")
+	queue_free.call_deferred()

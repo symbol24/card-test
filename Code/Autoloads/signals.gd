@@ -1,5 +1,10 @@
 extends Node
 
+# Sceme Manager
+signal SceneLoadingComplete()
+signal LoadScene(id:String)
+
+
 # Save / Load
 signal Save()
 signal Load()
@@ -9,6 +14,7 @@ signal UnlockDeckInSave(data:DeckData)
 
 # UI
 signal ToggleUiMenu(id:String, display:bool)
+signal ToggleLoadingScreen(display:bool)
 signal ButtonPressed(id:String, from:String)
 signal NotifyResourceEmpty(type:CardData.Resource_Type)
 signal NotifyDeckEmpty(deck:DeckButton)

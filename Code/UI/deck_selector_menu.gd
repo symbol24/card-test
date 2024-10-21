@@ -23,7 +23,7 @@ func _ready() -> void:
 	if not seed_rtl.is_node_ready(): await seed_rtl.ready
 	_set_seed()
 	Game.setup_player()
-	Manager.ToggleLoadingScreen.emit(false)
+	Signals.ToggleLoadingScreen.emit(false)
 	await get_tree().create_timer(check_delay).timeout
 	Signals.CheckDeckUnlock.emit()
 

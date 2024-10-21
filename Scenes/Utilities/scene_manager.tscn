@@ -1,0 +1,8 @@
+[gd_scene load_steps=3 format=3 uid="uid://dd6uxcclumb41"]
+
+[ext_resource type="Script" path="res://Code/Utilities/scene_manager.gd" id="1_p82uu"]
+[ext_resource type="Resource" uid="uid://ci08rykk7v1d0" path="res://Data/level_data.tres" id="2_3en1l"]
+
+[node name="SceneManager" type="Node"]
+script = ExtResource("1_p82uu")
+level_data = ExtResource("2_3en1l")
