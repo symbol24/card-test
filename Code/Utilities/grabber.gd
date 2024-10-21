@@ -61,19 +61,19 @@ func _grab() -> void:
 
 func _click_card() -> void:
 	if not grabbing:
-		if Game.discard_layer.is_visible() and not Game.discarded_player_cards.is_empty():
-			for each in Game.discarded_player_cards:
+		if Game.discard_layer.is_visible():
+			var discarded_cards:Array[Card] = _get_cards(true)
+			for each in discarded_cards:
 				var area:Vector2 = each.global_position + each.size
 				if get_global_mouse_position().x >= each.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= each.global_position.y and get_global_mouse_position().y <= area.y:
 					grabbed_items.append(each)
 		elif not Game.discard_layer.is_visible():
-			#print("active_player_cards: ", Game.active_player_cards)
-			if not Game.active_player_cards.is_empty():
-				for each in Game.active_player_cards:
-					if each != null:
-						var area:Vector2 = each.global_position + each.size
-						if get_global_mouse_position().x >= each.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= each.global_position.y and get_global_mouse_position().y <= area.y:
-							grabbed_items.append(each)
+			var active_cards:Array[Card] = _get_cards(false)
+			for each in active_cards:
+				if each != null:
+					var area:Vector2 = each.global_position + each.size
+					if get_global_mouse_position().x >= each.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= each.global_position.y and get_global_mouse_position().y <= area.y:
+						grabbed_items.append(each)
 			if Game.active_event_card != null:
 				var area:Vector2 = Game.active_event_card.global_position + Game.active_event_card.size
 				if get_global_mouse_position().x >= Game.active_event_card.global_position.x and get_global_mouse_position().x <= area.x and get_global_mouse_position().y >= Game.active_event_card.global_position.y and get_global_mouse_position().y <= area.y:
@@ -129,5 +129,15 @@ func _get_panel_cards(_panel:GrabberSelectorPanel) -> Array[Card]:
 				var card_end:Vector2 = card.global_position + card.size
 				if (card.global_position.x >= panel_start.x and card_end.x <= panel_end.x) and (card.global_position.y >= panel_start.y and card_end.y <= panel_end.y):
 					cards.append(card)
+
+	return cards
+
+
+func _get_cards(_is_discarded:bool = false) -> Array[Card]:
+	var all_cards = get_tree().get_nodes_in_group("card")
+	var cards:Array[Card] = []
+	for each in all_cards:
+		if each.is_in_discard == _is_discarded:
+			cards.append(each as Card)
 
 	return cards

@@ -1,2 +1,4 @@
 res://Code/UI/result_screen.gd
 res://Code/Autoloads/game.gd
+res://Code/Utilities/grabber.gd
+res://Code/Cards/card.gd
