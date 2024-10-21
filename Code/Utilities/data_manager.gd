@@ -18,9 +18,6 @@ class_name DataManager extends Node
 @export_category("Event Decks")
 @export var event_decks:Array[DeckData]
 
-@export_category("Unlockables")
-@export var deck_unlock_conditions:Array[UnlockCondition]
-
 @export_category("Other")
 @export var card_icons:Array[CardIconData]
 

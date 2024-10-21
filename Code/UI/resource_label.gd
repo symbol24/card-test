@@ -7,5 +7,4 @@ func _ready() -> void:
 
 func _update_text(_type:CardData.Resource_Type, _amount:int) -> void:
 	if _type == resource_type:
-		var letter = text.split(":",false,1)
-		text = letter[0] + ":" + str(_amount)
+		text = str(_amount)

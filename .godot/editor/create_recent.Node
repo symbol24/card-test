@@ -1,5 +1,7 @@
-SyButton
 TextureRect
+GridContainer
+PanelContainer
+SyButton
 Control
 SyPanelContainer
 Button

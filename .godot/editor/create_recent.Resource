@@ -1,7 +1,8 @@
+Cost
+CardIconData
 LevelData
 UnlockCondition
 UnlockTarget
 DeckData
 CardData
 EventCardData
-CardIconData

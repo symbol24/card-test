@@ -1,4 +1,4 @@
-[gd_scene load_steps=31 format=3 uid="uid://dovcqdm8wvsk7"]
+[gd_scene load_steps=24 format=3 uid="uid://dovcqdm8wvsk7"]
 
 [ext_resource type="Script" path="res://Code/Utilities/data_manager.gd" id="1_kuk14"]
 [ext_resource type="PackedScene" uid="uid://b7vq3l83vu5hj" path="res://Scenes/CardsandDecks/card.tscn" id="2_mjewf"]
@@ -18,39 +18,11 @@
 [ext_resource type="Script" path="res://Code/UI/card_icon_data.gd" id="15_q6wxl"]
 [ext_resource type="Resource" uid="uid://bf5kmq1umoi6o" path="res://Data/Decks/EventDecks/forest_01_event_deck.tres" id="16_6y6kw"]
 [ext_resource type="Resource" uid="uid://cby52kqtij6x5" path="res://Data/UI/energy.tres" id="16_m04wl"]
-[ext_resource type="Script" path="res://Code/Unlock/unlock_condition.gd" id="17_8ti2g"]
 [ext_resource type="Resource" uid="uid://dw06vr5dimq4d" path="res://Data/UI/food.tres" id="17_k6t73"]
-[ext_resource type="Script" path="res://Code/Unlock/condition.gd" id="18_7wg6k"]
 [ext_resource type="Resource" uid="uid://clegyucp0wxi6" path="res://Data/UI/hp.tres" id="18_m25cb"]
 [ext_resource type="Resource" uid="uid://c53fmekqe8qeu" path="res://Data/UI/material.tres" id="19_6hury"]
-[ext_resource type="Script" path="res://Code/Unlock/unlock_target.gd" id="19_7b8ei"]
 [ext_resource type="Resource" uid="uid://c1pxrrwkw8du3" path="res://Data/UI/water.tres" id="20_jb77r"]
 [ext_resource type="Resource" uid="uid://dd280bs2oopqw" path="res://Data/UI/weapon.tres" id="21_06bf6"]
-
-[sub_resource type="Resource" id="Resource_kvrn5"]
-script = ExtResource("18_7wg6k")
-condition_type = 0
-condition_target = "desert_01_event_deck"
-amount_needed = 1
-
-[sub_resource type="Resource" id="Resource_33n82"]
-script = ExtResource("18_7wg6k")
-condition_type = 0
-condition_target = "starter_deck"
-amount_needed = 1
-
-[sub_resource type="Resource" id="Resource_uecle"]
-script = ExtResource("19_7b8ei")
-unlock_target_type = 1
-unlock_target_id = "desert_deck_01"
-
-[sub_resource type="Resource" id="Resource_v2kc0"]
-script = ExtResource("17_8ti2g")
-id = "desert_deck_01"
-type = 1
-conditions = Array[ExtResource("18_7wg6k")]([SubResource("Resource_kvrn5"), SubResource("Resource_33n82")])
-to_unlock = Array[ExtResource("19_7b8ei")]([SubResource("Resource_uecle")])
-already_unlocked = false
 
 [node name="DataManager" type="Node"]
 process_mode = 3
@@ -66,5 +38,4 @@ ui_card_btn = ExtResource("9_axu4h")
 result_screen = ExtResource("10_8q2qd")
 player_decks = Array[ExtResource("6_avuvk")]([ExtResource("7_pot31"), ExtResource("13_qv432"), ExtResource("13_av78t")])
 event_decks = Array[ExtResource("6_avuvk")]([ExtResource("8_ojvnn"), ExtResource("16_6y6kw")])
-deck_unlock_conditions = Array[ExtResource("17_8ti2g")]([SubResource("Resource_v2kc0")])
 card_icons = Array[ExtResource("15_q6wxl")]([ExtResource("16_m04wl"), ExtResource("17_k6t73"), ExtResource("18_m25cb"), ExtResource("19_6hury"), ExtResource("20_jb77r"), ExtResource("21_06bf6")])
